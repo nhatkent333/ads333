@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-	document.getElementsByClassName("ads333")[0].innerHTML = "<div style='text-align:center; width:100%; height:auto;'><p><strong>CLIP HOT ĐƯỢC NHIỀU NGƯỜI QUAN TÂM</strong></p><a href='https://youtu.be/XTuBuKzF-_w?t=588' target='_blank'><img alt='my image' src='https://ads333.vieclamvui.com/pham-nhat-vuong-youtube.jpg'></a><div>";
+	document.getElementsByClassName("ads333")[0].innerHTML = "<div style='text-align:center;'><p><strong>CLIP HOT ĐƯỢC NHIỀU NGƯỜI QUAN TÂM</strong></p><a href='https://www.youtube.com/watch?v=XTuBuKzF-_w' target='_blank'><img alt='Phạm Nhật Vượng' src='https://ads333.vieclamvui.com/pham-nhat-vuong-youtube.jpg' style='max-width:600px;' width='100%' height='auto'></a><div>";
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
