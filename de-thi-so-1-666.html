@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Đề thi số 1</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<style type="text/css">
+		/* Tabs */
+		.tabs {
+		  width: 100%;
+		  background-color: #09F;
+		  border-radius: 5px 5px 5px 5px;
+		}
+		ul#tabs-nav {
+		  list-style: none;
+		  margin: 0;
+		  padding: 5px;
+		  overflow: auto;
+		}
+		ul#tabs-nav li {
+		  float: left;
+		  font-weight: bold;
+		  margin-right: 2px;
+		  padding: 8px 10px;
+		  border-radius: 5px 5px 5px 5px;
+		  /*border: 1px solid #d5d5de;
+		  border-bottom: none;*/
+		  cursor: pointer;
+		}
+		ul#tabs-nav li:hover,
+		ul#tabs-nav li.active {
+		  background-color: #08E;
+		}
+		#tabs-nav li a {
+		  text-decoration: none;
+		  color: #FFF;
+		}
+		.tab-content {
+		  padding: 10px;
+		  border: 5px solid #09F;
+		  background-color: #FFF;
+		}
+
+		/* Just for CodePen styling - don't include if you copy paste */
+		html {
+		  margin: 0;
+		  padding: 0;
+		}
+		body { 
+		  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		  font-weight: 300;
+		  margin: 2em;
+		}
+
+		.nav-btn333 {
+		  padding: 10px 10px;
+		  border: none;
+		  background-color: #333;
+		  color: #fff;
+		  cursor: pointer;
+		}
+
+		.question {
+		  font-weight: bold;
+		  margin-bottom: 10px;
+		}
+
+		.answer {
+		  margin-bottom: 5px;
+		}
+
+		.results {
+		  display: none;
+		  border: 1px solid black;
+		  padding: 10px;
+		}
+
+		.correct {
+		  color: green;
+		}
+
+		.incorrect {
+		  color: red;
+		}
+
+		.truocsau {
+		  margin-top:30px;
+		  margin-bottom:10px;
+		}
+	</style>
+</head>
+<body>
+		<div style="text-align:center; margin-bottom:20px;">Thời gian làm bài còn: <span id="timer" style="font-size:20px; font-weight:bold; color:blue;"></span></div>
+		<div class="tabs">
+		  <ul id="tabs-nav" class="nav nav-tabs">
+		    <li class="active"><a href="#tab1">1</a></li>
+		    <li><a href="#tab2">2</a></li>
+		    <li><a href="#tab3">3</a></li>
+		    <li><a href="#tab4">4</a></li>
+		    <li><a href="#tab5">5</a></li>
+		    <li><a href="#tab6">6</a></li>
+		    <li><a href="#tab7">7</a></li>
+		    <li><a href="#tab8">8</a></li>
+		    <li><a href="#tab9">9</a></li>
+		    <li><a href="#tab10">10</a></li>
+		    <li><a href="#tab11">11</a></li>
+		    <li><a href="#tab12">12</a></li>
+		    <li><a href="#tab13">13</a></li>
+		    <li><a href="#tab14">14</a></li>
+		    <li><a href="#tab15">15</a></li>
+		    <li><a href="#tab16">16</a></li>
+		    <li><a href="#tab17">17</a></li>
+		    <li><a href="#tab18">18</a></li>
+		    <li><a href="#tab19">19</a></li>
+		    <li><a href="#tab20">20</a></li>
+		    <li><a href="#tab21">21</a></li>
+		    <li><a href="#tab22">22</a></li>
+		    <li><a href="#tab23">23</a></li>
+		    <li><a href="#tab24">24</a></li>
+		    <li><a href="#tab25">25</a></li>
+		    <li><a href="#tab26">26</a></li>
+		    <li><a href="#tab27">27</a></li>
+		    <li><a href="#tab28">28</a></li>
+		    <li><a href="#tab29">29</a></li>
+		    <li><a href="#tab30">30</a></li>
+		    <li><a href="#tab31">31</a></li>
+		    <li><a href="#tab32">32</a></li>
+		    <li><a href="#tab33">33</a></li>
+		    <li><a href="#tab34">34</a></li>
+		    <li><a href="#tab35">35</a></li>
+		  </ul> <!-- END tabs-nav -->
+
+		  <form id="quiz-form">
+		    <div id="tabs-content">
+		      <!-- DANH SÁCH CÂU HỎI -->
+		      <div id="tab1" class="tab-content" class="tab-pane active">
+		<!-- Question 1 --><div class="question">Câu 1:Khái niệm “phương tiện giao thông thô sơ đường bộ” được hiểu thế nào là đúng?</div>
+		<div class="answer"><input type="radio" name="q1" value="a"> a. Gồm xe đạp kể cả xe đạp máy, xe đạp điện, xe xích lô, xe lăn dùng cho người khuyết tật, xe súc vật kéo và các loại xe tương tự.</div>
+		<div class="answer"><input type="radio" name="q1" value="b"> b. Gồm xe đạp kể cả xe đạp máy, xe đạp điện, xe gắn máy, xe cơ giới dùng cho người khuyết tật và xe máy chuyên dùng.</div>
+		<div class="answer"><input type="radio" name="q1" value="c"> c. Gồm xe ô tô, máy kéo, rơ moóc hoặc sơ mi rơ moóc được kéo bởi xe ô tô, máy kéo.</div>
+		<p id="feedback1" style="font-weight:bold;"></p><!-- end Question1 --><div class="truocsau"><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab2" class="tab-content" class="tab-pane">
+		<!-- Question 2 --><div class="question">Câu 2:Phương tiện tham gia giao thông đường bộ” gồm những loại nào?</div>
+		<div class="answer"><input type="radio" name="q2" value="a">a. Phương tiện giao thông cơ giới đường bộ.</div>
+		<div class="answer"><input type="radio" name="q2" value="b">b. Phương tiện giao thông thô sơ đường bộ và xe máy chuyên dùng.</div>
+		<div class="answer"><input type="radio" name="q2" value="c">c. Cả ý 1 và ý 2.</div>
+		<p id="feedback2" style="font-weight:bold;"></p><!-- end Question2 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab3" class="tab-content" class="tab-pane">
+		<!-- Question 3 --><div class="question">Câu 3:Trên đường có nhiều làn đường cho xe đi cùng chiều được phân biệt bằng vạch kẻ phân làn đường, người điều khiển phương tiện phải cho xe đi như thế nào?</div>
+		<div class="answer"><input type="radio" name="q3" value="a">a. Cho xe đi trên bất kỳ làn đường nào hoặc giữa 02 làn đường nếu không có xe phía trước; khi cần thiết phải chuyển làn đường, người lái xe phải quan sát xe phía trước để bảo đảm an toàn.</div>
+		<div class="answer"><input type="radio" name="q3" value="b">b. Phải cho xe đi trong một làn đường và chỉ được chuyển làn đường ở những nơi cho phép; khi chuyển làn phải có tín hiệu báo trước và phải bảo đảm an toàn.</div>
+		<div class="answer"><input type="radio" name="q3" value="c">c. Phải cho xe đi trong một làn đường, khi cần thiết phải chuyển làn đường, người lái xe phải quan sát xe phía trước để bảo đảm an toàn.</div>
+		<p id="feedback3" style="font-weight:bold;"></p><!-- end Question3 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab4" class="tab-content" class="tab-pane">
+		<!-- Question 4 --><div class="question">Câu 4: Khi tránh xe đi ngược chiều, các xe phải nhường đường như thế nào là đúng quy tắc giao thông?</div>
+		<div class="answer"><input type="radio" name="q4" value="a">a. Nơi đường hẹp chỉ đủ cho một xe chạy và có chỗ tránh xe thì xe nào ở gần chỗ tránh hơn phải vào vị trí tránh, nhường đường cho xe kia đi.</div>
+		<div class="answer"><input type="radio" name="q4" value="b">b. Xe xuống dốc phải nhường đường cho xe đang lên dốc; xe nào có chướng ngại vật phía trước phải nhường đường cho xe không có chướng ngại vật đi trước.</div>
+		<div class="answer"><input type="radio" name="q4" value="c">c. Xe lên dốc phải nhường đường cho xe xuống dốc; xe nào không có chướng ngại vật phía trước phải nhường đường cho xe có chướng ngại vật đi trước</div>
+		<div class="answer"><input type="radio" name="q4" value="d">d. Cả ý 1 và ý 2.</div>
+		<p id="feedback4" style="font-weight:bold;"></p><!-- end Question4 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab5" class="tab-content" class="tab-pane">
+		<!-- Question 5 --><div class="question">Câu 5: Tại nơi đường bộ giao nhau cùng mức với đường sắt chỉ có đèn tín hiệu hoặc chuông báo hiệu, khi đèn tín hiệu màu đỏ đã bật sáng hoặc có tiếng chuông báo hiệu, người tham gia giao thông phải dừng lại ngay và giữ khoảng cách tối thiểu bao nhiêu mét tính từ ray gần nhất?</div>
+		<div class="answer"><input type="radio" name="q5" value="a">a. 5 mét.</div>
+		<div class="answer"><input type="radio" name="q5" value="b">b. 3 mét.</div>
+		<div class="answer"><input type="radio" name="q5" value="c">c. 4 mét.</div>
+		<p id="feedback5" style="font-weight:bold;"></p><!-- end Question5 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab6" class="tab-content" class="tab-pane">
+		<!-- Question 6 --><div class="question">Câu 6:Người điều khiển phương tiện tham gia giao thông trong hầm đường bộ ngoài việc phải tuân thủ các quy tắc giao thông còn phải thực hiện những quy định nào dưới đây?</div>
+		<div class="answer"><input type="radio" name="q6" value="a">a. Xe cơ giới, xe máy chuyên dùng phải bật đèn; xe thô sơ phải bật đèn hoặc có vật phát sáng báo hiệu; chỉ được dừng xe, đỗ xe ở nơi quy định.</div>
+		<div class="answer"><input type="radio" name="q6" value="b">b. Xe cơ giới phải bật đèn ngay cả khi đường hầm sáng; phải cho xe chạy trên một làn đường và chỉ chuyển làn ở nơi được phép; được quay đầu xe, lùi xe khi cần thiết.</div>
+		<div class="answer"><input type="radio" name="q6" value="c">c. Xe máy chuyên dùng phải bật đèn ngay cả khi đường hầm sáng; phải cho xe chạy trên một làn đường và chỉ chuyển làn ở nơi được phép; được quay đầu xe, lùi xe khi cần thiết.</div>
+		<p id="feedback6" style="font-weight:bold;"></p><!-- end Question6 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab7" class="tab-content" class="tab-pane">
+		<!-- Question 7 --><div class="question">Câu 7:Trên đoạn đường hai chiều không có giải phân cách giữa, người lái xe không được vượt xe khác trong các trường hợp nào dưới đây?</div>
+		<div class="answer"><input type="radio" name="q7" value="a">a. Xe bị vượt bất ngờ tăng tốc độ và cố tình không nhường đường.</div>
+		<div class="answer"><input type="radio" name="q7" value="b">b. Xe bị vượt giảm tốc độ và nhường đường.</div>
+		<div class="answer"><input type="radio" name="q7" value="c">c. Phát hiện có xe đi ngược chiều.</div>
+		<div class="answer"><input type="radio" name="q7" value="d">d. Cả ý 1 và ý 3.</div>
+		<p id="feedback7" style="font-weight:bold;"></p><!-- end Question7 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab8" class="tab-content" class="tab-pane">
+		<!-- Question 8 --><div class="question">Câu 8:Trên đường bộ ngoài khu vực đông dân cư, đường hai chiều không có dải phân cách giữa; đường một chiều có một làn xe cơ giới trừ đường cao tốc, loại xe nào tham gia giao thông với tốc độ tối đa cho phép là 60 km/h?</div>
+		<div class="answer"><input type="radio" name="q8" value="a">a. Ô tô kéo rơ moóc, ô tô kéo xe khác, xe gắn máy.</div>
+		<div class="answer"><input type="radio" name="q8" value="b">b. Ô tô chở người trên 30 chỗ trừ ô tô buýt, ô tô tải có trọng tải trên 3.500 kg.</div>
+		<div class="answer"><input type="radio" name="q8" value="c">c. Ô tô buýt, ô tô đầu kéo kéo sơ mi rơ moóc, xe mô tô, ô tô chuyên dùng trừ ô tô trộn vữa, ô tô trộn bê tông. </div>
+		<p id="feedback8" style="font-weight:bold;"></p><!-- end Question8 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab9" class="tab-content" class="tab-pane">
+		<!-- Question 9 --><div class="question">Câu 9:Để báo hiệu cho xe phía trước biết xe mô tô của bạn muốn vượt, bạn phải có tín hiệu như thế nào dưới đây?</div>
+		<div class="answer"><input type="radio" name="q9" value="a">a. Ra hiệu bằng tay rồi cho xe vượt qua.</div>
+		<div class="answer"><input type="radio" name="q9" value="b">b. Tăng ga mạnh để gây sự chú ý rồi cho xe vượt qua.</div>
+		<div class="answer"><input type="radio" name="q9" value="c">c. Bạn phải có báo hiệu bằng đèn hoặc còi. </div>
+		<p id="feedback9" style="font-weight:bold;"></p><!-- end Question9 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab10" class="tab-content" class="tab-pane">
+		<!-- Question 10 --><div class="question">Câu 10:Hành vi nào dưới đây bị nghiêm cấm?</div>
+		<div class="answer"><input type="radio" name="q10" value="a">a. Đỗ xe trên đường phố</div>
+		<div class="answer"><input type="radio" name="q10" value="b">b. Sử dụng xe đạp đi trên các tuyến quốc lộ có tốc độ cao.</div>
+		<div class="answer"><input type="radio" name="q10" value="c">c. Làm hỏng cố ý cọc tiêu, gương cầu, dải phân cách</div>
+		<div class="answer"><input type="radio" name="q10" value="d">d. Sử dụng còi và quay đầu xe trong khu dân cư</div>
+		<p id="feedback10" style="font-weight:bold;"></p><!-- end Question10 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab11" class="tab-content" class="tab-pane">
+		<!-- Question 11 --><div class="question">Câu 11: Hành khách có các quyền gì khi đi trên xe ô tô vận tải khách theo tuyến cố định?</div>
+		<div class="answer"><input type="radio" name="q11" value="a">a. Được vận chuyển theo đúng hợp đồng vận tải, cam kết của người kinh doanh về chất lượng vận tải; được miễn cước hành lý với trọng lượng không quá 20 kg và với kích thước phù hợp với thiết kế của xe; được từ chối chuyến đi trước khi phương tiện khởi hành và được trả lại tiền vé theo quy định của Bộ Giao thông vận tải.</div>
+		<div class="answer"><input type="radio" name="q11" value="b">b. Được vận chuyển theo hợp đồng vận tải, cam kết của người kinh doanh về vận tải; được miễn cước hành lý với trọng lượng không quá 50 kg và với kích thước không quá cồng kềnh; được từ chối chuyến đi trước khi phương tiện khởi hành và được trả lại tiền vé.</div>
+		<p id="feedback11" style="font-weight:bold;"></p><!-- end Question11 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab12" class="tab-content" class="tab-pane">
+		<!-- Question 12 --><div class="question">Câu 12: Việc vận chuyển hàng hóa bằng xe ô tô phải chấp hành các quy định nào dưới đây?</div>
+		<div class="answer"><input type="radio" name="q12" value="a">a. Hàng vận chuyển trên xe phải được xếp đặt gọn gàng và chằng buộc chắc chắn.</div>
+		<div class="answer"><input type="radio" name="q12" value="b">b. Khi vận chuyển hàng rời phải che đậy, không để rơi vãi.</div>
+		<div class="answer"><input type="radio" name="q12" value="c">c. Cả ý 1 và ý 2.</div>
+		<p id="feedback12" style="font-weight:bold;"></p><!-- end Question12 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab13" class="tab-content" class="tab-pane">
+		<!-- Question 13 --><div class="question">Câu 13: Người hành nghề lái xe khi thực hiện tốt việc rèn luyện, nâng cao trách nhiệm, đạo đức nghề nghiệp sẽ thu được kết quả như thế nào?</div>
+		<div class="answer"><input type="radio" name="q13" value="a">a. Được khách hàng, xã hội tôn trọng; được đồng nghiệp quý mến, giúp đỡ; được doanh nghiệp tin dùng và đóng góp nhiều cho xã hội.</div>
+		<div class="answer"><input type="radio" name="q13" value="b">b. Thu hút được khách hàng, góp phần quan trọng trong xây dựng thương hiệu, kinh doanh có hiệu quả cao.</div>
+		<div class="answer"><input type="radio" name="q13" value="c">c. Cả ý 1 và ý 2.</div>
+		<p id="feedback13" style="font-weight:bold;"></p><!-- end Question13 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab14" class="tab-content" class="tab-pane">
+		<!-- Question 14 --><div class="question">Câu 14: Khi vào số để khởi hành xe ô tô có số tự động, người lái xe phải thực hiện các thao tác nào để đảm bảo an toàn?</div>
+		<div class="answer"><input type="radio" name="q14" value="a">a. Đạp bàn đạp phanh chân hết hành trình, vào số và nhả phanh tay nếu có, kiểm tra lại xem có bị nhầm số không rồi mới cho xe lăn bánh. </div>
+		<div class="answer"><input type="radio" name="q14" value="b">b. Đạp bàn đạp để tăng ga với mức độ phù hợp, vào số và kiểm tra lại xem có bị nhầm số không rồi mới cho xe lăn bánh.</div>
+		<p id="feedback14" style="font-weight:bold;"></p><!-- end Question14 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab15" class="tab-content" class="tab-pane">
+		<!-- Question 15 --><div class="question">Câu 15: Niên hạn sử dụng của ô tô chở người trên 9 chỗ ngồi tính bắt đầu từ năm sản xuất là bao nhiêu năm?</div>
+		<div class="answer"><input type="radio" name="q15" value="a">a. 5 năm.</div>
+		<div class="answer"><input type="radio" name="q15" value="b">b. 20 năm.</div>
+		<div class="answer"><input type="radio" name="q15" value="c">c. 25 năm.</div>
+		<p id="feedback15" style="font-weight:bold;"></p><!-- end Question15 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab16" class="tab-content" class="tab-pane">
+		<!-- Question 16 --><div class="question">Câu 16: Biển nào dưới đây xe gắn máy được phép đi vào?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q309.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q16" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q16" value="b">b. Biển 2</div>
+		<div class="answer"><input type="radio" name="q16" value="c">c. Cả hai biển. </div>
+		<p id="feedback16" style="font-weight:bold;"></p><!-- end Question16 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab17" class="tab-content" class="tab-pane">
+		<!-- Question 17 --><div class="question">Câu 17: Số 50 trên biển báo dưới đây có ý nghĩa gì?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q368.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q17" value="a">a. Tốc độ tối đa các xe cơ giới được phép chạy. </div>
+		<div class="answer"><input type="radio" name="q17" value="b">b. Tốc độ tối thiểu các xe cơ giới được phép chạy.</div>
+		<p id="feedback17" style="font-weight:bold;"></p><!-- end Question17 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab18" class="tab-content" class="tab-pane">
+		<!-- Question 18 --><div class="question">Câu 18: Biển nào báo hiệu “Giao nhau với đường ưu tiên”?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q387.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q18" value="a">a. Biển 1 và 3.</div>
+		<div class="answer"><input type="radio" name="q18" value="b">b. Biển 2. </div>
+		<div class="answer"><input type="radio" name="q18" value="c">c. Biển 3.</div>
+		<p id="feedback18" style="font-weight:bold;"></p><!-- end Question18 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab19" class="tab-content" class="tab-pane">
+		<!-- Question 19 --><div class="question">Câu 19: Biển nào sau đây là biển “Đường trơn”?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q410.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q19" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q19" value="b">b. Biển 2. </div>
+		<div class="answer"><input type="radio" name="q19" value="c">c. Biển 3.</div>
+		<p id="feedback19" style="font-weight:bold;"></p><!-- end Question19 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab20" class="tab-content" class="tab-pane">
+		<!-- Question 20 --><div class="question">Câu 20: Biển báo này có ý nghĩa gì?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q427.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q20" value="a">a. Để báo trước gần tới đoạn đường có hiện tượng đất đá từ trên ta luy dương sạt lở bất ngờ gây nguy hiểm cho xe cộ và người đi đường.</div>
+		<div class="answer"><input type="radio" name="q20" value="b">b. Để báo trước nơi có kết cấu mặt đường rời rạc, khi phương tiện đi qua, làm cho các viên đá, sỏi băng lên gây nguy hiểm và mất an toàn cho người và phương tiện tham gia giao thông. </div>
+		<div class="answer"><input type="radio" name="q20" value="c">c. Để cảnh báo những đoạn nền đường yếu, đoạn đường đang theo dõi lún mà việc vận hành xe ở tốc độ cao có thể gây nguy hiểm.</div>
+		<p id="feedback20" style="font-weight:bold;"></p><!-- end Question20 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab21" class="tab-content" class="tab-pane">
+		<!-- Question 21 --><div class="question">Câu 21: Biển nào báo hiệu “Đường một chiều”?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q438.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q21" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q21" value="b">b. Biển 2. </div>
+		<div class="answer"><input type="radio" name="q21" value="c">c. Cả hai biển.</div>
+		<p id="feedback21" style="font-weight:bold;"></p><!-- end Question21 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab22" class="tab-content" class="tab-pane">
+		<!-- Question 22 --><div class="question">Câu 22: Trong các biển dưới đây biển nào là biển “Hết tốc độ tối thiểu”?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q441.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q22" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q22" value="b">b. Biển 2.</div>
+		<div class="answer"><input type="radio" name="q22" value="c">c. Biển 3. </div>
+		<div class="answer"><input type="radio" name="q22" value="d">d. Cả ba biển</div>
+		<p id="feedback22" style="font-weight:bold;"></p><!-- end Question22 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab23" class="tab-content" class="tab-pane">
+		<!-- Question 23 --><div class="question">Câu 23: Trong các biển dưới đây biển nào là biển “Hết mọi lệnh cấm”?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q443.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q23" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q23" value="b">b. Biển 2. </div>
+		<div class="answer"><input type="radio" name="q23" value="c">c. Biển 3.</div>
+		<div class="answer"><input type="radio" name="q23" value="d">d. Cả ba biển</div>
+		<p id="feedback23" style="font-weight:bold;"></p><!-- end Question23 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab24" class="tab-content" class="tab-pane">
+		<!-- Question 24 --><div class="question">Câu 24: Biển nào không cho phép rẽ phải?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q445.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q24" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q24" value="b">b. Biển 2.</div>
+		<div class="answer"><input type="radio" name="q24" value="c">c. Biển 3.</div>
+		<div class="answer"><input type="radio" name="q24" value="d">d. Biển 1 và 3.</div>
+		<p id="feedback24" style="font-weight:bold;"></p><!-- end Question24 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab25" class="tab-content" class="tab-pane">
+		<!-- Question 25 --><div class="question">Câu 25: Khi di chuyển trên đường cao tốc, gặp biển nào thì người lái xe đi được cả hai hướng bên trái hoặc bên phải để tránh chướng ngại vật?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q475.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q25" value="a">a. Biển 1.</div>
+		<div class="answer"><input type="radio" name="q25" value="b">b. Biển 2. </div>
+		<div class="answer"><input type="radio" name="q25" value="c">c. Biển 3.</div>
+		<p id="feedback25" style="font-weight:bold;"></p><!-- end Question25 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab26" class="tab-content" class="tab-pane">
+		<!-- Question 26 --><div class="question">Câu 26: Xe nào được quyền đi trước trong trường hợp này?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q498.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q26" value="a">a. Xe công an.</div>
+		<div class="answer"><input type="radio" name="q26" value="b">b. Xe chữa cháy. </div>
+		<p id="feedback26" style="font-weight:bold;"></p><!-- end Question26 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab27" class="tab-content" class="tab-pane">
+		<!-- Question 27 --><div class="question">Câu 27: Theo tín hiệu đèn, xe nào được quyền đi là đúng quy tắc giao thông?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q500.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q27" value="a">a. Xe khách, mô tô.</div>
+		<div class="answer"><input type="radio" name="q27" value="b">b. Xe con, xe tải. </div>
+		<div class="answer"><input type="radio" name="q27" value="c">c. Xe tải, mô tô.</div>
+		<p id="feedback27" style="font-weight:bold;"></p><!-- end Question27 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab28" class="tab-content" class="tab-pane">
+		<!-- Question 28 --><div class="question">Câu 28: Thứ tự các xe đi như thế nào là đúng quy tắc giao thông?</div>
+		<div class="answer"><input type="radio" name="q28" value="a">a. Xe con A, mô tô, xe con B, xe đạp.</div>
+		<div class="answer"><input type="radio" name="q28" value="b">b. Xe con B, xe đạp, mô tô, xe con A.</div>
+		<div class="answer"><input type="radio" name="q28" value="c">c. Xe con A, xe con B, mô tô + xe đạp.</div>
+		<div class="answer"><input type="radio" name="q28" value="d">d. Mô tô + xe đạp, xe con A, xe con B. </div>
+		<p id="feedback28" style="font-weight:bold;"></p><!-- end Question28 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab29" class="tab-content" class="tab-pane">
+		<!-- Question 29 --><div class="question">Câu 29: Những hướng nào ô tô tải được phép đi?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q524.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q29" value="a">a. Cả bốn hướng.</div>
+		<div class="answer"><input type="radio" name="q29" value="b">b. Trừ hướng 2. </div>
+		<div class="answer"><input type="radio" name="q29" value="c">c. Hướng 2, 3 và 4.</div>
+		<div class="answer"><input type="radio" name="q29" value="d">d. Trừ hướng 4.</div>
+		<p id="feedback29" style="font-weight:bold;"></p><!-- end Question29 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab30" class="tab-content" class="tab-pane">
+		<!-- Question 30 --><div class="question">Câu 30: Để điều khiển cho xe đi thẳng, người lái xe phải làm gì là đúng quy tắc giao thông?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q544.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q30" value="a">a. Nhường xe con rẽ trái trước.</div>
+		<div class="answer"><input type="radio" name="q30" value="b">b. Đi thẳng không nhường.</div>
+		<p id="feedback30" style="font-weight:bold;"></p><!-- end Question30 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab31" class="tab-content" class="tab-pane">
+		<!-- Question 31 --><div class="question">Câu 31: Bạn được dừng xe ở vị trí nào trong tình huống này?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q558.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q31" value="a">a. Được phép dừng ở vị trí A.</div>
+		<div class="answer"><input type="radio" name="q31" value="b">b. Được phép dừng ở vị trí B.</div>
+		<div class="answer"><input type="radio" name="q31" value="c">c. Được phép dừng ở vị trí A và B.</div>
+		<div class="answer"><input type="radio" name="q31" value="d">d. Không được dừng. </div>
+		<p id="feedback31" style="font-weight:bold;"></p><!-- end Question31 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab32" class="tab-content" class="tab-pane">
+		<!-- Question 32 --><div class="question">Câu 32: Các xe đi theo thứ tự nào là đúng quy tắc giao thông đường bộ?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q584.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q32" value="a">a. Xe của bạn, xe tải, xe con.</div>
+		<div class="answer"><input type="radio" name="q32" value="b">b. Xe con, xe tải, xe của bạn.</div>
+		<div class="answer"><input type="radio" name="q32" value="c">c. Xe tải, xe của bạn, xe con.</div>
+		<div class="answer"><input type="radio" name="q32" value="d">d. Xe của bạn, xe con, xe tải.</div>
+		<p id="feedback32" style="font-weight:bold;"></p><!-- end Question32 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab33" class="tab-content" class="tab-pane">
+		<!-- Question 33 --><div class="question">Câu 33: Xe nào được đi trước trong trường hợp này?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q588.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q33" value="a">a. Xe con.</div>
+		<div class="answer"><input type="radio" name="q33" value="b">b. Xe của bạn. </div>
+		<p id="feedback33" style="font-weight:bold;"></p><!-- end Question33 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab34" class="tab-content" class="tab-pane">
+		<!-- Question 34 --><div class="question">Câu 34: Để điều khiển xe rẽ trái, bạn chọn hướng đi nào dưới đây?</div>
+		<div style="margin-bottom:15px; margin-top:15px;"><img src="https://i-vnexpress.vnecdn.net/2020/09/04/q594.png" align="center" width="100%" height="auto"></div>
+		<div class="answer"><input type="radio" name="q34" value="a">a. Hướng 1. </div>
+		<div class="answer"><input type="radio" name="q34" value="b">b. Hướng 2.</div>
+		<div class="answer"><input type="radio" name="q34" value="c">c. Cả 02 hướng đều được.</div>
+		<p id="feedback34" style="font-weight:bold;"></p><!-- end Question34 --><div class="truocsau" style="display: flex; justify-content: space-between;"><a class="btn btn-primary btnPrevious nav-btn333">Câu trước</a><a class="btn btn-primary btnNext nav-btn333">Câu kế tiếp</a></div></div>
+		<div id="tab35" class="tab-content" class="tab-pane">
+		<!-- Question 35 --><div class="question">Câu 35: Xe của bạn đang di chuyển gần đến khu vực giao cắt với đường sắt, khi rào chắn đang dịch chuyển, bạn điều khiển xe như thế nào là đúng quy tắc giao thông?</div>
+		<div class="answer"><input type="radio" name="q35" value="a">a. Quan sát nếu thấy không có tàu thì tăng tốc cho xe vượt qua đường sắt.</div>
+		<div class="answer"><input type="radio" name="q35" value="b">b. Dừng lại trước rào chắn một khoảng cách an toàn. </div>
+		<div class="answer"><input type="radio" name="q35" value="c">c. Ra tín hiệu, yêu cầu người gác chắn tàu kéo chậm Barie để xe bạn qua.</div>
+		<p id="feedback35" style="font-weight:bold;"></p><!-- end Question35 --><div class="truocsau"><a class="btn btn-primary btnPrevious nav-btn333" >Câu trước</a></div></div>
+		      <!-- END DANH SÁCH CÂU HỎI -->
+		    </div> <!-- END tabs-content -->
+		</div> <!-- END tabs -->
+
+		<!-- Submit button -->
+		<div style="margin-top:15px;">
+		  <button type="submit">Nộp bài và xem kết quả</button>
+		</div>
+
+		</form>
+
+		<!-- Results section -->
+		<div id="results">
+		  <p id="score"></p>
+		  <p id="feedback"></p>
+		  <div id="thongbaokequa" style="color:blue; font-weight:bold;"></div>
+		  <ul id="answers"></ul>
+		</div>
+
+		<script type="text/javascript">
+			// Show the first tab and hide the rest
+			$('#tabs-nav li:first-child').addClass('active');
+			$('.tab-content').hide();
+			$('.tab-content:first').show();
+
+			// Click function
+			$('#tabs-nav li').click(function(){
+			  $('#tabs-nav li').removeClass('active');
+			  $(this).addClass('active');
+			  $('.tab-content').hide();
+			  
+			  var activeTab = $(this).find('a').attr('href');
+			  $(activeTab).fadeIn();
+			  return false;
+			});
+
+
+			 $('.btnNext').click(function(){
+			  $('.nav-tabs > .active').next('li').find('a').trigger('click');
+			});
+
+			  $('.btnPrevious').click(function(){
+			  $('.nav-tabs > .active').prev('li').find('a').trigger('click');
+			});
+
+
+			// KẾT QUẢ TRẮC NGHIỆM
+			// Get the quiz form element
+			            const quizForm = document.getElementById("quiz-form");
+
+			            // Get the results section element
+			            const results = document.getElementById("results");
+
+			            // Get the score element
+			            const scoreElement = document.getElementById("score");
+
+			            // Get the feedback element
+			            const feedbackElement = document.getElementById("feedback");
+
+			            // Get the answers element
+			            const answersElement = document.getElementById("answers");
+
+			            
+
+			            // Define the correct answers - SỬA
+			            const correctAnswers = {
+			              q1:"a",
+			              q2:"c",
+			              q3:"b",
+			              q4:"d",
+			              q5:"a",
+			              q6:"a",
+			              q7:"d",
+			              q8:"c",
+			              q9:"c",
+			              q10:"c",
+			              q11:"a",
+			              q12:"c",
+			              q13:"c",
+			              q14:"a",
+			              q15:"b",
+			              q16:"c",
+			              q17:"a",
+			              q18:"b",
+			              q19:"b",
+			              q20:"b",
+			              q21:"b",
+			              q22:"c",
+			              q23:"b",
+			              q24:"a",
+			              q25:"b",
+			              q26:"b",
+			              q27:"b",
+			              q28:"d",
+			              q29:"b",
+			              q30:"a",
+			              q31:"d",
+			              q32:"d",
+			              q33:"b",
+			              q34:"a",
+			              q35:"b",
+
+			            };
+
+			            // Add an event listener for the submit event
+			            quizForm.addEventListener("submit", function (event) {
+			              // Prevent the default form submission behavior
+			              event.preventDefault();
+
+			              // Get the user's answers SỬA
+			              const userAnswers = {
+			                q1:quizForm.q1.value,
+			                q2:quizForm.q2.value,
+			                q3:quizForm.q3.value,
+			                q4:quizForm.q4.value,
+			                q5:quizForm.q5.value,
+			                q6:quizForm.q6.value,
+			                q7:quizForm.q7.value,
+			                q8:quizForm.q8.value,
+			                q9:quizForm.q9.value,
+			                q10:quizForm.q10.value,
+			                q11:quizForm.q11.value,
+			                q12:quizForm.q12.value,
+			                q13:quizForm.q13.value,
+			                q14:quizForm.q14.value,
+			                q15:quizForm.q15.value,
+			                q16:quizForm.q16.value,
+			                q17:quizForm.q17.value,
+			                q18:quizForm.q18.value,
+			                q19:quizForm.q19.value,
+			                q20:quizForm.q20.value,
+			                q21:quizForm.q21.value,
+			                q22:quizForm.q22.value,
+			                q23:quizForm.q23.value,
+			                q24:quizForm.q24.value,
+			                q25:quizForm.q25.value,
+			                q26:quizForm.q26.value,
+			                q27:quizForm.q27.value,
+			                q28:quizForm.q28.value,
+			                q29:quizForm.q29.value,
+			                q30:quizForm.q30.value,
+			                q31:quizForm.q31.value,
+			                q32:quizForm.q32.value,
+			                q33:quizForm.q33.value,
+			                q34:quizForm.q34.value,
+			                q35:quizForm.q35.value,
+
+			              };
+
+			              // Initialize a variable to store the score
+			              let score = 0;
+
+			              // Initialize a variable to store the feedback message
+			              let feedback = "";
+
+			              // Initialize an array to store the correct answers list items
+			              let correctAnswersListItems = [];
+
+			              // Loop over the user's answers and compare them with the correct answers
+			              for (let question in userAnswers) {
+			                // If the user's answer is correct, increment the score by one
+			                if (userAnswers[question] === correctAnswers[question]) {
+			                  score++;
+			                }
+
+			                // Create a list item element for the correct answer
+			                let listItem = document.createElement("li");
+
+			                // Set the text content of the list item to show the question and the correct answer
+			                listItem.textContent =
+			                  question.toUpperCase() + ": " + correctAnswers[question];
+
+			                // Append the list item to the correct answers list items array
+			                correctAnswersListItems.push(listItem);
+			              }
+
+			              // XÁC ĐỊNH CÂU ĐIỂM LIỆT SỬA
+			              if (userAnswers.q10 === correctAnswers.q10) {
+			                // If yes, check if the score is at least 3 out of 5
+			                if (score >= 32) {
+			                  // If yes, set the feedback message to say that the user has passed
+			                  feedback = "Chúc mừng, bạn đã hoàn thành bài thi xuất sắc!";
+			                } else {
+			                  // If no, set the feedback message to say that the user has failed
+			                  feedback = "KHÔNG ĐẠT - bạn cần phải có tối thiểu 32 câu đúng để đạt điểm đậu";
+			                }
+			              } else 
+			        {        // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback =
+			                  "Kết quả: KHÔNG ĐẠT - Sai câu điểm liệt";
+			              }
+
+			              // Set the text content of the score element to show the user's score out of 5
+			              scoreElement.textContent = "Bạn đã làm đúng: " + score + "/35" + " câu";
+
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement.textContent = feedback;
+
+			              // Remove any existing children of the answers element
+			              while (answersElement.firstChild) {
+			                answersElement.removeChild(answersElement.firstChild);
+			              }
+
+			              // Loop over the correct answers list items array and append each list item to the answers element
+			              for (let listItem of correctAnswersListItems) {
+			                answersElement.appendChild(listItem);
+			              }
+			              
+			              
+			              // Show the results section
+			              results.style.display = "block";
+			              
+			              // Show thông báo
+			              let thongbao = document.getElementById("thongbaokequa");
+			              thongbao.textContent = "Bấm lại từng câu để xem câu trả lời đúng";
+			              
+			              // SHOW ĐÚNG SAI CÂU 1
+			              // Get the feedback element
+			              const feedbackElement1 = document.getElementById("feedback1");
+			              // Initialize a variable to store the feedback message
+			              let feedback1 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q1 === correctAnswers.q1) { 
+			                // If yes 
+			                feedback1= "Bạn đã trả lời đúng";
+			                feedbackElement1.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback1 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q1;
+			                feedbackElement1.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement1.textContent = feedback1;
+			              // end SHOW ĐÚNG SAI CÂU 1
+			              
+			              // SHOW ĐÚNG SAI CÂU 2
+			              // Get the feedback element
+			              const feedbackElement2 = document.getElementById("feedback2");
+			              // Initialize a variable to store the feedback message
+			              let feedback2 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q2 === correctAnswers.q2) { 
+			                // If yes 
+			                feedback2= "Bạn đã trả lời đúng"; 
+			                feedbackElement2.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback2 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q2;
+			                feedbackElement2.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement2.textContent = feedback2;
+			              // end SHOW ĐÚNG SAI CÂU 2
+			              
+			              // SHOW ĐÚNG SAI CÂU 3
+			              // Get the feedback element
+			              const feedbackElement3 = document.getElementById("feedback3");
+			              // Initialize a variable to store the feedback message
+			              let feedback3 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q3 === correctAnswers.q3) { 
+			                // If yes 
+			                feedback3= "Bạn đã trả lời đúng"; 
+			                feedbackElement3.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback3 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q3;
+			                feedbackElement3.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement3.textContent = feedback3;
+			              // end SHOW ĐÚNG SAI CÂU 3
+			              
+			              // SHOW ĐÚNG SAI CÂU 4
+			              // Get the feedback element
+			              const feedbackElement4 = document.getElementById("feedback4");
+			              // Initialize a variable to store the feedback message
+			              let feedback4 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q4 === correctAnswers.q4) { 
+			                // If yes 
+			                feedback4= "Bạn đã trả lời đúng"; 
+			                feedbackElement4.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback4 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q4;
+			                feedbackElement4.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement4.textContent = feedback4;
+			              // end SHOW ĐÚNG SAI CÂU 4
+			              
+			              // SHOW ĐÚNG SAI CÂU 5
+			              // Get the feedback element
+			              const feedbackElement5 = document.getElementById("feedback5");
+			              // Initialize a variable to store the feedback message
+			              let feedback5 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q5 === correctAnswers.q5) { 
+			                // If yes 
+			                feedback5= "Bạn đã trả lời đúng"; 
+			                feedbackElement5.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback5 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q5;
+			                feedbackElement5.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement5.textContent = feedback5;
+			              // end SHOW ĐÚNG SAI CÂU 5
+
+			              // SHOW ĐÚNG SAI CÂU 6
+			              // Get the feedback element
+			              const feedbackElement6 = document.getElementById("feedback6");
+			              // Initialize a variable to store the feedback message
+			              let feedback6 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q6 === correctAnswers.q6) { 
+			                // If yes 
+			                feedback6= "Bạn đã trả lời đúng"; 
+			                feedbackElement6.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback6 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q6;
+			                feedbackElement6.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement6.textContent = feedback6;
+			              // end SHOW ĐÚNG SAI CÂU 6
+
+			              // SHOW ĐÚNG SAI CÂU 7
+			              // Get the feedback element
+			              const feedbackElement7 = document.getElementById("feedback7");
+			              // Initialize a variable to store the feedback message
+			              let feedback7 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q7 === correctAnswers.q7) { 
+			                // If yes 
+			                feedback7= "Bạn đã trả lời đúng"; 
+			                feedbackElement7.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback7 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q7;
+			                feedbackElement7.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement7.textContent = feedback7;
+			              // end SHOW ĐÚNG SAI CÂU 7
+
+			              // SHOW ĐÚNG SAI CÂU 8
+			              // Get the feedback element
+			              const feedbackElement8 = document.getElementById("feedback8");
+			              // Initialize a variable to store the feedback message
+			              let feedback8 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q8 === correctAnswers.q8) { 
+			                // If yes 
+			                feedback8= "Bạn đã trả lời đúng"; 
+			                feedbackElement8.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback8 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q8;
+			                feedbackElement8.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement8.textContent = feedback8;
+			              // end SHOW ĐÚNG SAI CÂU 8
+
+			              // SHOW ĐÚNG SAI CÂU 9
+			              // Get the feedback element
+			              const feedbackElement9 = document.getElementById("feedback9");
+			              // Initialize a variable to store the feedback message
+			              let feedback9 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q9 === correctAnswers.q9) { 
+			                // If yes 
+			                feedback9= "Bạn đã trả lời đúng"; 
+			                feedbackElement9.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback9 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q9;
+			                feedbackElement9.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement9.textContent = feedback9;
+			              // end SHOW ĐÚNG SAI CÂU 9
+
+			              // SHOW ĐÚNG SAI CÂU 10
+			              // Get the feedback element
+			              const feedbackElement10 = document.getElementById("feedback10");
+			              // Initialize a variable to store the feedback message
+			              let feedback10 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q10 === correctAnswers.q10) { 
+			                // If yes 
+			                feedback10= "Bạn đã trả lời đúng"; 
+			                feedbackElement10.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback10 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q10;
+			                feedbackElement10.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement10.textContent = feedback10;
+			              // end SHOW ĐÚNG SAI CÂU 10
+
+			              // SHOW ĐÚNG SAI CÂU 11
+			              // Get the feedback element
+			              const feedbackElement11 = document.getElementById("feedback11");
+			              // Initialize a variable to store the feedback message
+			              let feedback11 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q11 === correctAnswers.q11) { 
+			                // If yes 
+			                feedback11= "Bạn đã trả lời đúng"; 
+			                feedbackElement11.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback11 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q11;
+			                feedbackElement11.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement11.textContent = feedback11;
+			              // end SHOW ĐÚNG SAI CÂU 11
+
+			              // SHOW ĐÚNG SAI CÂU 12
+			              // Get the feedback element
+			              const feedbackElement12 = document.getElementById("feedback12");
+			              // Initialize a variable to store the feedback message
+			              let feedback12 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q12 === correctAnswers.q12) { 
+			                // If yes 
+			                feedback12= "Bạn đã trả lời đúng"; 
+			                feedbackElement12.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback12 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q12;
+			                feedbackElement12.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement12.textContent = feedback12;
+			              // end SHOW ĐÚNG SAI CÂU 12
+
+			              // SHOW ĐÚNG SAI CÂU 13
+			              // Get the feedback element
+			              const feedbackElement13 = document.getElementById("feedback13");
+			              // Initialize a variable to store the feedback message
+			              let feedback13 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q13 === correctAnswers.q13) { 
+			                // If yes 
+			                feedback13= "Bạn đã trả lời đúng"; 
+			                feedbackElement13.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback13 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q13;
+			                feedbackElement13.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement13.textContent = feedback13;
+			              // end SHOW ĐÚNG SAI CÂU 13
+
+			              // SHOW ĐÚNG SAI CÂU 14
+			              // Get the feedback element
+			              const feedbackElement14 = document.getElementById("feedback14");
+			              // Initialize a variable to store the feedback message
+			              let feedback14 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q14 === correctAnswers.q14) { 
+			                // If yes 
+			                feedback14= "Bạn đã trả lời đúng"; 
+			                feedbackElement14.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback14 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q14;
+			                feedbackElement14.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement14.textContent = feedback14;
+			              // end SHOW ĐÚNG SAI CÂU 14
+
+			              // SHOW ĐÚNG SAI CÂU 15
+			              // Get the feedback element
+			              const feedbackElement15 = document.getElementById("feedback15");
+			              // Initialize a variable to store the feedback message
+			              let feedback15 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q15 === correctAnswers.q15) { 
+			                // If yes 
+			                feedback15= "Bạn đã trả lời đúng"; 
+			                feedbackElement15.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback15 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q15;
+			                feedbackElement15.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement15.textContent = feedback15;
+			              // end SHOW ĐÚNG SAI CÂU 15
+
+			              // SHOW ĐÚNG SAI CÂU 16
+			              // Get the feedback element
+			              const feedbackElement16 = document.getElementById("feedback16");
+			              // Initialize a variable to store the feedback message
+			              let feedback16 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q16 === correctAnswers.q16) { 
+			                // If yes 
+			                feedback16= "Bạn đã trả lời đúng"; 
+			                feedbackElement16.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback16 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q16;
+			                feedbackElement16.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement16.textContent = feedback16;
+			              // end SHOW ĐÚNG SAI CÂU 16
+
+			              // SHOW ĐÚNG SAI CÂU 17
+			              // Get the feedback element
+			              const feedbackElement17 = document.getElementById("feedback17");
+			              // Initialize a variable to store the feedback message
+			              let feedback17 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q17 === correctAnswers.q17) { 
+			                // If yes 
+			                feedback17= "Bạn đã trả lời đúng"; 
+			                feedbackElement17.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback17 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q17;
+			                feedbackElement17.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement17.textContent = feedback17;
+			              // end SHOW ĐÚNG SAI CÂU 17
+
+			              // SHOW ĐÚNG SAI CÂU 18
+			              // Get the feedback element
+			              const feedbackElement18 = document.getElementById("feedback18");
+			              // Initialize a variable to store the feedback message
+			              let feedback18 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q18 === correctAnswers.q18) { 
+			                // If yes 
+			                feedback18= "Bạn đã trả lời đúng"; 
+			                feedbackElement18.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback18 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q18;
+			                feedbackElement18.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement18.textContent = feedback18;
+			              // end SHOW ĐÚNG SAI CÂU 18
+
+			              // SHOW ĐÚNG SAI CÂU 19
+			              // Get the feedback element
+			              const feedbackElement19 = document.getElementById("feedback19");
+			              // Initialize a variable to store the feedback message
+			              let feedback19 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q19 === correctAnswers.q19) { 
+			                // If yes 
+			                feedback19= "Bạn đã trả lời đúng"; 
+			                feedbackElement19.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback19 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q19;
+			                feedbackElement19.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement19.textContent = feedback19;
+			              // end SHOW ĐÚNG SAI CÂU 19
+
+			              // SHOW ĐÚNG SAI CÂU 20
+			              // Get the feedback element
+			              const feedbackElement20 = document.getElementById("feedback20");
+			              // Initialize a variable to store the feedback message
+			              let feedback20 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q20 === correctAnswers.q20) { 
+			                // If yes 
+			                feedback20= "Bạn đã trả lời đúng"; 
+			                feedbackElement20.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback20 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q20;
+			                feedbackElement20.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement20.textContent = feedback20;
+			              // end SHOW ĐÚNG SAI CÂU 20
+
+			              // SHOW ĐÚNG SAI CÂU 21
+			              // Get the feedback element
+			              const feedbackElement21 = document.getElementById("feedback21");
+			              // Initialize a variable to store the feedback message
+			              let feedback21 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q21 === correctAnswers.q21) { 
+			                // If yes 
+			                feedback21= "Bạn đã trả lời đúng"; 
+			                feedbackElement21.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback21 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q21;
+			                feedbackElement21.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement21.textContent = feedback21;
+			              // end SHOW ĐÚNG SAI CÂU 21
+
+			              // SHOW ĐÚNG SAI CÂU 22
+			              // Get the feedback element
+			              const feedbackElement22 = document.getElementById("feedback22");
+			              // Initialize a variable to store the feedback message
+			              let feedback22 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q22 === correctAnswers.q22) { 
+			                // If yes 
+			                feedback22= "Bạn đã trả lời đúng"; 
+			                feedbackElement22.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback22 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q22;
+			                feedbackElement22.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement22.textContent = feedback22;
+			              // end SHOW ĐÚNG SAI CÂU 22
+
+			              // SHOW ĐÚNG SAI CÂU 23
+			              // Get the feedback element
+			              const feedbackElement23 = document.getElementById("feedback23");
+			              // Initialize a variable to store the feedback message
+			              let feedback23 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q23 === correctAnswers.q23) { 
+			                // If yes 
+			                feedback23= "Bạn đã trả lời đúng"; 
+			                feedbackElement23.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback23 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q23;
+			                feedbackElement23.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement23.textContent = feedback23;
+			              // end SHOW ĐÚNG SAI CÂU 23
+
+			              // SHOW ĐÚNG SAI CÂU 24
+			              // Get the feedback element
+			              const feedbackElement24 = document.getElementById("feedback24");
+			              // Initialize a variable to store the feedback message
+			              let feedback24 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q24 === correctAnswers.q24) { 
+			                // If yes 
+			                feedback24= "Bạn đã trả lời đúng"; 
+			                feedbackElement24.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback24 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q24;
+			                feedbackElement24.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement24.textContent = feedback24;
+			              // end SHOW ĐÚNG SAI CÂU 24
+
+			              // SHOW ĐÚNG SAI CÂU 25
+			              // Get the feedback element
+			              const feedbackElement25 = document.getElementById("feedback25");
+			              // Initialize a variable to store the feedback message
+			              let feedback25 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q25 === correctAnswers.q25) { 
+			                // If yes 
+			                feedback25= "Bạn đã trả lời đúng"; 
+			                feedbackElement25.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback25 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q25;
+			                feedbackElement25.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement25.textContent = feedback25;
+			              // end SHOW ĐÚNG SAI CÂU 25
+
+			              // SHOW ĐÚNG SAI CÂU 26
+			              // Get the feedback element
+			              const feedbackElement26 = document.getElementById("feedback26");
+			              // Initialize a variable to store the feedback message
+			              let feedback26 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q26 === correctAnswers.q26) { 
+			                // If yes 
+			                feedback26= "Bạn đã trả lời đúng"; 
+			                feedbackElement26.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback26 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q26;
+			                feedbackElement26.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement26.textContent = feedback26;
+			              // end SHOW ĐÚNG SAI CÂU 26
+
+			              // SHOW ĐÚNG SAI CÂU 27
+			              // Get the feedback element
+			              const feedbackElement27 = document.getElementById("feedback27");
+			              // Initialize a variable to store the feedback message
+			              let feedback27 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q27 === correctAnswers.q27) { 
+			                // If yes 
+			                feedback27= "Bạn đã trả lời đúng"; 
+			                feedbackElement27.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback27 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q27;
+			                feedbackElement27.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement27.textContent = feedback27;
+			              // end SHOW ĐÚNG SAI CÂU 27
+
+			              // SHOW ĐÚNG SAI CÂU 28
+			              // Get the feedback element
+			              const feedbackElement28 = document.getElementById("feedback28");
+			              // Initialize a variable to store the feedback message
+			              let feedback28 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q28 === correctAnswers.q28) { 
+			                // If yes 
+			                feedback28= "Bạn đã trả lời đúng"; 
+			                feedbackElement28.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback28 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q28;
+			                feedbackElement28.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement28.textContent = feedback28;
+			              // end SHOW ĐÚNG SAI CÂU 28
+
+			              // SHOW ĐÚNG SAI CÂU 29
+			              // Get the feedback element
+			              const feedbackElement29 = document.getElementById("feedback29");
+			              // Initialize a variable to store the feedback message
+			              let feedback29 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q29 === correctAnswers.q29) { 
+			                // If yes 
+			                feedback29= "Bạn đã trả lời đúng"; 
+			                feedbackElement29.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback29 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q29;
+			                feedbackElement29.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement29.textContent = feedback29;
+			              // end SHOW ĐÚNG SAI CÂU 29
+
+			              // SHOW ĐÚNG SAI CÂU 30
+			              // Get the feedback element
+			              const feedbackElement30 = document.getElementById("feedback30");
+			              // Initialize a variable to store the feedback message
+			              let feedback30 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q30 === correctAnswers.q30) { 
+			                // If yes 
+			                feedback30= "Bạn đã trả lời đúng"; 
+			                feedbackElement30.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback30 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q30;
+			                feedbackElement30.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement30.textContent = feedback30;
+			              // end SHOW ĐÚNG SAI CÂU 30
+
+			              // SHOW ĐÚNG SAI CÂU 31
+			              // Get the feedback element
+			              const feedbackElement31 = document.getElementById("feedback31");
+			              // Initialize a variable to store the feedback message
+			              let feedback31 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q31 === correctAnswers.q31) { 
+			                // If yes 
+			                feedback31= "Bạn đã trả lời đúng"; 
+			                feedbackElement31.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback31 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q31;
+			                feedbackElement31.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement31.textContent = feedback31;
+			              // end SHOW ĐÚNG SAI CÂU 31
+
+			              // SHOW ĐÚNG SAI CÂU 32
+			              // Get the feedback element
+			              const feedbackElement32 = document.getElementById("feedback32");
+			              // Initialize a variable to store the feedback message
+			              let feedback32 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q32 === correctAnswers.q32) { 
+			                // If yes 
+			                feedback32= "Bạn đã trả lời đúng"; 
+			                feedbackElement32.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback32 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q32;
+			                feedbackElement32.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement32.textContent = feedback32;
+			              // end SHOW ĐÚNG SAI CÂU 32
+
+			              // SHOW ĐÚNG SAI CÂU 33
+			              // Get the feedback element
+			              const feedbackElement33 = document.getElementById("feedback33");
+			              // Initialize a variable to store the feedback message
+			              let feedback33 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q33 === correctAnswers.q33) { 
+			                // If yes 
+			                feedback33= "Bạn đã trả lời đúng"; 
+			                feedbackElement33.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback33 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q33;
+			                feedbackElement33.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement33.textContent = feedback33;
+			              // end SHOW ĐÚNG SAI CÂU 33
+
+			              // SHOW ĐÚNG SAI CÂU 34
+			              // Get the feedback element
+			              const feedbackElement34 = document.getElementById("feedback34");
+			              // Initialize a variable to store the feedback message
+			              let feedback34 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q34 === correctAnswers.q34) { 
+			                // If yes 
+			                feedback34= "Bạn đã trả lời đúng"; 
+			                feedbackElement34.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback34 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q34;
+			                feedbackElement34.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement34.textContent = feedback34;
+			              // end SHOW ĐÚNG SAI CÂU 34
+
+			              // SHOW ĐÚNG SAI CÂU 35
+			              // Get the feedback element
+			              const feedbackElement35 = document.getElementById("feedback35");
+			              // Initialize a variable to store the feedback message
+			              let feedback35 = "";
+			              // Check if the user has answered the important sentence correctly
+			              if (userAnswers.q35 === correctAnswers.q35) { 
+			                // If yes 
+			                feedback35= "Bạn đã trả lời đúng"; 
+			                feedbackElement35.style.color = "blue";
+			              } else 
+			              {  // If no, set the feedback message to say that the user has failed regardless of their score
+			                feedback35 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q35;
+			                feedbackElement35.style.color = "red";
+			              }
+			              // Set the text content of the feedback element to show the feedback message
+			              feedbackElement35.textContent = feedback35;
+			              // end SHOW ĐÚNG SAI CÂU 35  
+
+			            });
+			        // Get the span element by its id
+			        var timerElement = document.getElementById("timer");
+
+			        // A function to start the timer with a given duration in minutes
+			        function startTimer(duration) {
+			          // Get the current time in milliseconds
+			          var now = new Date().getTime();
+			          
+			          // Calculate the end time in milliseconds
+			          var endTime = now + (1000 * 60 * duration);
+			          
+			          // Set the timer interval to update every second
+			          timer = setInterval(function () {
+			            // Get the current time in milliseconds
+			            var now = new Date().getTime();
+			            
+			            // Calculate the remaining time in milliseconds
+			            var remainingTime = endTime - now;
+			            
+			            // If the remaining time is less than or equal to zero, clear the timer and display "Time's up!"
+			            if (remainingTime <= 0) {
+			              clearInterval(timer);
+			              timerElement.textContent = "HẾT GIỜ LÀM BÀI";
+			              return;
+			            }
+			            
+			            // Convert the remaining time to minutes and seconds
+			            var minutes = Math.floor(remainingTime / (60 * 1000));
+			            var seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+			            
+			            // Format the minutes and seconds with leading zeros if needed
+			            var formattedMinutes = minutes.toString().padStart(2, "0");
+			            var formattedSeconds = seconds.toString().padStart(2, "0");
+			            
+			            // Update the span element with the formatted time
+			            timerElement.textContent = `${formattedMinutes}:${formattedSeconds}`;
+			            
+			          }, 1000); // Update every second
+			        }
+
+			        // Call the startTimer function with a duration of 30 minutes
+			        startTimer(22);
+		</script>
+</body>
+</html>
