@@ -1,5 +1,4 @@
-
-        // Get the quiz form element
+// Get the quiz form element
             const quizForm = document.getElementById("quiz-form");
 
             // Get the results section element
@@ -20,7 +19,39 @@
             const correctAnswers = {
 q1:"a",
 q2:"c",
-
+q3:"b",
+q4:"d",
+q5:"a",
+q6:"a",
+q7:"d",
+q8:"c",
+q9:"c",
+q10:"c",
+q11:"a",
+q12:"c",
+q13:"c",
+q14:"a",
+q15:"b",
+q16:"c",
+q17:"a",
+q18:"b",
+q19:"b",
+q20:"b",
+q21:"b",
+q22:"c",
+q23:"b",
+q24:"a",
+q25:"b",
+q26:"b",
+q27:"b",
+q28:"d",
+q29:"b",
+q30:"a",
+q31:"d",
+q32:"d",
+q33:"b",
+q34:"a",
+q35:"b",
             };
 
             // Add an event listener for the submit event
@@ -32,7 +63,39 @@ q2:"c",
               const userAnswers = {
                 q1:quizForm.q1.value,
                 q2:quizForm.q2.value,
-                
+                q3:quizForm.q3.value,
+                q4:quizForm.q4.value,
+                q5:quizForm.q5.value,
+                q6:quizForm.q6.value,
+                q7:quizForm.q7.value,
+                q8:quizForm.q8.value,
+                q9:quizForm.q9.value,
+                q10:quizForm.q10.value,
+                q11:quizForm.q11.value,
+                q12:quizForm.q12.value,
+                q13:quizForm.q13.value,
+                q14:quizForm.q14.value,
+                q15:quizForm.q15.value,
+                q16:quizForm.q16.value,
+                q17:quizForm.q17.value,
+                q18:quizForm.q18.value,
+                q19:quizForm.q19.value,
+                q20:quizForm.q20.value,
+                q21:quizForm.q21.value,
+                q22:quizForm.q22.value,
+                q23:quizForm.q23.value,
+                q24:quizForm.q24.value,
+                q25:quizForm.q25.value,
+                q26:quizForm.q26.value,
+                q27:quizForm.q27.value,
+                q28:quizForm.q28.value,
+                q29:quizForm.q29.value,
+                q30:quizForm.q30.value,
+                q31:quizForm.q31.value,
+                q32:quizForm.q32.value,
+                q33:quizForm.q33.value,
+                q34:quizForm.q34.value,
+                q35:quizForm.q35.value,
               };
 
               // Initialize a variable to store the score
@@ -63,7 +126,7 @@ q2:"c",
               }
 
               // XÁC ĐỊNH CÂU ĐIỂM LIỆT
-              if (userAnswers.q1 === correctAnswers.q1) {
+              if (userAnswers.q10 === correctAnswers.q10) {
                 // If yes, check if the score is at least 3 out of 5
                 if (score >= 32) {
                   // If yes, set the feedback message to say that the user has passed
@@ -139,7 +202,640 @@ q2:"c",
               // Set the text content of the feedback element to show the feedback message
               feedbackElement2.textContent = feedback2;
               // end SHOW ĐÚNG SAI CÂU 2
+              
+              // SHOW ĐÚNG SAI CÂU 3
+              // Get the feedback element
+              const feedbackElement3 = document.getElementById("feedback3");
+              // Initialize a variable to store the feedback message
+              let feedback3 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q3 === correctAnswers.q3) { 
+                // If yes 
+                feedback3= "Bạn đã trả lời đúng"; 
+                feedbackElement3.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback3 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q3;
+                feedbackElement3.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement3.textContent = feedback3;
+              // end SHOW ĐÚNG SAI CÂU 3
+              
+              // SHOW ĐÚNG SAI CÂU 4
+              // Get the feedback element
+              const feedbackElement4 = document.getElementById("feedback4");
+              // Initialize a variable to store the feedback message
+              let feedback4 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q4 === correctAnswers.q4) { 
+                // If yes 
+                feedback4= "Bạn đã trả lời đúng"; 
+                feedbackElement4.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback4 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q4;
+                feedbackElement4.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement4.textContent = feedback4;
+              // end SHOW ĐÚNG SAI CÂU 4
+              
+              // SHOW ĐÚNG SAI CÂU 5
+              // Get the feedback element
+              const feedbackElement5 = document.getElementById("feedback5");
+              // Initialize a variable to store the feedback message
+              let feedback5 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q5 === correctAnswers.q5) { 
+                // If yes 
+                feedback5= "Bạn đã trả lời đúng"; 
+                feedbackElement5.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback5 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q5;
+                feedbackElement5.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement5.textContent = feedback5;
+              // end SHOW ĐÚNG SAI CÂU 5
 
+              // SHOW ĐÚNG SAI CÂU 6
+              // Get the feedback element
+              const feedbackElement6 = document.getElementById("feedback6");
+              // Initialize a variable to store the feedback message
+              let feedback6 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q6 === correctAnswers.q6) { 
+                // If yes 
+                feedback6= "Bạn đã trả lời đúng"; 
+                feedbackElement6.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback6 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q6;
+                feedbackElement6.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement6.textContent = feedback6;
+              // end SHOW ĐÚNG SAI CÂU 6
+
+              // SHOW ĐÚNG SAI CÂU 7
+              // Get the feedback element
+              const feedbackElement7 = document.getElementById("feedback7");
+              // Initialize a variable to store the feedback message
+              let feedback7 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q7 === correctAnswers.q7) { 
+                // If yes 
+                feedback7= "Bạn đã trả lời đúng"; 
+                feedbackElement7.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback7 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q7;
+                feedbackElement7.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement7.textContent = feedback7;
+              // end SHOW ĐÚNG SAI CÂU 7
+
+              // SHOW ĐÚNG SAI CÂU 8
+              // Get the feedback element
+              const feedbackElement8 = document.getElementById("feedback8");
+              // Initialize a variable to store the feedback message
+              let feedback8 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q8 === correctAnswers.q8) { 
+                // If yes 
+                feedback8= "Bạn đã trả lời đúng"; 
+                feedbackElement8.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback8 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q8;
+                feedbackElement8.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement8.textContent = feedback8;
+              // end SHOW ĐÚNG SAI CÂU 8
+
+              // SHOW ĐÚNG SAI CÂU 9
+              // Get the feedback element
+              const feedbackElement9 = document.getElementById("feedback9");
+              // Initialize a variable to store the feedback message
+              let feedback9 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q9 === correctAnswers.q9) { 
+                // If yes 
+                feedback9= "Bạn đã trả lời đúng"; 
+                feedbackElement9.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback9 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q9;
+                feedbackElement9.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement9.textContent = feedback9;
+              // end SHOW ĐÚNG SAI CÂU 9
+
+              // SHOW ĐÚNG SAI CÂU 10
+              // Get the feedback element
+              const feedbackElement10 = document.getElementById("feedback10");
+              // Initialize a variable to store the feedback message
+              let feedback10 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q10 === correctAnswers.q10) { 
+                // If yes 
+                feedback10= "Bạn đã trả lời đúng"; 
+                feedbackElement10.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback10 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q10;
+                feedbackElement10.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement10.textContent = feedback10;
+              // end SHOW ĐÚNG SAI CÂU 10
+
+              // SHOW ĐÚNG SAI CÂU 11
+              // Get the feedback element
+              const feedbackElement11 = document.getElementById("feedback11");
+              // Initialize a variable to store the feedback message
+              let feedback11 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q11 === correctAnswers.q11) { 
+                // If yes 
+                feedback11= "Bạn đã trả lời đúng"; 
+                feedbackElement11.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback11 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q11;
+                feedbackElement11.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement11.textContent = feedback11;
+              // end SHOW ĐÚNG SAI CÂU 11
+
+              // SHOW ĐÚNG SAI CÂU 12
+              // Get the feedback element
+              const feedbackElement12 = document.getElementById("feedback12");
+              // Initialize a variable to store the feedback message
+              let feedback12 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q12 === correctAnswers.q12) { 
+                // If yes 
+                feedback12= "Bạn đã trả lời đúng"; 
+                feedbackElement12.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback12 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q12;
+                feedbackElement12.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement12.textContent = feedback12;
+              // end SHOW ĐÚNG SAI CÂU 12
+
+              // SHOW ĐÚNG SAI CÂU 13
+              // Get the feedback element
+              const feedbackElement13 = document.getElementById("feedback13");
+              // Initialize a variable to store the feedback message
+              let feedback13 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q13 === correctAnswers.q13) { 
+                // If yes 
+                feedback13= "Bạn đã trả lời đúng"; 
+                feedbackElement13.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback13 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q13;
+                feedbackElement13.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement13.textContent = feedback13;
+              // end SHOW ĐÚNG SAI CÂU 13
+
+              // SHOW ĐÚNG SAI CÂU 14
+              // Get the feedback element
+              const feedbackElement14 = document.getElementById("feedback14");
+              // Initialize a variable to store the feedback message
+              let feedback14 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q14 === correctAnswers.q14) { 
+                // If yes 
+                feedback14= "Bạn đã trả lời đúng"; 
+                feedbackElement14.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback14 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q14;
+                feedbackElement14.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement14.textContent = feedback14;
+              // end SHOW ĐÚNG SAI CÂU 14
+
+              // SHOW ĐÚNG SAI CÂU 15
+              // Get the feedback element
+              const feedbackElement15 = document.getElementById("feedback15");
+              // Initialize a variable to store the feedback message
+              let feedback15 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q15 === correctAnswers.q15) { 
+                // If yes 
+                feedback15= "Bạn đã trả lời đúng"; 
+                feedbackElement15.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback15 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q15;
+                feedbackElement15.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement15.textContent = feedback15;
+              // end SHOW ĐÚNG SAI CÂU 15
+
+              // SHOW ĐÚNG SAI CÂU 16
+              // Get the feedback element
+              const feedbackElement16 = document.getElementById("feedback16");
+              // Initialize a variable to store the feedback message
+              let feedback16 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q16 === correctAnswers.q16) { 
+                // If yes 
+                feedback16= "Bạn đã trả lời đúng"; 
+                feedbackElement16.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback16 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q16;
+                feedbackElement16.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement16.textContent = feedback16;
+              // end SHOW ĐÚNG SAI CÂU 16
+
+              // SHOW ĐÚNG SAI CÂU 17
+              // Get the feedback element
+              const feedbackElement17 = document.getElementById("feedback17");
+              // Initialize a variable to store the feedback message
+              let feedback17 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q17 === correctAnswers.q17) { 
+                // If yes 
+                feedback17= "Bạn đã trả lời đúng"; 
+                feedbackElement17.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback17 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q17;
+                feedbackElement17.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement17.textContent = feedback17;
+              // end SHOW ĐÚNG SAI CÂU 17
+
+              // SHOW ĐÚNG SAI CÂU 18
+              // Get the feedback element
+              const feedbackElement18 = document.getElementById("feedback18");
+              // Initialize a variable to store the feedback message
+              let feedback18 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q18 === correctAnswers.q18) { 
+                // If yes 
+                feedback18= "Bạn đã trả lời đúng"; 
+                feedbackElement18.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback18 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q18;
+                feedbackElement18.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement18.textContent = feedback18;
+              // end SHOW ĐÚNG SAI CÂU 18
+
+              // SHOW ĐÚNG SAI CÂU 19
+              // Get the feedback element
+              const feedbackElement19 = document.getElementById("feedback19");
+              // Initialize a variable to store the feedback message
+              let feedback19 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q19 === correctAnswers.q19) { 
+                // If yes 
+                feedback19= "Bạn đã trả lời đúng"; 
+                feedbackElement19.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback19 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q19;
+                feedbackElement19.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement19.textContent = feedback19;
+              // end SHOW ĐÚNG SAI CÂU 19
+
+              // SHOW ĐÚNG SAI CÂU 20
+              // Get the feedback element
+              const feedbackElement20 = document.getElementById("feedback20");
+              // Initialize a variable to store the feedback message
+              let feedback20 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q20 === correctAnswers.q20) { 
+                // If yes 
+                feedback20= "Bạn đã trả lời đúng"; 
+                feedbackElement20.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback20 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q20;
+                feedbackElement20.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement20.textContent = feedback20;
+              // end SHOW ĐÚNG SAI CÂU 20
+
+              // SHOW ĐÚNG SAI CÂU 21
+              // Get the feedback element
+              const feedbackElement21 = document.getElementById("feedback21");
+              // Initialize a variable to store the feedback message
+              let feedback21 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q21 === correctAnswers.q21) { 
+                // If yes 
+                feedback21= "Bạn đã trả lời đúng"; 
+                feedbackElement21.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback21 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q21;
+                feedbackElement21.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement21.textContent = feedback21;
+              // end SHOW ĐÚNG SAI CÂU 21
+
+              // SHOW ĐÚNG SAI CÂU 22
+              // Get the feedback element
+              const feedbackElement22 = document.getElementById("feedback22");
+              // Initialize a variable to store the feedback message
+              let feedback22 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q22 === correctAnswers.q22) { 
+                // If yes 
+                feedback22= "Bạn đã trả lời đúng"; 
+                feedbackElement22.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback22 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q22;
+                feedbackElement22.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement22.textContent = feedback22;
+              // end SHOW ĐÚNG SAI CÂU 22
+
+              // SHOW ĐÚNG SAI CÂU 23
+              // Get the feedback element
+              const feedbackElement23 = document.getElementById("feedback23");
+              // Initialize a variable to store the feedback message
+              let feedback23 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q23 === correctAnswers.q23) { 
+                // If yes 
+                feedback23= "Bạn đã trả lời đúng"; 
+                feedbackElement23.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback23 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q23;
+                feedbackElement23.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement23.textContent = feedback23;
+              // end SHOW ĐÚNG SAI CÂU 23
+
+              // SHOW ĐÚNG SAI CÂU 24
+              // Get the feedback element
+              const feedbackElement24 = document.getElementById("feedback24");
+              // Initialize a variable to store the feedback message
+              let feedback24 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q24 === correctAnswers.q24) { 
+                // If yes 
+                feedback24= "Bạn đã trả lời đúng"; 
+                feedbackElement24.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback24 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q24;
+                feedbackElement24.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement24.textContent = feedback24;
+              // end SHOW ĐÚNG SAI CÂU 24
+
+              // SHOW ĐÚNG SAI CÂU 25
+              // Get the feedback element
+              const feedbackElement25 = document.getElementById("feedback25");
+              // Initialize a variable to store the feedback message
+              let feedback25 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q25 === correctAnswers.q25) { 
+                // If yes 
+                feedback25= "Bạn đã trả lời đúng"; 
+                feedbackElement25.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback25 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q25;
+                feedbackElement25.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement25.textContent = feedback25;
+              // end SHOW ĐÚNG SAI CÂU 25
+
+              // SHOW ĐÚNG SAI CÂU 26
+              // Get the feedback element
+              const feedbackElement26 = document.getElementById("feedback26");
+              // Initialize a variable to store the feedback message
+              let feedback26 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q26 === correctAnswers.q26) { 
+                // If yes 
+                feedback26= "Bạn đã trả lời đúng"; 
+                feedbackElement26.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback26 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q26;
+                feedbackElement26.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement26.textContent = feedback26;
+              // end SHOW ĐÚNG SAI CÂU 26
+
+              // SHOW ĐÚNG SAI CÂU 27
+              // Get the feedback element
+              const feedbackElement27 = document.getElementById("feedback27");
+              // Initialize a variable to store the feedback message
+              let feedback27 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q27 === correctAnswers.q27) { 
+                // If yes 
+                feedback27= "Bạn đã trả lời đúng"; 
+                feedbackElement27.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback27 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q27;
+                feedbackElement27.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement27.textContent = feedback27;
+              // end SHOW ĐÚNG SAI CÂU 27
+
+              // SHOW ĐÚNG SAI CÂU 28
+              // Get the feedback element
+              const feedbackElement28 = document.getElementById("feedback28");
+              // Initialize a variable to store the feedback message
+              let feedback28 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q28 === correctAnswers.q28) { 
+                // If yes 
+                feedback28= "Bạn đã trả lời đúng"; 
+                feedbackElement28.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback28 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q28;
+                feedbackElement28.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement28.textContent = feedback28;
+              // end SHOW ĐÚNG SAI CÂU 28
+
+              // SHOW ĐÚNG SAI CÂU 29
+              // Get the feedback element
+              const feedbackElement29 = document.getElementById("feedback29");
+              // Initialize a variable to store the feedback message
+              let feedback29 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q29 === correctAnswers.q29) { 
+                // If yes 
+                feedback29= "Bạn đã trả lời đúng"; 
+                feedbackElement29.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback29 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q29;
+                feedbackElement29.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement29.textContent = feedback29;
+              // end SHOW ĐÚNG SAI CÂU 29
+
+              // SHOW ĐÚNG SAI CÂU 30
+              // Get the feedback element
+              const feedbackElement30 = document.getElementById("feedback30");
+              // Initialize a variable to store the feedback message
+              let feedback30 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q30 === correctAnswers.q30) { 
+                // If yes 
+                feedback30= "Bạn đã trả lời đúng"; 
+                feedbackElement30.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback30 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q30;
+                feedbackElement30.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement30.textContent = feedback30;
+              // end SHOW ĐÚNG SAI CÂU 30
+
+              // SHOW ĐÚNG SAI CÂU 31
+              // Get the feedback element
+              const feedbackElement31 = document.getElementById("feedback31");
+              // Initialize a variable to store the feedback message
+              let feedback31 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q31 === correctAnswers.q31) { 
+                // If yes 
+                feedback31= "Bạn đã trả lời đúng"; 
+                feedbackElement31.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback31 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q31;
+                feedbackElement31.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement31.textContent = feedback31;
+              // end SHOW ĐÚNG SAI CÂU 31
+
+              // SHOW ĐÚNG SAI CÂU 32
+              // Get the feedback element
+              const feedbackElement32 = document.getElementById("feedback32");
+              // Initialize a variable to store the feedback message
+              let feedback32 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q32 === correctAnswers.q32) { 
+                // If yes 
+                feedback32= "Bạn đã trả lời đúng"; 
+                feedbackElement32.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback32 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q32;
+                feedbackElement32.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement32.textContent = feedback32;
+              // end SHOW ĐÚNG SAI CÂU 32
+
+              // SHOW ĐÚNG SAI CÂU 33
+              // Get the feedback element
+              const feedbackElement33 = document.getElementById("feedback33");
+              // Initialize a variable to store the feedback message
+              let feedback33 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q33 === correctAnswers.q33) { 
+                // If yes 
+                feedback33= "Bạn đã trả lời đúng"; 
+                feedbackElement33.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback33 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q33;
+                feedbackElement33.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement33.textContent = feedback33;
+              // end SHOW ĐÚNG SAI CÂU 33
+
+              // SHOW ĐÚNG SAI CÂU 34
+              // Get the feedback element
+              const feedbackElement34 = document.getElementById("feedback34");
+              // Initialize a variable to store the feedback message
+              let feedback34 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q34 === correctAnswers.q34) { 
+                // If yes 
+                feedback34= "Bạn đã trả lời đúng"; 
+                feedbackElement34.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback34 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q34;
+                feedbackElement34.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement34.textContent = feedback34;
+              // end SHOW ĐÚNG SAI CÂU 34
+
+              // SHOW ĐÚNG SAI CÂU 35
+              // Get the feedback element
+              const feedbackElement35 = document.getElementById("feedback35");
+              // Initialize a variable to store the feedback message
+              let feedback35 = "";
+              // Check if the user has answered the important sentence correctly
+              if (userAnswers.q35 === correctAnswers.q35) { 
+                // If yes 
+                feedback35= "Bạn đã trả lời đúng"; 
+                feedbackElement35.style.color = "blue";
+              } else 
+              {  // If no, set the feedback message to say that the user has failed regardless of their score
+                feedback35 = "Bạn đã trả lời sai, câu trả lời đúng là: " + correctAnswers.q35;
+                feedbackElement35.style.color = "red";
+              }
+              // Set the text content of the feedback element to show the feedback message
+              feedbackElement35.textContent = feedback35;
+              // end SHOW ĐÚNG SAI CÂU 35
+              
+              // Show the answers key
+              let note = document.getElementById("answerkeyq1");
+              note.textContent = "Câu trả lời đúng là: a";
+              note.style.display = "block";
+              
+              
             });
         // Get the span element by its id
         var timerElement = document.getElementById("timer");
