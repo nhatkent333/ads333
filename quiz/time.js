@@ -1,12 +1,14 @@
-function monthDateFormatted() {
-  const date = new Date();
+var date = (new Date()).getFullYear();
+document.getElementById("year").innerHTML = date;
 
-  const years = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+var date2 = (new Date()).getFullYear();
+document.getElementById("year2").innerHTML = date2;
 
+var date3 = (new Date()).getFullYear();
+document.getElementById("year3").innerHTML = date3;
 
-  return `${years}`;
-}
+var date4 = (new Date()).getFullYear();
+document.getElementById("year4").innerHTML = date4;
 
-for (let i = 0; i < 6; i++) {
-	document.getElementById('date' + i).innerHTML = monthDateFormatted();
-}
+var date5 = (new Date()).getFullYear();
+document.getElementById("year5").innerHTML = date5;
