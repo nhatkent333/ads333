@@ -289,3 +289,33 @@
     		padding: 33px;
 		text-align:justify;
 	}
+
+	/*TABLE HOME*/
+        
+
+	.dl333 {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 10px 0;
+	}
+
+	.dl333 > * {
+		background: antiquewhite;
+		padding: 10px;
+	}
+
+	.dl333 > :nth-of-type(2n) {
+		background: lavenderblush;
+	}
+
+	.dt333 {
+		font-weight: bold;
+		font-size: 16px;
+	}
+
+	.dd333 {
+		margin: 0;
+		padding: 16px;
+		display: flex;
+		align-items: center;
+	}
