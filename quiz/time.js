@@ -1,5 +1,12 @@
-const d = new Date();
-let year = d.getFullYear();
-document.getElementById("timeh1").innerHTML = year;
-document.getElementById("timecontent").innerHTML = year;
-document.getElementById("timehfooter").innerHTML = year;
+function monthDateFormatted() {
+  const date = new Date();
+
+  const years = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date);
+
+
+  return `${years}`;
+}
+
+for (let i = 0; i < 6; i++) {
+	document.getElementById('date' + i).innerHTML = monthDateFormatted();
+}
