@@ -338,7 +338,7 @@
         <hr>
 	    <div class="backlink"><a href="https://vieclamvui.com/hoc-lai-xe-b2-333-3153.html" title="Học lái xe B2">Học Lái Xe B2</a> | <a href="https://vieclamvui.com/viec-lam-tai-xe.html" title="Việc làm lái xe">Việc Làm Lái Xe</a></div>
         <hr>
-        <div class="copyright">Developed by ViecLamVui.com</div>
+	      <div class="copyright">Developed by ViecLamVui.com @ <span id="date3"></span></div>
 
       </div>
       </div><!-- /main one-column -->
@@ -1244,8 +1244,17 @@
               }
 
               // Call the startTimer function with a duration of 30 minutes
-              startTimer(22);
+              startTimer(22);    
 </script>
+	<script>
+		// Show year
+
+
+        var date3 = (new Date()).getFullYear();
+        document.getElementById("year3").innerHTML = date3;
+
+
+	</script>
 </body>
 
 </html>
