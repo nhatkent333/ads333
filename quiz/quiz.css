@@ -303,7 +303,7 @@
 }
 ul.breadcrumb333 li {
   display: inline;
-  font-size: 13px;
+  font-size: 15px;
 }
 ul.breadcrumb333 li+li:before {
   padding: 8px;
