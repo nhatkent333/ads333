@@ -110,41 +110,41 @@
                 <div style="text-align:center; margin-bottom:20px; margin-top:20px;">Thời gian làm bài còn: <span id="timer" style="font-size:20px; font-weight:bold; color:blue;"></span></div>
                 <div class="tabs">
                   <ul id="tabs-nav" class="nav nav-tabs">
-                    <li class="active"><a href="#tab1">1</a></li>
-                    <li><a href="#tab2">2</a></li>
-                    <li><a href="#tab3">3</a></li>
-                    <li><a href="#tab4">4</a></li>
-                    <li><a href="#tab5">5</a></li>
-                    <li><a href="#tab6">6</a></li>
-                    <li><a href="#tab7">7</a></li>
-                    <li><a href="#tab8">8</a></li>
-                    <li><a href="#tab9">9</a></li>
-                    <li><a href="#tab10">10</a></li>
-                    <li><a href="#tab11">11</a></li>
-                    <li><a href="#tab12">12</a></li>
-                    <li><a href="#tab13">13</a></li>
-                    <li><a href="#tab14">14</a></li>
-                    <li><a href="#tab15">15</a></li>
-                    <li><a href="#tab16">16</a></li>
-                    <li><a href="#tab17">17</a></li>
-                    <li><a href="#tab18">18</a></li>
-                    <li><a href="#tab19">19</a></li>
-                    <li><a href="#tab20">20</a></li>
-                    <li><a href="#tab21">21</a></li>
-                    <li><a href="#tab22">22</a></li>
-                    <li><a href="#tab23">23</a></li>
-                    <li><a href="#tab24">24</a></li>
-                    <li><a href="#tab25">25</a></li>
-                    <li><a href="#tab26">26</a></li>
-                    <li><a href="#tab27">27</a></li>
-                    <li><a href="#tab28">28</a></li>
-                    <li><a href="#tab29">29</a></li>
-                    <li><a href="#tab30">30</a></li>
-                    <li><a href="#tab31">31</a></li>
-                    <li><a href="#tab32">32</a></li>
-                    <li><a href="#tab33">33</a></li>
-                    <li><a href="#tab34">34</a></li>
-                    <li><a href="#tab35">35</a></li>
+                    <li class="active" id="tabcolor1"><a href="#tab1">1</a></li>
+                    <li><a href="#tab2" id="tabcolor2">2</a></li>
+                    <li><a href="#tab3" id="tabcolor3">3</a></li>
+                    <li><a href="#tab4" id="tabcolor4">4</a></li>
+                    <li><a href="#tab5" id="tabcolor5">5</a></li>
+                    <li><a href="#tab6" id="tabcolor6">6</a></li>
+                    <li><a href="#tab7" id="tabcolor7">7</a></li>
+                    <li><a href="#tab8" id="tabcolor8">8</a></li>
+                    <li><a href="#tab9" id="tabcolor9">9</a></li>
+                    <li><a href="#tab10" id="tabcolor10">10</a></li>
+                    <li><a href="#tab11" id="tabcolor11">11</a></li>
+                    <li><a href="#tab12" id="tabcolor12">12</a></li>
+                    <li><a href="#tab13" id="tabcolor13">13</a></li>
+                    <li><a href="#tab14" id="tabcolor14">14</a></li>
+                    <li><a href="#tab15" id="tabcolor15">15</a></li>
+                    <li><a href="#tab16" id="tabcolor16">16</a></li>
+                    <li><a href="#tab17" id="tabcolor17">17</a></li>
+                    <li><a href="#tab18" id="tabcolor18">18</a></li>
+                    <li><a href="#tab19" id="tabcolor19">19</a></li>
+                    <li><a href="#tab20" id="tabcolor20">20</a></li>
+                    <li><a href="#tab21" id="tabcolor21">21</a></li>
+                    <li><a href="#tab22" id="tabcolor22">22</a></li>
+                    <li><a href="#tab23" id="tabcolor23">23</a></li>
+                    <li><a href="#tab24" id="tabcolor24">24</a></li>
+                    <li><a href="#tab25" id="tabcolor25">25</a></li>
+                    <li><a href="#tab26" id="tabcolor26">26</a></li>
+                    <li><a href="#tab27" id="tabcolor27">27</a></li>
+                    <li><a href="#tab28" id="tabcolor28">28</a></li>
+                    <li><a href="#tab29" id="tabcolor29">29</a></li>
+                    <li><a href="#tab30" id="tabcolor30">30</a></li>
+                    <li><a href="#tab31" id="tabcolor31">31</a></li>
+                    <li><a href="#tab32" id="tabcolor32">32</a></li>
+                    <li><a href="#tab33" id="tabcolor33">33</a></li>
+                    <li><a href="#tab34" id="tabcolor34">34</a></li>
+                    <li><a href="#tab35" id="tabcolor35">35</a></li>
                   </ul> <!-- END tabs-nav -->
 
                   <form id="quiz-form">
@@ -1331,6 +1331,42 @@
 
         var date3 = (new Date()).getFullYear();
         document.getElementById("year3").innerHTML = date3;
+	
+	// active tab color when input answer check
+function activeTabColor() {
+  
+ // Get all checkboxes
+ var checkboxes = document.querySelectorAll("input[type=radio]");
+ 
+ // Loop through each checkbox
+ for (var i =0; i< checkboxes.length; i++) {
+   
+    // Add an event listener for click event
+    checkboxes[i].addEventListener("click", function() {
+      
+      // Get the name attribute of the checkbox
+      var name = this.name;
+
+      // Get the tab element that matches the name attribute
+      var tab = document.getElementById("tabcolor"+name.slice(-1));
+
+      // Check if the checkbox is checked or not
+      if (this.checked) {
+
+        // Change the background color of the tab to green
+        tab.style.backgroundColor = "green";
+
+      } else {
+
+        // Change the background color of the tab back to white
+        tab.style.backgroundColor = "white";
+      }
+    });
+ }
+}
+
+// Call the function when window loads
+window.onload = activeTabColor;
 </script>
 
 </body>
