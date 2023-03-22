@@ -1,4 +1,4 @@
- <div class="timer">
+  <div class="timer">
   <div class="timer-bar"></div>
   <div class="timer-flag"></div>
   <div class="timer-controls">
@@ -14,44 +14,49 @@
 
 <style>
 	.timer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-bar-container {
+  width: 80%;
+  margin-top: 20px;
   position: relative;
-  height: 20px;
-  background-color: #ddd;
-  margin-bottom: 10px;
 }
 
 .timer-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #3498db;
+  height: 20px;
+  background-color: #ddd;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .timer-flag {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #e74c3c;
-  display: none;
+  top: -20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 20px 10px;
+  border-color: transparent transparent #007bff transparent;
 }
 
-.timer-controls {
-  margin-top: 10px;
-}
-
-.result {
+.timer-buttons {
   margin-top: 20px;
 }
 
-.result p {
-  margin-bottom: 5px;
+.timer-buttons button {
+  margin-right: 10px;
 }
 
-.result span {
-  font-weight: bold;
+#score-container {
+  margin-top: 20px;
+}
+
+#flag-time-container {
+  margin-top: 20px;
 }
 
 </style>
@@ -81,7 +86,7 @@ function updateTimer() {
   const progress = elapsedTime / 15000;
   progressBar.style.width = `${progress * 100}%`;
 
-  if (!isFlagged && elapsedTime >= 5000 && elapsedTime <= 9000) {
+  if (!isFlagged && elapsedTime >= 5000 && elapsedTime <= 9999.9) {
     flagBtn.disabled = false;
   }
 }
@@ -94,8 +99,20 @@ function flagTimer() {
   flagTime = Date.now() - startTime;
 
   // Calculate score
-  const scorePercentage = 100 - ((flagTime - 5000) / 4000 * 100);
-  score = Math.max(0, Math.min(5, Math.round(scorePercentage / 20)));
+  if (flagTime >= 5000 && flagTime <= 5999.9) {
+    score = 5;
+  } else if (flagTime >= 6000 && flagTime <= 6999.9) {
+    score = 4;
+  } else if (flagTime >= 7000 && flagTime <= 7999.9) {
+    score = 3;
+  } else if (flagTime >= 8000 && flagTime <= 8999.9) {
+    score = 2;
+  } else if (flagTime >= 9000 && flagTime <= 9999.9) {
+    score = 1;
+  } else {
+    score = 0;
+  }
+  
   scoreDisplay.textContent = score;
 
   // Display flag time
