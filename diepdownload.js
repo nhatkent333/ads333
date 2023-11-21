@@ -1,10 +1,5 @@
-<script>
-  // Get the element by its ID
-  var myLink = document.getElementById('myLink');
+// Select the link element
+var link = document.querySelector('.col-main-btc a');
 
-  // Check if the element is found
-  if (myLink) {
-    // Change the href attribute
-    myLink.href = 'https://vieclamvui.com';
-  }
-</script>
+// Change the href attribute
+link.href = "your_new_link_here";
