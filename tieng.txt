@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<p>
 chú đại bi tiếng phạn
 người nổi tiếng
 dịch tiếng
@@ -7336,7 +7331,3 @@ yêu lắm tiếng quê mình
 ứng dụng dịch tiếng campuchia
 ứng dụng hẹn hò nổi tiếng
 ứng dụng học tiếng thái
-</p>
-
-</body>
-</html>
