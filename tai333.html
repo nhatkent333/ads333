@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Fill Text</title>
+</head>
+<body>
+  <input type="text" id="searchBox" placeholder="Dán đường link bài viết vào đây...">
+
+  <script src="main.js"></script>
+</body>
+</html>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+  const searchBox = document.getElementById('searchBox');
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlParamValue = urlParams.get('https://asd333.vieclamvui.com/tai333.html');
+
+  if (urlParamValue) {
+    const searchText = extractTextAfterQuestionMark(urlParamValue);
+    searchBox.value = searchText;
+  }
+});
+
+function extractTextAfterQuestionMark(url) {
+  const questionMarkIndex = url.indexOf('#');
+  if (questionMarkIndex !== -1) {
+    return url.substring(questionMarkIndex + 1);
+  }
+  return '';
+}
+
+</script>
