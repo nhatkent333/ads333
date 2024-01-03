@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KIM CHỈ NAM</title> <!-- SUA333-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        font-size: 18px;
+        color: #000000;
+        line-height: 30px;
+        background-color: #eeeeee;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 20px;
+	color: blue;
+      }
+
+      h2 {
+          width: 100%;
+          border: 1px solid #ddd;
+          background-color: #eeeeee;
+          margin: 0 0 10px 0;
+          padding: 10px;
+          -moz-box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+
+        h3 {
+          margin: 10px 0;
+        }
+
+        h4 {
+          font-size: 16px;
+        }
+
+        p {
+          margin-bottom: 10px;
+        }
+
+        p:last-child {
+          margin-bottom: 0;
+        }
+
+      .wrapper {
+        width: 100%;
+        text-align: center; /* center hack */
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 960px;
+        text-align: left;
+        margin: 0 auto; /* center hack */
+        padding: 15px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+
+      .header {
+        display: block;
+        width: 100%;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0 0 20px 0;
+        padding: 20px;
+	box-shadow: 0 2px 10px 0 rgba(0,0,0, 0.1);
+	border-radius: 8px;
+	border-bottom-color: blue;
+	border-bottom-width: 5px;
+      }
+
+      .main {
+        word-wrap: break-word;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 5px;
+        border-radius: 8px;
+	      box-shadow: 0 15px 30px 0 rgba(0,0,0, 0.1);
+      }
+
+      .one-column {
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        padding:15px;
+      }
+
+      .footer {
+        clear: both;
+        display: block;
+        width: 100%;
+        height: 80px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #dddddd;
+        background-color: #ffffff;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 20px 0 0 0;
+        padding: 20px;
+      }
+
+        /* QUIZ CSS */
+        /* Tabs */
+        .tabs {
+          width: 100%;
+          background-color: #09F;
+          border-radius: 5px 5px 5px 5px;
+        }
+        ul#tabs-nav {
+          list-style: none;
+          margin: 0;
+          padding: 5px;
+          overflow: auto;
+        }
+        ul#tabs-nav li {
+          float: left;
+          font-weight: bold;
+          margin-right: 2px;
+          padding: 8px 10px;
+          border-radius: 5px 5px 5px 5px;
+          /*border: 1px solid #d5d5de;
+          border-bottom: none;*/
+          cursor: pointer;
+        }
+        ul#tabs-nav li:hover,
+        ul#tabs-nav li.active {
+          background-color: #08E;
+        }
+        #tabs-nav li a {
+          text-decoration: none;
+          color: #FFF;
+        }
+        .tab-content {
+          padding: 10px;
+          border: 5px solid #09F;
+          background-color: #FFF;
+        }
+
+
+        .nav-btn333 {
+          padding: 10px 10px;
+          border: none;
+          background-color: #333;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .question {
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        .answer {
+          margin-bottom: 5px;
+        }
+
+        .results {
+          display: none;
+          border: 1px solid black;
+          padding: 10px;
+        }
+
+        .correct {
+          color: green;
+        }
+
+        .incorrect {
+          color: red;
+        }
+
+        .truocsau {
+          margin-top:30px;
+          margin-bottom:10px;
+        }
+        
+      .showketqua {
+        padding:20px;
+      }
+      
+      .button333 {
+          background-color: blue;
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+          border-radius: 10px;
+      }
+	img.logovlv {
+	    width: 100px;
+	    text-align: left;
+	    display: block;
+	}
+	    
+	.copyright {
+		text-align: center;
+		font-size: 12px;
+		color: gray;
+	}
+	.btn333 {
+	  border: 2px solid black;
+	  background-color: white;
+	  color: black;
+	  padding: 15px 15px;
+	  font-size: 16px;
+	  cursor: pointer;
+	  margin-bottom: 10px;
+	  border-radius: 10px;
+	  
+	}
+
+	/* Green */
+	.success333 {
+	  border-color: #04AA6D;
+	  color: green;
+	}
+
+	.success333:hover {
+	  background-color: #04AA6D;
+	  color: white;
+	}
+
+	/* Orange */
+	.warning333 {
+	  border-color: #ff9800;
+	  color: orange;
+	}
+
+	.warning333:hover {
+	  background: #ff9800;
+	  color: white;
+	}
+	
+	/* Blue */
+	.info333 {
+	  border-color: #2196F3;
+	  color: dodgerblue;
+	}
+
+	.info333:hover {
+	  background: #2196F3;
+	  color: white;
+	}
+
+
+	/* Red */
+	.danger333 {
+	  border-color: #f44336;
+	  color: red;
+	}
+
+	.danger333:hover {
+	  background: #f44336;
+	  color: white;
+	}
+	    
+	    .logo-button {
+		display: flex;
+    		justify-content: space-between;
+	    }
+	    .buttoncenter {
+		    text-align:center;
+	    }
+
+	.contenthome {
+    		padding: 33px;
+		text-align:justify;
+	}
+
+	.backlink {
+    	text-align: center;
+    	padding: 10px;
+	}
+  </style>
+</head>
+<body>
+
+
+  <div id="wrapper" class="wrapper">
+    <div id="container" class="container">
+      <header id="header" class="header" role="banner">
+  <div class="logo-button">
+    <p><strong>YOUTUBE</strong></p>
+  </div>
+        
+      </header><!-- /header -->
+      
+      <div id="main" class="main one-column">
+
+<div style="border: 1px solid #e8e8e8; border-top: 0; display: block; margin-top:15px; margin-bottom:15px; background-color:#f5f5dc; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+<p style="font-weight: bolder; padding: 15px; background: #e8e8e8; margin: 0; font-size:18px !important;"><span style="display: inline-block; background: blue; color: #fff; border-radius: 50%; width: 20px; height: 20px; line-height: 20px; text-align: center; font-size: 18px; font-family: Verdana; margin-right:15px;">=</span>Every X explained in Z minutes</p>
+<div style="padding:15px; text-align:justify;">
+<h3 id="-instant-value-with-zero-fluff-"><strong>Instant Value with Zero Fluff</strong></h3>
+<p>What sets this channel apart? It&#39;s simple: there&#39;s no preamble, <strong>no unnecessary introductions</strong>. As soon as you hit play, you&#39;re plunged straight into the heart of the content.</p>
+<p>Each video is a masterclass in efficiency. Every word spoken is meticulously crafted to serve a purpose, ensuring <strong>no second of the viewer&#39;s time is wasted</strong>. This approach resonates deeply with viewers who are often put off by lengthy intros and prefer getting straight to the point.</p>
+<p>Moreover, the content is presented to be accessible to everyone, akin to <strong>explaining complex concepts to a 4th grader</strong>. Hence, the channel is accessible to a casual audience who may not be experts in the field but are curious and eager to learn.</p>
+<p>For those looking to replicate this success in their content, consider leveraging tools like <strong>ChatGPT</strong>. With prompts like, &quot;Explain X to me like I&#39;m a little kid,&quot; you can create engaging and easy-to-understand content.</p>
+<p>The videos are <strong>concise</strong>, typically just a few sentences per item, supplemented with clear, context-adding imagery. This brevity, combined with the <strong>perfect pacing</strong>, ensures that viewers, especially those accustomed to shorter-form videos, remain hooked and engaged throughout the video.</p>
+<p>In a nutshell, <em>The Paint Explainer</em> has hit the sweet spot of content creation -- delivering high-value, engaging, and understandable content without any fluff, keeping viewers engaged and returning for more.</p>
+<h3 id="-simplicity-meets-success-and-stealing-like-an-artist-"><strong>Simplicity Meets Success and Stealing Like an Artist</strong></h3>
+<p><em>The Paint Explainer</em> channel is an excellent example of how simplicity in design and concept can lead to remarkable success. This YouTube channel has cleverly adopted and adapted a <strong>visually appealing and effective style of conveying information</strong>.</p>
+<p>The secret to its success is simple: <em>The Paint Explainer</em> <strong>takes inspiration from popular channels</strong> like <em>Good Enough Animation</em> and <em>Sam O&#39;Nella Academy</em>. These channels are known for their clear yet engaging art style, drawing hundreds of thousands of views.</p>
+<p><em>The Paint Explainer</em> effectively captures the audience&#39;s attention by adopting this style and adapting it to its unique content.</p>
+<p>What&#39;s clever about this approach is the <strong>fusion of two proven formulas</strong>. The channel combines the art style of its predecessors with the &quot;learn something in X minutes&quot; concept.</p>
+<p>By using what already works in a different context, <em>The Paint Explainer</em> demonstrates that you <strong>don&#39;t always need to reinvent the wheel</strong>. Sometimes, the key to success lies in recognizing the effectiveness of existing strategies and adapting them to fit your unique vision and audience.</p>
+<p>Steal like an artist.</p>
+<h3 id="-compelling-and-quick-knowledge-"><strong>Compelling and Quick Knowledge</strong></h3>
+<p>At the heart of <em>The Paint Explainer&#39;s</em> success is its ability to <strong>distill complex topics</strong> into bite-sized, compelling pieces of knowledge.</p>
+<p>Each video is a <strong>quick, informative journey, unraveling intricate subjects in just a few minutes</strong>. This format is perfect for the modern audience, always looking for a quick yet comprehensive understanding of various topics.</p>
+<p>The channel&#39;s brilliance lies in its <strong>selection of intriguing ideas</strong>. Every video, titled &quot;Every Something Explained in a Few Minutes,&quot; promises rapid enlightenment. This approach taps into the viewers&#39; desire for learning, satisfying their intellectual curiosity efficiently.</p>
+<p>This method of delivering knowledge is not just about speed but efficiency and engagement. By succinctly covering many topics, <em>The Paint Explainer</em> <strong>keeps the viewer engaged</strong> from start to finish.</p>
+<p>The channel demonstrates that brevity can be powerful, and when executed well, it turns viewers into loyal followers hungry for more.</p>
+<h3 id="-eye-catching-thumbnails-and-titles-"><strong>Eye-Catching Thumbnails and Titles</strong></h3>
+<p>The thumbnails are masterfully crafted. They showcase a variety of elements related to the video&#39;s content, perfectly aligning with the titles. This consistency assures viewers that the video will comprehensively cover the promised topics. <strong>Bright, vivid colors against a white background</strong> make these thumbnails stand out in a sea of other videos.</p>
+<p>Regarding the titles, <em>The Paint Explainer</em> follows a simple yet highly effective formula. The recurring format of &quot;<strong>Every X explained in Z minutes</strong>&quot; is direct and transparent. It sets clear expectations for the viewer: concise, informative content delivered quickly.</p>
+<p>This straightforward approach eliminates any guesswork for the audience, ensuring they know exactly what they&#39;re getting into.</p>
+<h3 id="-effective-call-to-action-"><strong>Effective Call to Action</strong></h3>
+<p><em>The Paint Explainer</em> also excels in guiding viewer interaction through its compelling call to action (CTA). <strong>Often overlooked by many content creators</strong>, this crucial element is critical to the channel&#39;s strategy to foster viewer engagement and loyalty.</p>
+<p>At the end of each video, <strong>viewers are met with a clear and concise CTA</strong>: &quot;I&#39;ll be making similar videos, subscribe to see them.&quot; This simple statement guides the audience towards a specific action, be it subscribing for more content, watching another video, or engaging with the channel in other ways.</p>
+<p>It&#39;s a direct and unambiguous invitation that aligns perfectly with the viewer&#39;s newfound interest in the channel&#39;s content.</p>
+<p>This approach demonstrates <strong>the importance of a well-crafted CTA</strong>. It&#39;s not just about telling viewers what you want them to do; it&#39;s about aligning your request with their interests and needs. <em>The Paint Explainer</em> does this beautifully, allowing viewers to access more content they just enjoyed by subscribing.</p>
+</div>
+</div>
+<div style="border: 1px solid #e8e8e8; border-top: 0; display: block; margin-top:15px; margin-bottom:15px; background-color:#f5f5dc; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+  <p style="font-weight: bolder; padding: 15px; background: #e8e8e8; margin: 0; font-size:18px !important;"><span style="display: inline-block; background: blue; color: #fff; border-radius: 50%; width: 20px; height: 20px; line-height: 20px; text-align: center; font-size: 18px; font-family: Verdana; margin-right:15px;">=</span>Kênh tham khảo</p>
+  <div style="padding:15px; text-align:justify;">
+<h3><a href="https://www.youtube.com/@ThePaintExplainer/videos" target="_blank">@ThePaintExplainer</a></h3>
+<img src="https://ads333.vieclamvui.com/ThePaintExplainer.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+<hr></hr>
+<h3><a href="https://www.youtube.com/@SamONellaAcademy/videos" target="_blank">@SamONellaAcademy</a></h3>
+<img src="https://ads333.vieclamvui.com/SamONellaAcademy.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+<hr></hr>
+<h3><a href="https://www.youtube.com/@GoodEnoughAnimation/videos" target="_blank">@GoodEnoughAnimation</a></h3>
+<img src="https://ads333.vieclamvui.com/GoodEnoughAnimation.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+<hr></hr>
+      
+<h3><a href="https://www.youtube.com/@redeemedzoomer6053/videos" target="_blank">@redeemedzoomer6053</a></h3>
+<img src="https://ads333.vieclamvui.com/redeemedzoomer.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+<hr></hr>
+    
+<h3><a href="https://www.youtube.com/@Explainem/videos" target="_blank">@Explainem</a></h3>
+<img src="https://ads333.vieclamvui.com/Explainem.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+<hr></hr>
+
+<h3><a href="https://www.youtube.com/@BlueJayYT/videos" target="_blank">@BlueJayYT</a></h3>
+<img src="https://ads333.vieclamvui.com/BlueJayYT.png" width="100%" style="max-width:888px; text-align:center; margin-bottom:15px; margin-top:15px;">
+  </div>
+</div>
+
+<div style="border: 1px solid #e8e8e8; border-top: 0; display: block; margin-top:15px; margin-bottom:15px; background-color:#f5f5dc; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+  <p style="font-weight: bolder; padding: 15px; background: #e8e8e8; margin: 0; font-size:18px !important;"><span style="display: inline-block; background: blue; color: #fff; border-radius: 50%; width: 20px; height: 20px; line-height: 20px; text-align: center; font-size: 18px; font-family: Verdana; margin-right:15px;">=</span>Ý TƯỞNG NỘI DUNG</p>
+<div style="padding:15px; text-align:justify;">
+<H3>ALL GOAL</H3>
+  <ul style="margin-left:30px;">
+    <li>All goal Ronaldo 2023</li>
+    <li>All goal Messi 2023</li>
+  </ul>
+<hr style="margin-top:15px; margin-bottom:15px;">
+  </div>
+</div>
+
+
+
+      </div>
+      </div><!-- /main one-column -->
+
+    </div><!-- /container -->
+  </div><!-- /wrapper -->
+  </body>
+</html>
