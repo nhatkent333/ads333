@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Counting Button Clicks</title>
+</head>
+<body>
+  <div class="container">
+    <p><span id="counter">0</span></p>
+    <button id="countButton">Click to Count</button>
+  </div>
+</body>
+</html>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+p {
+  font-size: 66px;
+  margin-top: 20px;
+}
+
+</style>
+
+<script>
+    let count = 0;
+
+document.getElementById('countButton').addEventListener('click', function() {
+  count++;
+  document.getElementById('counter').textContent = count;
+});
+
+</script>
