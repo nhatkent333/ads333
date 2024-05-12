@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PHẦN 1</title>
+    <style>
+        img {
+          max-width:600px;
+          width:100%;
+        }
+
+        .cauhoi {
+          background-color:green;
+          padding:10px;
+          font-size:23px;
+          font-weight:bold;
+          color:white;
+        }
+
+        .result {
+        font-size:20px;
+        font-weight:bold;
+        }
+
+        main {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
+
+      .navigation-menu {
+          position: fixed;
+          bottom: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #FFF9D0;
+          padding: 10px 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .navigation-menu a {
+          margin: 0 10px;
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+    <!-- CÂU TRẮC NGHIỆM -->
+    <div id="question1" class="question">
+        <p class="cauhoi">Câu 1</p>
+        <img src="https://daotaolaixehd.com.vn/600cau/cauhoi2/1.jpg">
+        <p>
+            <label><input type="radio" name="answer1" value="1">1</label>
+            <label><input type="radio" name="answer1" value="2">2</label>
+            <label><input type="radio" name="answer1" value="3">3</label>
+            <label><input type="radio" name="answer1" value="4">4</label>
+        </p>
+        <div id="result1" class="result"></div>
+    </div>
+    <div id="question2" class="question">
+        <p class="cauhoi">Câu 2</p>
+        <img src="https://daotaolaixehd.com.vn/600cau/cauhoi2/2.jpg">
+        <p>
+            <label><input type="radio" name="answer2" value="1">1</label>
+            <label><input type="radio" name="answer2" value="2">2</label>
+            <label><input type="radio" name="answer2" value="3">3</label>
+            <label><input type="radio" name="answer2" value="4">4</label>
+        </p>
+        <div id="result2" class="result"></div>
+    </div>
+    <!-- END CÂU TRẮC NGHIỆM -->
+</main>
+
+<script>
+    // Dữ liệu JSON cục bộ
+    var jsonData = [
+        {
+            "cau_hoi": "Câu hỏi 1",
+            "cau_tra_loi_dung": "2"
+        },
+        {
+            "cau_hoi": "Câu hỏi 2",
+            "cau_tra_loi_dung": "2"
+        }
+    ];
+    // Dữ liệu JSON cục bộ
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const questions = document.querySelectorAll('.question');
+        questions.forEach((question, index) => {
+            const answerInputs = question.querySelectorAll('input[type="radio"]');
+            answerInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    checkAnswer(index + 1);
+                });
+            });
+            // Hiển thị kết quả mặc định
+            checkAnswer(index + 1);
+        });
+    });
+
+    function checkAnswer(questionNumber) {
+        const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
+        if (selectedAnswer) {
+            const correctAnswer = jsonData.find(item => item.cau_hoi === 'Câu hỏi ' + questionNumber).cau_tra_loi_dung;
+            const resultElement = document.getElementById('result' + questionNumber);
+            if (selectedAnswer.value === correctAnswer) {
+                resultElement.innerHTML = '<p style="color: yellow; background-color: blue; padding:15px;">Đúng</p>';
+            } else {
+                resultElement.innerHTML = '<p style="color: white; background-color: red; padding:15px;">Sai. Câu đúng là ' + correctAnswer + '</p>';
+            }
+
+            // Lưu cookie
+            document.cookie = "answer" + questionNumber + "=" + selectedAnswer.value;
+        }
+    }
+
+    // Load lại câu trả lời lưu trong cookie nếu có
+    window.onload = function () {
+        const cookieArr = document.cookie.split(';');
+        cookieArr.forEach(cookie => {
+            const [name, value] = cookie.split('=');
+            const questionNumber = name.trim().replace("answer", "");
+            const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"][value="' + value + '"]');
+            if (selectedAnswer) {
+                selectedAnswer.checked = true;
+                checkAnswer(questionNumber);
+            }
+        });
+    };
+</script>
+
+</body>
+</html>
