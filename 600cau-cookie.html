@@ -52,8 +52,7 @@
 
     </style>
   </head>
-  <body>
-    <main>
+  <body><main>
     <!-- CÂU TRẮC NGHIỆM -->
     <div id="question1" class="question">
         <p class="cauhoi">Câu 1</p>
@@ -119,8 +118,11 @@
                 resultElement.innerHTML = '<p style="color: white; background-color: red; padding:15px;">Sai. Câu đúng là ' + correctAnswer + '</p>';
             }
 
-            // Lưu cookie
-            document.cookie = "answer" + questionNumber + "=" + selectedAnswer.value;
+            // Lưu cookie với thời gian hết hạn là 30 ngày
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 30);
+            var expiresGMT = expireDate.toGMTString();
+            document.cookie = "answer" + questionNumber + "=" + selectedAnswer.value + "; expires=" + expiresGMT + "; path=/";
         }
     }
 
@@ -138,6 +140,7 @@
         });
     };
 </script>
+
 
 </body>
 </html>
