@@ -1474,7 +1474,7 @@
 
           // Dữ liệu JSON cục bộ
 
-          document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
                       const questions = document.querySelectorAll('.question');
                       questions.forEach((question, index) => {
                           const answerInputs = question.querySelectorAll('input[type="radio"]');
@@ -1487,6 +1487,7 @@
                           checkAnswer(index + 1);
                       });
                   });
+
 
                   function checkAnswer(questionNumber) {
                       const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
