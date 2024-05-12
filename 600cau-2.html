@@ -1474,33 +1474,33 @@
 
           // Dữ liệu JSON cục bộ
 
-    document.addEventListener("DOMContentLoaded", function() {
-                      const questions = document.querySelectorAll('.question');
-                      questions.forEach((question, index) => {
-                          const answerInputs = question.querySelectorAll('input[type="radio"]');
-                          answerInputs.forEach(input => {
-                              input.addEventListener('change', function() {
-                                  checkAnswer(index + 1);
-                              });
-                          });
-                          // Hiển thị kết quả mặc định
-                          checkAnswer(index + 1);
-                      });
-                  });
-
-
-                  function checkAnswer(questionNumber) {
-                      const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
-                      if (selectedAnswer) {
-                          const correctAnswer = jsonData.find(item => item.cau_hoi === 'Câu hỏi ' + questionNumber).cau_tra_loi_dung;
-                          const resultElement = document.getElementById('result' + questionNumber);
-                          if (selectedAnswer.value === correctAnswer) {
-                              resultElement.innerHTML = '<p style="color: yellow; background-color: blue; padding:15px;">Đúng</p>';
-                          } else {
-                              resultElement.innerHTML = '<p style="color: white; background-color: red; padding:15px;">Sai. Câu đúng là ' + correctAnswer + '</p>';
-                          }
-                      }
-                  }
+          document.addEventListener("DOMContentLoaded", function() {
+                            const questions = document.querySelectorAll('.question');
+                            questions.forEach((question, index) => {
+                                const answerInputs = question.querySelectorAll('input[type="radio"]');
+                                answerInputs.forEach(input => {
+                                    input.addEventListener('change', function() {
+                                        checkAnswer(index + 1);
+                                    });
+                                });
+                                // Hiển thị kết quả mặc định
+                                checkAnswer(index + 1);
+                            });
+                        });
+      
+      
+                        function checkAnswer(questionNumber) {
+                            const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
+                            if (selectedAnswer) {
+                                const correctAnswer = jsonData.find(item => item.cau_hoi === 'Câu hỏi ' + questionNumber).cau_tra_loi_dung;
+                                const resultElement = document.getElementById('result' + questionNumber);
+                                if (selectedAnswer.value === correctAnswer) {
+                                    resultElement.innerHTML = '<p style="color: yellow; background-color: blue; padding:15px;">Đúng</p>';
+                                } else {
+                                    resultElement.innerHTML = '<p style="color: white; background-color: red; padding:15px;">Sai. Câu đúng là ' + correctAnswer + '</p>';
+                                }
+                            }
+                        }
     </script>
 </body>
 </html>
