@@ -1,14 +1,14 @@
 [
 	{ 
-		"question": "1",
-		"answer": "2"
+		"cau_hoi": "Câu hỏi 1",
+		"cau_tra_loi_dung": "2"
 	},
 	{
-		"question": "2",
-		"answer": "3"
+		"cau_hoi": "Câu hỏi 2",
+		"cau_tra_loi_dung": "3"
 	},
 	{
-		"question": "3",
-		"answer": "4"
+		"cauhoi": "Câu hỏi 3",
+		"cau_tra_loi_dung": "4"
 	}
 ]
