@@ -11,13 +11,18 @@
         width:100%;
       }
       
-      p {
+      .cauhoi {
         background-color:green;
         padding:10px;
         font-size:23px;
         font-weight:bold;
         color:white;
       }
+
+	.result {
+	  font-size:20px;
+	  font-weight:bold;
+	}
     </style>
 
   </head>
@@ -1247,8 +1252,11 @@ function checkAnswer(questionNumber) {
         if (selectedAnswer) {
             const correctAnswer = data.find(item => item.cau_hoi === 'Câu hỏi ' + questionNumber).cau_tra_loi_dung;
             const resultElement = document.getElementById('result' + questionNumber);
-            const resultHTML = selectedAnswer.value === correctAnswer ? '<p>Đúng</p>' : '<p>Sai. Câu đúng là ' + correctAnswer + '</p>';
-            resultElement.innerHTML = resultHTML;
+            if (selectedAnswer.value === correctAnswer) {
+                resultElement.innerHTML = '<p style="color: yellow; background-color: blue; padding:15px;">Đúng</p>';
+            } else {
+                resultElement.innerHTML = '<p style="color: white; background-color: red; padding:15px;">Sai. Câu đúng là ' + correctAnswer + '</p>';
+            }
         }
     })
     .catch(error => console.error('Error:', error));
