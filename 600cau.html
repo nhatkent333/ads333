@@ -1224,6 +1224,36 @@
 <p class="cauhoi">Câu 600</p>
 <img src="https://daotaolaixehd.com.vn/600cau/cauhoi2/600.jpg">
     </main>
-	<script src="index.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+    const questions = document.querySelectorAll('.question');
+    questions.forEach((question, index) => {
+        const answerInputs = question.querySelectorAll('input[type="radio"]');
+        answerInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                checkAnswer(index + 1);
+            });
+        });
+        // Hiển thị kết quả mặc định
+        checkAnswer(index + 1);
+    });
+});
+
+function checkAnswer(questionNumber) {
+    fetch('https://ads333.vieclamvui.com/600cau.json')
+    .then(response => response.json())
+    .then(data => {
+        const selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
+        if (selectedAnswer) {
+            const correctAnswer = data.find(item => item.cau_hoi === 'Câu hỏi ' + questionNumber).cau_tra_loi_dung;
+            const resultElement = document.getElementById('result' + questionNumber);
+            const resultHTML = selectedAnswer.value === correctAnswer ? '<p>Đúng</p>' : '<p>Sai. Câu đúng là ' + correctAnswer + '</p>';
+            resultElement.innerHTML = resultHTML;
+        }
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+	</script>
   </body>
 </html>
