@@ -49,6 +49,64 @@
           color: #000;
           font-weight: bold;
       }
+      /* Style cho nút popup */
+    #popupButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* Style cho overlay */
+    #overlay {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 2;
+        cursor: pointer;
+    }
+
+    /* Style cho popup */
+    #popup {
+        display: none;
+        position: fixed;
+        background-color: #fefefe;
+        padding: 20px;
+        border-radius: 5px;
+        width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+    }
+
+    /* Style cho nút đóng popup */
+    #closeButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #aaa;
+        font-size: 20px;
+        text-decoration: none;
+    }
+
+    #closeButton:hover,
+    #closeButton:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
     </style>
   </head>
@@ -77,6 +135,19 @@
         <div id="result2" class="result"></div>
     </div>
     <!-- END CÂU TRẮC NGHIỆM -->
+
+    <!-- Nút popup -->
+<button id="popupButton">Thông tin thống kê</button>
+
+<!-- Overlay -->
+<div id="overlay"></div>
+
+<!-- Popup -->
+<div id="popup">
+    <a id="closeButton">&times;</a>
+    <h2>Thông tin thống kê các câu trả lời sai</h2>
+    <div id="wrongAnswersStats"></div>
+</div>
 </main>
 
 <script>
@@ -139,6 +210,33 @@
             }
         });
     };
+
+  // Xử lý sự kiện khi click vào nút popup
+    document.getElementById("popupButton").addEventListener("click", function() {
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("popup").style.display = "block";
+        showWrongAnswersStats();
+    });
+
+    // Xử lý sự kiện khi click vào nút đóng popup
+    document.getElementById("closeButton").addEventListener("click", function() {
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+    });
+
+    // Hàm để hiển thị thông tin thống kê các câu trả lời sai
+    function showWrongAnswersStats() {
+        var stats = '';
+        for (var i = 0; i < jsonData.length; i++) {
+            var questionNumber = i + 1;
+            var correctAnswer = jsonData[i].cau_tra_loi_dung;
+            var selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
+            if (selectedAnswer && selectedAnswer.value !== correctAnswer) {
+                stats += 'Câu ' + questionNumber + ': Câu trả lời của bạn: ' + selectedAnswer.value + ', Câu đúng: ' + correctAnswer + '<br>';
+            }
+        }
+        document.getElementById('wrongAnswersStats').innerHTML = stats;
+    }
 </script>
 
 
