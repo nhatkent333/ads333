@@ -232,7 +232,7 @@
             var correctAnswer = jsonData[i].cau_tra_loi_dung;
             var selectedAnswer = document.querySelector('input[name="answer' + questionNumber + '"]:checked');
             if (selectedAnswer && selectedAnswer.value !== correctAnswer) {
-                stats += 'Câu ' + questionNumber + ': Câu trả lời của bạn: ' + selectedAnswer.value + ', Câu đúng: ' + correctAnswer + '<br>';
+                stats += 'Câu ' + questionNumber '<br>';
             }
         }
         document.getElementById('wrongAnswersStats').innerHTML = stats;
