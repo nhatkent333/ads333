@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TẠO ACCEPTED ANSWER</title>
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #generatedHTML {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #copyButton {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #copyButton:hover {
+            background-color: #218838;
+        }
+
+        .navigation-menu {
+          position: fixed;
+          bottom: 10px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: #FFF9D0;
+          padding: 10px 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .navigation-menu a {
+          margin: 0 10px;
+          text-decoration: none;
+          color: #000;
+          font-weight: bold;
+      }
+    </style>
+</head>
+<body>
+    <h1>TẠO ACCEPTED ANSWER</h1>
+    <form id="htmlGeneratorForm">
+           <form id="htmlGeneratorForm">
+        <label for="acceptedAnswerTitle">Tiêu đề câu trả lời chấp nhận:</label>
+        <input type="text" id="acceptedAnswerTitle" name="acceptedAnswerTitle" placeholder="{{ACCEPTEDANSWERTITLE}}" required>
+
+        <label for="acceptedAnswerLink">LINK câu trả lời chấp nhận:</label>
+        <input type="text" id="acceptedAnswerLink" name="acceptedAnswerLink" placeholder="{{ACCEPTEDANSWERLINK}}" required>
+
+        <label for="acceptedAnswerText">Nội dung câu trả lời chấp nhận:</label>
+        <textarea id="acceptedAnswerText" name="acceptedAnswerText" rows="4" placeholder="{{ACCEPTEDANSWERTEXT}}" required></textarea>
+
+        <label for="acceptedAnswerAuthor">Người viết câu trả lời chấp nhận:</label>
+        <input type="text" id="acceptedAnswerAuthor" name="acceptedAnswerAuthor" placeholder="{{ACCEPTEDANSWERAUTHOR}}" required>
+
+        <label for="acceptedAnswerAuthorJob">Nghề nghiệp của người viết câu trả lời chấp nhận:</label>
+        <input type="text" id="acceptedAnswerAuthorJob" name="acceptedAnswerAuthorJob" placeholder="{{ACCEPTEDANSWERAUTHORJOB}}" required>
+
+        <label for="acceptedAnswerUpvote">Số lượt upvote của câu trả lời chấp nhận:</label>
+        <input type="number" id="acceptedAnswerUpvote" name="acceptedAnswerUpvote" placeholder="{{ACCEPTEDANSWERUPVOTE}}" required>
+
+        <button type="button" onclick="generateHTML()">Generate HTML</button>
+    </form>
+    </form>
+
+    <div id="generatedHTML"></div>
+
+    <button id="copyButton" style="display: none;">Copy HTML</button>
+
+    <!-- Menu điều hướng -->
+    <div class="navigation-menu">
+        <a href="https://ads333.vieclamvui.com/tao-cau-hoi.html">CÂU HỎI</a>
+        <a href="https://ads333.vieclamvui.com/tao-accepted-answer.html">ACCEPTED</a>
+        <a href="https://ads333.vieclamvui.com/tao-suggest-comment.html">SUGGESTED</a>
+    </div>
+
+    <script>
+        function generateHTML() {
+            var acceptedAnswerTitle = document.getElementById('acceptedAnswerTitle').value;
+            var acceptedAnswerLink = document.getElementById('acceptedAnswerLink').value;
+            var acceptedAnswerText = document.getElementById('acceptedAnswerText').value;
+            var acceptedAnswerAuthor = document.getElementById('acceptedAnswerAuthor').value;
+            var acceptedAnswerAuthorJob = document.getElementById('acceptedAnswerAuthorJob').value;
+            var acceptedAnswerUpvote = document.getElementById('acceptedAnswerUpvote').value;
+
+            var htmlCode = `
+            <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer" class="acceptanswer">
+                <h2 class="qaheading">Câu trả lời tốt nhất</h2>
+                <h3><a itemprop="url" href="#${acceptedAnswerLink}">${acceptedAnswerTitle}</a></h3>
+                <div itemprop="text" class="acceptanswertext">
+                    ${acceptedAnswerText}
+                </div>
+                <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <p class="author"><span itemprop="name">${acceptedAnswerAuthor}</span> - <span itemprop="Occupation">${acceptedAnswerAuthorJob}</span></p>
+                </div>
+                <div class="upvote">
+                    <button>&#9650;</button>
+                    <span class="count" itemprop="upvoteCount">${acceptedAnswerUpvote}</span>
+                </div>
+            </div>`;
+
+            document.getElementById('generatedHTML').innerText = htmlCode;
+            document.getElementById('copyButton').style.display = 'block';
+        }
+
+        document.getElementById('copyButton').addEventListener('click', function() {
+            var generatedHTML = document.getElementById('generatedHTML').innerText;
+            var tempInput = document.createElement('textarea');
+            tempInput.value = generatedHTML;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('HTML đã được sao chép!');
+        });
+    </script>
+</body>
+</html>
