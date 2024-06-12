@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resize and Rename Images from JSON</title>
+</head>
+<body>
+  <textarea id="jsonInput" rows="20" cols="100%" placeholder="Enter JSON data"></textarea>
+  </br>
+  <button id="processImages">Resize Images</button>
+  <div id="downloadLinks"></div>
+  
+  <script>
+    document.getElementById('processImages').addEventListener('click', function() {
+      const jsonInput = document.getElementById('jsonInput').value.trim();
+      const downloadLinksDiv = document.getElementById('downloadLinks');
+      
+      try {
+        const imagesData = JSON.parse(jsonInput);
+        downloadLinksDiv.innerHTML = ''; // Clear previous download links
+        
+        imagesData.forEach((imageData, index) => {
+          const imageLink = imageData['image_link_' + (index + 1)];
+          const newFileName = imageData.new_name;
+          const resizeWidth = parseInt(imageData.resize_width);
+          
+          fetch(imageLink)
+            .then(response => response.blob())
+            .then(blob => {
+              const img = document.createElement('img');
+              const url = URL.createObjectURL(blob);
+              img.src = url;
+              
+              img.onload = () => {
+                const aspectRatio = img.width / img.height;
+                const desiredHeight = Math.round(resizeWidth / aspectRatio);
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = resizeWidth;
+                canvas.height = desiredHeight;
+                const ctx = canvas.getContext('2d');
+                
+                ctx.drawImage(img, 0, 0, resizeWidth, desiredHeight);
+                
+                canvas.toBlob((blob) => {
+                  const link = document.createElement('a');
+                  link.href = URL.createObjectURL(blob);
+                  link.download = newFileName;
+                  link.textContent = `Download ${newFileName}`;
+                  link.style.display = 'block';
+                  downloadLinksDiv.appendChild(link);
+                }, 'image/png');
+              };
+            })
+            .catch(error => console.error('Error fetching image:', error));
+        });
+      } catch (error) {
+        console.error('Invalid JSON input:', error);
+      }
+    });
+  </script>
+</body>
+</html>
