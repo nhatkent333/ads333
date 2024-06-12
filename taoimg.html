@@ -1,0 +1,106 @@
+
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+    <title>Banner</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif; /* Thêm font family Roboto */
+        }
+
+        .banner {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+        }
+
+        .background-img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 720px;
+            height: 720px;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .text {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: yellow;
+            font-size: 33px;
+            text-align: center;
+            width: 80%;
+            font-family: 'Roboto', sans-serif; /* Thêm font family Roboto */
+        }
+
+        .btn {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <div class="banner" id="imgItem">
+        <img class="background-img" alt="Background 2" src="https://th.bing.com/th/id/OIG1.4XHEoOLPnZj7TtdtQvWp?pid=ImgGn" >
+        <img class="overlay" alt="Background 2" src="https://vieclamvui.com/nhatjs/img/thumb-vieclamvui-post.png">
+        <div class="text"><p><strong>Có nên mua bảo hiểm nhân thọ không?</strong></p><p>100+ thảo luận từ cộng đồng Hỏi Đáp Việc Làm Vui</p></div>
+   </div>
+        <button onclick="changeToImg()" class="btn btn-warning text-white">To image</button>
+        
+    <div id="sreenshot"></div>
+        
+        
+
+
+<script>
+    function changeToImg() {
+  const toImgArea = document.getElementById('imgItem');
+
+  // To avoid the image will be cut by scroll, we need to scroll top before html2canvas.
+  window.pageYOffset = 0;
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+
+  // transform to canvas
+  html2canvas(toImgArea, {
+    allowTaint: true,
+    taintTest: false,
+    type: "view",
+  }).then(function (canvas) {
+    const sreenshot = document.getElementById('sreenshot');
+    const downloadIcon = document.getElementById('download');
+    
+    // setting the canvas width  
+    canvas.style.width = "1280px";
+
+    // append the canvas in the place that you want to show this image.  
+    sreenshot.appendChild(canvas);
+    console.log( downloadIcon);
+
+  });
+}
+
+
+</script>
+
+</body></html>
