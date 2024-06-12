@@ -1,4 +1,3 @@
-
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,7 @@
     <style>
         body, html {
             margin: 0;
-            padding: 0;
+            padding: 10px;
             height: 100%;
             font-family: 'Roboto', sans-serif; /* Thêm font family Roboto */
         }
@@ -63,26 +62,55 @@
             margin-top: 15px;
             margin-bottom: 15px;
         }
+      
+      .tao {
+        margin-top: 15px;
+            margin-bottom: 15px;
+      }
     </style>
 
 
 </head>
 <body>
-
-    <div class="banner" id="imgItem">
-        <img class="background-img" alt="Background 2" src="https://th.bing.com/th/id/OIG1.4XHEoOLPnZj7TtdtQvWp?pid=ImgGn" >
-        <img class="overlay" alt="Background 2" src="https://ads333.vieclamvui.com/trang-tri-bg.png">
-        <img class="overlay" alt="Background 2" src="https://vieclamvui.com/nhatjs/img/thumb-vieclamvui-post.png">
-        <div class="text"><p><strong>Có nên mua bảo hiểm nhân thọ không?</strong></p><p>100+ thảo luận từ cộng đồng Hỏi Đáp Việc Làm Vui</p></div>
-   </div>
-        <button onclick="changeToImg()" class="btn btn-warning text-white">To image</button>
+    <div>
+        <textarea id="jsonInput" rows="10" cols="100%" placeholder='Nhập JSON ở đây...'></textarea>
+        <br/>
+        <button class="tao" onclick="generatePreview()">Tạo</button>
+    </div>
+    <div id="previewArea"></div>
+          <button onclick="changeToImg()" class="btn btn-warning text-white">To image</button>
         
     <div id="sreenshot"></div>
-        
-        
 
+    <script>
+        function generatePreview() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const previewArea = document.getElementById('previewArea');
 
-<script>
+            try {
+                const data = JSON.parse(jsonInput);
+
+                if (Array.isArray(data) && data.length > 0) {
+                    const item = data[0];
+                    const htmlTemplate = `
+                        <div class="banner" id="imgItem">
+                            <img class="background-img" alt="Background 2" src="${item.hinh_minh_hoa}">
+                            <img class="overlay" alt="Background 2" src="https://ads333.vieclamvui.com/trang-tri-bg.png">
+                            <img class="overlay" alt="Background 2" src="https://vieclamvui.com/nhatjs/img/thumb-vieclamvui-post.png">
+                            <div class="text"><p><strong>${item.text_1}</strong></p><p>${item.text_2}</p></div>
+                        </div>`;
+
+                    previewArea.innerHTML = htmlTemplate;
+                } else {
+                    alert('JSON không hợp lệ hoặc không có dữ liệu.');
+                }
+            } catch (error) {
+                alert('JSON không hợp lệ.');
+            }
+        }
+    </script>
+  
+  <script>
     function changeToImg() {
   const toImgArea = document.getElementById('imgItem');
 
@@ -112,5 +140,5 @@
 
 
 </script>
-
-</body></html>
+</body>
+</html>
