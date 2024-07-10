@@ -5,11 +5,27 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+        <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-div {
+            width: 100%;
+            max-width: 1080px;
+            height: auto;
+            background-color: BGCOLOR; /* Màu nền cho dễ nhìn */
+            aspect-ratio: 9 / 16; /* Giữ tỷ lệ 9:16 */
+            padding: 30px;
+        }
+    </style>
+
 </head>
 <body>
-    <div>
+    <div class="custom-div>
         <span class="number">0</span>
         <button class="btn-start">Start</button>
         <button class="btn-stop">Stop</button>
