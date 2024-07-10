@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div>
+        <span class="number">0</span>
+        <button class="btn-start">Start</button>
+        <button class="btn-stop">Stop</button>
+        <br/><br/>
+        <label>
+          <input type="radio" name="mode" value="random" checked> Ngẫu nhiên
+        </label>
+        <br/><br/>
+        <label>
+          <input type="radio" name="mode" value="specific"> Chỉ định
+        </label>
+        <input type="number" class="specific-number" placeholder="Nhập số chỉ định" disabled>
+      </div>
+
+      <style>
+        body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui;
+  height: 100vh;
+}
+
+button {
+  display: inline-flex;
+  border: none;
+  background: #1c1c1c;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(#1c1c1c, .2);
+  }
+}
+
+div {
+  text-align: center;
+  font-size: 8vw;
+  
+  .number {
+    display: block;
+    line-height: 0;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+}
+
+label {
+  display: inline-block;
+  margin: 10px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+input[type="number"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  width: 80px;
+  text-align: center;
+}
+
+input[type="number"]:disabled {
+  background-color: #f9f9f9;
+}
+      </style>
+
+      <script>
+        const numberEl = document.querySelector('.number')
+const startBtn = document.querySelector('.btn-start')
+const stopBtn = document.querySelector('.btn-stop')
+const modeRadios = document.querySelectorAll('input[name="mode"]')
+const specificNumberInput = document.querySelector('.specific-number')
+let interval = null
+let mode = 'random'
+let specificNumber = 0
+
+const random = (max) => {
+  return Math.floor(Math.random() * max)
+}
+
+// Cập nhật chế độ khi người dùng thay đổi lựa chọn
+modeRadios.forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    mode = e.target.value
+    if (mode === 'specific') {
+      specificNumberInput.disabled = false
+    } else {
+      specificNumberInput.disabled = true
+    }
+  })
+})
+
+specificNumberInput.addEventListener('input', (e) => {
+  specificNumber = parseInt(e.target.value, 10)
+})
+
+startBtn.addEventListener('click', () => {
+  interval = setInterval(() => {
+    if (mode === 'random') {
+      numberEl.innerHTML = random(99)
+    } else if (mode === 'specific') {
+      numberEl.innerHTML = random(99)
+    }
+  }, 20)
+})
+
+stopBtn.addEventListener('click', () => {
+  clearInterval(interval)
+  if (mode === 'specific') {
+    numberEl.innerHTML = specificNumber
+  }
+})
+
+      </script>
+    
+</body>
+</html>
+  
