@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7300 DAYs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(100, 10px);
+            gap: 1px;
+        }
+        .box {
+            width: 10px;
+            height: 10px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+        }
+        .crossed {
+            background-color: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid" id="grid"></div>
+
+    <script>
+        const grid = document.getElementById('grid');
+        const totalBoxes = 7300;
+        const startDate = new Date(); // Starting date
+        
+        // Function to generate the grid
+        function generateGrid() {
+            for (let i = 0; i < totalBoxes; i++) {
+                const box = document.createElement('div');
+                box.classList.add('box');
+                grid.appendChild(box);
+            }
+        }
+
+        // Function to cross boxes based on the date difference
+        function crossBoxes() {
+            const currentDate = new Date();
+            const daysPassed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+
+            const boxes = document.querySelectorAll('.box');
+            for (let i = 0; i < boxes.length; i++) {
+                if (i <= daysPassed) {
+                    boxes[i].classList.add('crossed');
+                }
+            }
+        }
+
+        // Generate the grid and apply crosses
+        generateGrid();
+        crossBoxes();
+
+        // Update the grid daily
+        setInterval(crossBoxes, 24 * 60 * 60 * 1000);
+    </script>
+</body>
+</html>
