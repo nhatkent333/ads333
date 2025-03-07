@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Counter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .counter { font-size: 2em; margin: 20px; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            gap: 5px;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .cell {
+            width: 30px; height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            background-color: #f0f0f0;
+            font-size: 14px;
+        }
+        .active { background-color: green; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Tap Counter</h1>
+    <button onclick="incrementCounter()">Tap</button>
+    <div class="counter">Count: <span id="count">0</span></div>
+    <div class="grid" id="grid"></div>
+    
+    <script>
+        let count = 0;
+        const grid = document.getElementById("grid");
+
+        // Tạo lưới 111 ô
+        for (let i = 1; i <= 111; i++) {
+            let cell = document.createElement("div");
+            cell.classList.add("cell");
+            cell.textContent = i;
+            grid.appendChild(cell);
+        }
+
+        function incrementCounter() {
+            count++;
+            document.getElementById("count").textContent = count;
+            let index = Math.floor(count / 9);
+            let cells = document.querySelectorAll(".cell");
+            if (index < cells.length) {
+                cells[index].classList.add("active");
+            }
+        }
+    </script>
+</body>
+</html>
