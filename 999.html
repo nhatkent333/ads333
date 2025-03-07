@@ -9,9 +9,9 @@
         .counter { font-size: 2em; margin: 20px; }
         .grid {
             display: grid;
-            grid-template-columns: repeat(11, 1fr);
+            grid-template-columns: repeat(12, 1fr);
             gap: 5px;
-            max-width: 400px;
+            max-width: 450px;
             margin: 20px auto;
         }
         .cell {
@@ -24,11 +24,17 @@
             font-size: 14px;
         }
         .active { background-color: green; color: white; }
+        .tap-button {
+            font-size: 2em;
+            padding: 20px 40px;
+            margin: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <h1>Tap Counter</h1>
-    <button onclick="incrementCounter()">Tap</button>
+    <button class="tap-button" onclick="incrementCounter()">Tap</button>
     <div class="counter">Count: <span id="count">0</span></div>
     <div class="grid" id="grid"></div>
     
@@ -36,8 +42,8 @@
         let count = 0;
         const grid = document.getElementById("grid");
 
-        // Tạo lưới 111 ô
-        for (let i = 1; i <= 111; i++) {
+        // Tạo lưới 112 ô (từ 0 đến 111)
+        for (let i = 0; i <= 111; i++) {
             let cell = document.createElement("div");
             cell.classList.add("cell");
             cell.textContent = i;
