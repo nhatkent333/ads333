@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template333 Pure</title>
+  <style>
+    body { margin: 0; padding: 0; background: #000; width: 100vw; height: 100vh; overflow: hidden; }
+    .bg-video { position: absolute; inset: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0; }
+    .presentation { position: relative; z-index: 1; width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .fade-in { animation: fadeIn 1s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .zoom-pan { animation: zoompan 8s ease-in-out infinite alternate; }
+    @keyframes zoompan { 0% { transform: scale(1) translate(0,0); } 100% { transform: scale(1.15) translate(10px, -10px); } }
+    .slide-title { color: #fff; font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; text-shadow: 0 2px 8px #000; }
+    .slide-img { border-radius: 1.5rem; box-shadow: 0 8px 32px #000a; width: 60vw; height: 60vh; object-fit: cover; }
+    .slide-caption { position: absolute; bottom: 2rem; left: 2rem; background: rgba(0,0,0,0.6); color: #fff; padding: 1rem 2rem; border-radius: 1rem; font-size: 1.2rem; }
+    .countdown { color: #fff; font-size: 7rem; font-weight: 900; margin-bottom: 2rem; text-shadow: 0 2px 16px #000; }
+    .countdown-label { color: #fff; font-size: 2rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <video class="bg-video" autoplay loop muted playsinline>
+    <source src="grid-bg-video.mp4" type="video/mp4">
+  </video>
+  <div id="presentation" class="presentation">
+    
+  <div class='fade-in' style='width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;'>
+    <div class='countdown'>10</div>
+    <div class='countdown-label'>Bắt đầu sau...</div>
+  </div>
+
+  <div class='fade-in' style='width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;'>
+    <div class='slide-title'>Dấu hiệu trẻ thông minh từ nhỏ</div>
+    <div style='position:relative;width:60vw;height:60vh;display:flex;align-items:center;justify-content:center;'>
+      <img src='asset/image-1.jpg' class='slide-img zoom-pan' />
+      <div class='slide-caption'>Dấu hiệu nhận biết sớm</div>
+    </div>
+  </div>
+  
+  <div class='fade-in' style='width:100vw;height:100vh;display:flex;flex-direction:row;align-items:center;justify-content:center;'>
+    <div style='flex:1;display:flex;flex-direction:column;align-items:flex-end;padding-right:2vw;'>
+      <div class='slide-title' style='font-size:3rem;text-align:right;'>Nhạy cảm với môi trường xung quanh</div>
+      <div style='background:rgba(0,0,0,0.6);color:#fff;padding:1.2rem 2.5rem;border-radius:1.5rem;font-size:1.5rem;margin-bottom:1.5rem;'>Giao tiếp bằng mắt sớm</div>
+    </div>
+    <div style='flex:1;display:flex;align-items:center;justify-content:center;'>
+      <img src='asset/image-2.jpg' class='slide-img zoom-pan' style='width:32vw;height:32vw;' />
+    </div>
+  </div>
+  
+  <div class='fade-in' style='width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;'>
+    <div class='slide-title'>Đạt mốc phát triển sớm</div>
+    <div style='position:relative;width:60vw;height:60vh;display:flex;align-items:center;justify-content:center;'>
+      <img src='asset/image-3.jpg' class='slide-img zoom-pan' />
+      <div class='slide-caption'>Nói sớm hơn</div>
+    </div>
+  </div>
+  
+  </div>
+  <script>
+  
+let slides = Array.from(document.querySelectorAll('.fade-in'));
+let current = 0;
+let countdownValue = 10;
+function showSlide(idx) {
+  slides.forEach((el, i) => el.style.display = i === idx ? 'flex' : 'none');
+}
+function nextSlide() {
+  if (current === 0) {
+    // Đếm ngược
+    let countdownEl = slides[0].querySelector('.countdown');
+    let interval = setInterval(() => {
+      countdownValue--;
+      countdownEl.textContent = countdownValue;
+      if (countdownValue < 0) {
+        clearInterval(interval);
+        current = 1;
+        showSlide(current);
+        scheduleNext();
+      }
+    }, 1000);
+  } else {
+    current++;
+    if (current >= slides.length) return;
+    showSlide(current);
+    scheduleNext();
+  }
+}
+function scheduleNext() {
+  if (current === 0) return; // countdown đã tự xử lý
+  let duration = 4;
+  if (current > 0 && current < slides.length) {
+    // duration động nếu có voice_duration
+    const durations = [4.530958333333333, 4.530958333333333, 5.090958333333333];
+    duration = durations[current-1] || 4;
+  }
+  setTimeout(nextSlide, duration * 1000);
+}
+window.onload = function() {
+  showSlide(0);
+  nextSlide();
+};
+
+  </script>
+</body>
+</html>
