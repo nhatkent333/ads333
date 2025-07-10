@@ -20,9 +20,8 @@
   </style>
 </head>
 <body>
-  <video class="bg-video" autoplay loop muted playsinline>
-    <source src="https://ads333.vieclamvui.com/grid-bg-video.mp4" type="video/mp4">
-  </video>
+  <canvas id="bg-canvas" width="1920" height="1080" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
+  <video id="bg-video" src="grid-bg-video.mp4" autoplay loop muted playsinline preload="auto" style="display:none"></video>
   <div id="presentation" class="presentation">
     
   <div class='fade-in' style='width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;'>
@@ -58,6 +57,18 @@
   
   </div>
   <script>
+
+  // Vẽ video nền lên canvas để đảm bảo Puppeteer/headless luôn render được
+  const video = document.getElementById('bg-video');
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  function drawVideoToCanvas() {
+    if (video.readyState >= 2 && !video.paused && !video.ended) {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
+    requestAnimationFrame(drawVideoToCanvas);
+  }
+  video.addEventListener('play', drawVideoToCanvas);
   
 let slides = Array.from(document.querySelectorAll('.fade-in'));
 let current = 0;
