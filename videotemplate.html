@@ -18,6 +18,12 @@
     .countdown { color: #fff; font-size: 7rem; font-weight: 900; margin-bottom: 2rem; text-shadow: 0 2px 16px #000; }
     .countdown-label { color: #fff; font-size: 2rem; font-weight: 600; }
   </style>
+  <script>
+    // Ghi đè ngay đầu trang
+    Object.defineProperty(navigator, 'webdriver', {
+      get: () => false
+    });
+  </script>
 </head>
 <body>
 <canvas id="bg-canvas" width="1920" height="1080" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></canvas>
