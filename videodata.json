@@ -1,0 +1,104 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "buttonText": "Đốm trắng",
+      "image": "image-1.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Có Đốm Trắng",
+      "description": "Thường vô hại, đây có thể là dấu hiệu của việc thiếu kẽm hoặc do một chấn thương nhẹ ở móng.",
+      "adviceType": "info",
+      "adviceText": "Nếu các đốm trắng xuất hiện liên tục, hãy xem xét lại chế độ ăn uống hoặc tham khảo ý kiến bác sĩ."
+    },
+    {
+      "id": 2,
+      "buttonText": "Sọc đen",
+      "image": "image-2.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Có Sọc Đen",
+      "description": "Đây là một dấu hiệu cảnh báo y tế khẩn cấp, cần được chú ý đặc biệt.",
+      "adviceType": "danger",
+      "adviceText": "<strong>CẦN ĐI KHÁM BÁC SĨ DA LIỄU NGAY LẬP TỨC</strong> để loại trừ khả năng u hắc tố (melanoma)."
+    },
+    {
+      "id": 3,
+      "buttonText": "Móng rỗ",
+      "image": "image-3.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Bị Rỗ, Có Vết Lõm",
+      "description": "Các vết lõm nhỏ trên bề mặt móng có thể liên quan đến một số bệnh tự miễn.",
+      "adviceType": "checkup",
+      "adviceText": "Thường liên quan đến bệnh vẩy nến hoặc viêm khớp. Hãy đi khám nếu có kèm phát ban hoặc đau khớp."
+    },
+    {
+      "id": 4,
+      "buttonText": "Dùi trống",
+      "image": "image-4.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Hình Dùi Trống",
+      "description": "Đầu ngón tay to ra và móng cong úp xuống, là một dấu hiệu lâm sàng quan trọng.",
+      "adviceType": "danger",
+      "adviceText": "Có thể cảnh báo các bệnh lý nghiêm trọng về <strong>Phổi</strong>, <strong>Tim mạch</strong>, hoặc <strong>Gan</strong>. Cần đi khám bác sĩ ngay."
+    },
+    {
+      "id": 5,
+      "buttonText": "Hình thìa",
+      "image": "image-5.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Hình Thìa",
+      "description": "Móng tay mềm và lõm ở giữa, đủ để chứa một giọt nước, là một dấu hiệu kinh điển.",
+      "adviceType": "checkup",
+      "adviceText": "Đây là dấu hiệu của bệnh thiếu máu do thiếu sắt. Nên đi khám bác sĩ để xét nghiệm máu."
+    },
+    {
+      "id": 6,
+      "buttonText": "Giòn, gãy",
+      "image": "image-6.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Giòn, Dễ Gãy",
+      "description": "Móng tay khô, yếu, dễ bị nứt hoặc gãy có thể do nhiều nguyên nhân.",
+      "adviceType": "warning",
+      "adviceText": "Thường do thiếu hụt vitamin, biotin hoặc là cảnh báo bệnh tuyến giáp. Hãy đi khám nếu có triệu chứng khác."
+    },
+    {
+      "id": 7,
+      "buttonText": "Rãnh ngang",
+      "image": "image-7.jpg",
+      "video": "grid-background.mp4",
+      "title": "Đường Rãnh Ngang",
+      "description": "Các đường rãnh chạy ngang trên bề mặt móng, giống như một \"nhật ký\" về sức khỏe.",
+      "adviceType": "info",
+      "adviceText": "Nguyên nhân do sốt cao, chấn thương, stress hoặc thiếu kẽm. Thường không cần điều trị."
+    },
+    {
+      "id": 8,
+      "buttonText": "Móng vàng",
+      "image": "image-8.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Dày, Màu Vàng",
+      "description": "Sự thay đổi về độ dày và màu sắc của móng có thể là dấu hiệu của nhiễm trùng hoặc bệnh lý khác.",
+      "adviceType": "checkup",
+      "adviceText": "Cảnh báo nhiễm nấm móng hoặc vấn đề về hô hấp. Nên đi khám để xác định nguyên nhân."
+    },
+    {
+      "id": 9,
+      "buttonText": "Nhợt nhạt",
+      "image": "image-9.jpg",
+      "video": "grid-background.mp4",
+      "title": "Móng Nhợt Nhạt, Trắng Bệch",
+      "description": "Màu sắc của nền móng có thể phản ánh các vấn đề về tuần hoàn hoặc bệnh hệ thống.",
+      "adviceType": "danger",
+      "adviceText": "Toàn bộ móng trắng có thể chỉ điểm bệnh thiếu máu hoặc bệnh gan nặng như xơ gan. Cần được bác sĩ đánh giá sớm."
+    },
+    {
+      "id": 10,
+      "buttonText": "Quầng xanh",
+      "image": "image-10.jpg",
+      "video": "grid-background.mp4",
+      "title": "Quầng Bán Nguyệt Màu Xanh",
+      "description": "Quầng thâm hình bán nguyệt (lunula) ở gốc móng chuyển sang màu xanh.",
+      "adviceType": "danger",
+      "adviceText": "Đây có thể là biểu hiện của chứng xanh tím (cyanosis), dấu hiệu cơ thể không nhận đủ oxy. Cần được bác sĩ kiểm tra."
+    }
+  ]
+}
