@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Record Chrome Tab (WebRTC + MediaRecorder)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; padding: 18px; max-width: 900px; margin: auto; }
+    button { margin: 6px 6px 6px 0; padding: 8px 12px; }
+    video { width: 100%; max-height: 360px; background: #000; }
+    .info { margin-top: 10px; color: #333; }
+    .status { font-weight: 600; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Ghi lại Chrome Tab (WebRTC)</h1>
+
+  <p>
+    Nhấn <b>Chia sẻ tab</b> để chọn tab Chrome (bật "Gửi âm thanh" nếu muốn thu âm). Sau đó dùng <b>Start Recording</b> / <b>Stop</b>.
+  </p>
+
+  <div>
+    <button id="btnShare">Chia sẻ tab (getDisplayMedia)</button>
+    <button id="btnStart" disabled>Start Recording</button>
+    <button id="btnStop" disabled>Stop Recording</button>
+    <button id="btnDownload" disabled>Tải về</button>
+    <span class="info">Status: <span id="status" class="status">idle</span></span>
+  </div>
+
+  <div style="margin-top:12px">
+    <video id="preview" autoplay playsinline muted></video>
+  </div>
+
+  <div style="margin-top:8px;">
+    <label>Thời lượng hiện tại: <span id="timer">00:00</span></label>
+  </div>
+
+  <script>
+    const btnShare = document.getElementById('btnShare');
+    const btnStart = document.getElementById('btnStart');
+    const btnStop = document.getElementById('btnStop');
+    const btnDownload = document.getElementById('btnDownload');
+    const preview = document.getElementById('preview');
+    const statusEl = document.getElementById('status');
+    const timerEl = document.getElementById('timer');
+
+    let stream = null;
+    let mediaRecorder = null;
+    let chunks = [];
+    let recordingStart = null;
+    let timerInterval = null;
+    let recordedBlob = null;
+
+    function setStatus(s) { statusEl.textContent = s; }
+
+    function formatTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const m = String(Math.floor(totalSeconds / 60)).padStart(2,'0');
+      const s = String(totalSeconds % 60).padStart(2,'0');
+      return `${m}:${s}`;
+    }
+
+    btnShare.addEventListener('click', async () => {
+      try {
+        // Yêu cầu chia sẻ màn hình/tab. Người dùng phải chọn "Tab" và bật Share audio nếu cần.
+        stream = await navigator.mediaDevices.getDisplayMedia({
+          video: { cursor: "always" },
+          audio: true // <<-- quan trọng: cho phép capture audio từ tab nếu người dùng bật
+        });
+
+        // Hiển thị preview. preview muted để tránh loop audio feedback.
+        preview.srcObject = stream;
+        preview.muted = true;
+
+        // Nếu stream bị dừng (user click "Stop sharing" ở UI Chrome), ta xử lý.
+        stream.getVideoTracks()[0].addEventListener('ended', () => {
+          setStatus('share stopped');
+          stopRecordingIfActive();
+          btnStart.disabled = true;
+          btnStop.disabled = true;
+        });
+
+        setStatus('ready to record');
+        btnStart.disabled = false;
+        btnStop.disabled = true;
+        btnDownload.disabled = true;
+      } catch (err) {
+        console.error('getDisplayMedia error:', err);
+        setStatus('error: ' + (err && err.message ? err.message : err));
+      }
+    });
+
+    btnStart.addEventListener('click', () => {
+      if (!stream) return alert('Chưa có stream. Nhấn "Chia sẻ tab" trước.');
+
+      chunks = [];
+      // Ưu tiên mimeType phổ biến cho Chrome: webm with vp9/opus hoặc vp8/opus
+      let mime = '';
+      if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')) {
+        mime = 'video/webm;codecs=vp9,opus';
+      } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')) {
+        mime = 'video/webm;codecs=vp8,opus';
+      } else if (MediaRecorder.isTypeSupported('video/webm')) {
+        mime = 'video/webm';
+      }
+
+      try {
+        mediaRecorder = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined);
+      } catch (err) {
+        console.error('MediaRecorder ctor failed:', err);
+        setStatus('MediaRecorder not supported');
+        return;
+      }
+
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) chunks.push(e.data);
+      };
+
+      mediaRecorder.onstart = () => {
+        recordingStart = Date.now();
+        timerInterval = setInterval(() => {
+          timerEl.textContent = formatTime(Date.now() - recordingStart);
+        }, 250);
+        setStatus('recording');
+        btnStart.disabled = true;
+        btnStop.disabled = false;
+        btnDownload.disabled = true;
+      };
+
+      mediaRecorder.onstop = () => {
+        clearInterval(timerInterval);
+        timerEl.textContent = formatTime(Date.now() - recordingStart);
+        recordedBlob = new Blob(chunks, { type: chunks[0]?.type || 'video/webm' });
+        setStatus('stopped');
+        btnStart.disabled = false;
+        btnStop.disabled = true;
+        btnDownload.disabled = false;
+      };
+
+      mediaRecorder.onerror = (e) => {
+        console.error('mediaRecorder error', e);
+        setStatus('recorder error');
+      };
+
+      mediaRecorder.start(1000); // emit chunks mỗi 1s
+    });
+
+    btnStop.addEventListener('click', () => {
+      if (!mediaRecorder) return;
+      mediaRecorder.stop();
+    });
+
+    btnDownload.addEventListener('click', () => {
+      if (!recordedBlob) return alert('Chưa có file ghi.');
+      const url = URL.createObjectURL(recordedBlob);
+      const a = document.createElement('a');
+      const ts = new Date().toISOString().replace(/[:.]/g,'-');
+      a.href = url;
+      a.download = `tab-record-${ts}.webm`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 10000);
+    });
+
+    // Nếu stream tự tắt (user stop sharing), dừng recorder nếu đang bật
+    function stopRecordingIfActive() {
+      try {
+        if (mediaRecorder && mediaRecorder.state === 'recording') {
+          mediaRecorder.stop();
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    // Dọn dẹp khi unload trang
+    window.addEventListener('beforeunload', () => {
+      if (stream) {
+        stream.getTracks().forEach(t => t.stop());
+      }
+    });
+
+  </script>
+</body>
+</html>
