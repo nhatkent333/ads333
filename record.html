@@ -1,22 +1,24 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <title>Record Chrome Tab - Full HD, No Cursor</title>
+  <meta charset="utf-t" />
+  <title>Record Chrome Tab - Highest Quality</title>
   <style>
     body { font-family: sans-serif; padding: 20px; max-width: 900px; margin: auto; }
-    video { width: 100%; background: #000; margin-top: 10px; }
-    button { padding: 8px 14px; margin: 4px; }
+    video { width: 100%; background: #000; margin-top: 10px; border: 1px solid #ccc; }
+    button { padding: 8px 14px; margin: 4px; font-size: 14px; cursor: pointer; }
+    button:disabled { cursor: not-allowed; opacity: 0.6; }
+    p { font-size: 16px; }
+    #status { font-weight: bold; }
   </style>
 </head>
 <body>
-  <h2>Ghi lại Chrome Tab (Full HD, không có trỏ chuột)</h2>
-
+  <h2>Ghi lại Chrome Tab (Chất lượng Cao Nhất)</h2>
   <button id="btnShare">Chia sẻ tab</button>
   <button id="btnStart" disabled>Bắt đầu ghi</button>
   <button id="btnStop" disabled>Dừng ghi</button>
   <button id="btnDownload" disabled>Tải video</button>
-  <p>Status: <span id="status">idle</span></p>
+  <p>Trạng thái: <span id="status">chờ...</span></p>
 
   <video id="preview" autoplay playsinline muted></video>
 
@@ -34,42 +36,52 @@
       try {
         stream = await navigator.mediaDevices.getDisplayMedia({
           video: {
-            cursor: "never", // ✅ không ghi trỏ chuột
-            width: { ideal: 1920 },
-            height: { ideal: 1080 },
+            cursor: "never",
+            width: { ideal: 1920, max: 1920 }, // Ưu tiên và giới hạn ở 1920
+            height: { ideal: 1080, max: 1080 },// Ưu tiên và giới hạn ở 1080
             frameRate: { ideal: 60 }
           },
-          audio: true
+          // ✅ Cải thiện chất lượng âm thanh
+          audio: {
+            sampleRate: 48000,
+            channelCount: 2,
+            echoCancellation: false,
+            noiseSuppression: false,
+            autoGainControl: false,
+          }
         });
 
         preview.srcObject = stream;
-        preview.muted = true;
         btnStart.disabled = false;
-        setStatus("ready");
+        btnShare.disabled = true;
+        setStatus("sẵn sàng ghi");
       } catch (err) {
         console.error(err);
-        setStatus("error: " + err.message);
+        setStatus("lỗi: " + err.message);
       }
     };
 
     btnStart.onclick = () => {
       chunks = [];
-      mediaRecorder = new MediaRecorder(stream, {
-        mimeType: "video/webm;codecs=vp9,opus",
-        videoBitsPerSecond: 8000000 // ✅ bitrate cao để giữ chất lượng
-      });
+      
+      // ✅ Tự động chọn codec và bitrate tốt nhất
+      const options = getBestRecorderOptions();
+      console.log("Sử dụng cài đặt ghi:", options);
+      
+      mediaRecorder = new MediaRecorder(stream, options);
 
       mediaRecorder.ondataavailable = e => e.data.size && chunks.push(e.data);
+      
       mediaRecorder.onstop = () => {
-        recordedBlob = new Blob(chunks, { type: "video/webm" });
+        recordedBlob = new Blob(chunks, { type: options.mimeType });
         btnDownload.disabled = false;
-        setStatus("stopped");
+        setStatus("đã dừng");
       };
 
-      mediaRecorder.start(1000);
+      mediaRecorder.start(); // Ghi liên tục thay vì cắt mỗi giây
       btnStart.disabled = true;
       btnStop.disabled = false;
-      setStatus("recording...");
+      setStatus("đang ghi...");
     };
 
     btnStop.onclick = () => {
@@ -79,15 +91,36 @@
     };
 
     btnDownload.onclick = () => {
+      // ✅ Tên file động theo thời gian
+      const timestamp = new Date().toISOString().slice(0, 19).replace(/[-:T]/g, "");
+      const fileName = `recording-${timestamp}.webm`;
+      
       const url = URL.createObjectURL(recordedBlob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "chrome-tab-fullhd.webm";
+      a.download = fileName;
       a.click();
       URL.revokeObjectURL(url);
     };
 
     function setStatus(s) { statusEl.textContent = s; }
+
+    function getBestRecorderOptions() {
+      // ✅ Ưu tiên codec AV1 vì hiệu quả hơn, nếu không có thì dùng VP9 bitrate siêu cao
+      const av1MimeType = 'video/webm;codecs=av01.0.05M.08,opus';
+      if (MediaRecorder.isTypeSupported(av1MimeType)) {
+        return {
+          mimeType: av1MimeType,
+          videoBitsPerSecond: 15000000, // 15 Mbps cho AV1 là rất cao
+        };
+      }
+      
+      // Lựa chọn dự phòng là VP9 với bitrate rất cao
+      return {
+        mimeType: "video/webm;codecs=vp9,opus",
+        videoBitsPerSecond: 25000000, // 🚀 Tăng mạnh bitrate lên 25 Mbps
+      };
+    }
   </script>
 </body>
 </html>
