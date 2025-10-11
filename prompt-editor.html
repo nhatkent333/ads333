@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Prompt Editor — Two Pane</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root{
       --bg:#0f172a; --panel:#0b1220; --muted:#94a3b8;
@@ -18,17 +19,21 @@
     .panel{background:var(--panel);border-radius:10px;padding:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6);overflow:auto}
     .left textarea{width:100%;height:100%;min-height:0;border:0;background:transparent;color:inherit;resize:none;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;font-size:13px;line-height:1.5}
     .right{padding:16px}
-    .right p, .right li { line-height: 1.8; }
 
     /* highlight styles */
     .tok-var{background:var(--var-bg);color:white;padding:2px 6px;border-radius:6px}
-    .tok-file{background:var(--file-bg);color:black;padding:2px 6px;border-radius:6px}
+    .tok-file{background:var(--file-bg);color:white;padding:2px 6px;border-radius:6px}
     .tok-cell{background:var(--cell-bg);color:white;padding:2px 6px;border-radius:6px}
 
     /* lists */
     .right ul{padding-left:1.1rem;margin:6px 0}
     .right ol{padding-left:1.3rem;margin:6px 0}
     .right li{margin:4px 0}
+    .right p, .right li { line-height: 1.8; }
+    .right ul ul{padding-left:1.5rem}
+
+    /* arrow */
+    .arrow-line i {color: var(--muted); margin-right:6px;}
 
     /* small helper bar */
     .toolbar{margin-left:auto;display:flex;gap:8px}
@@ -50,12 +55,12 @@
         <button id="btn-copy-html">Copy HTML</button>
       </div>
       <div style="width:8px"></div>
-      <div class="hint">Quy tắc: `backtick` → biến (xanh dương); [file] → file (xanh lá đậm); **tên** → cell (đỏ); dòng bắt đầu bằng "- " → bullet list; dòng bắt đầu bằng số + dấu cách hoặc số. → ordered list.</div>
+      <div class="hint">Quy tắc: `backtick` → biến (xanh dương); [file] → file (xanh lá đậm); **tên** → cell (đỏ); dòng bắt đầu bằng "- " → bullet list; "-- " → bullet thụt vào; "->" → icon mũi tên; dòng bắt đầu bằng số → ordered list.</div>
     </header>
 
     <main class="container">
       <section class="panel left">
-        <textarea id="editor" placeholder="Viết prompt ở đây...\nVí dụ:\n`user_name` lấy từ database\n[file.csv] là input\n**cell_1** chạy preprocessing\n- item A\n- item B\n1. step one\n2. step two"></textarea>
+        <textarea id="editor" placeholder="Viết prompt ở đây...\nVí dụ:\n`user_name` lấy từ database\n[file.csv] là input\n**cell_1** chạy preprocessing\n- item A\n-- item A1\n-> bước kế tiếp\n1. step one\n2. step two"></textarea>
       </section>
 
       <section class="panel right">
@@ -83,7 +88,26 @@
     let out = ''
     let i = 0
     while(i < lines.length){
-      // handle bullet groups
+      // handle nested bullets (--)
+      if(/^\s*\-\-\s+/.test(lines[i])){
+        out += '<ul style="padding-left:2rem">'
+        while(i < lines.length && /^\s*\-\-\s+/.test(lines[i])){
+          const li = lines[i].replace(/^\s*\-\-\s+/, '')
+          out += '<li>' + inlineTokens(li) + '</li>'
+          i++
+        }
+        out += '</ul>'
+        continue
+      }
+
+      // handle arrow lines (->)
+      if(/^\s*\-\>\s+/.test(lines[i])){
+        out += '<p class="arrow-line"><i class="fa-solid fa-arrow-right"></i>' + inlineTokens(lines[i].replace(/^\s*\-\>\s+/, '')) + '</p>'
+        i++
+        continue
+      }
+
+      // handle bullet groups (-)
       if(/^\s*\-\s+/.test(lines[i])){
         out += '<ul>'
         while(i < lines.length && /^\s*\-\s+/.test(lines[i])){
@@ -119,23 +143,16 @@
     preview.innerHTML = out
   }
 
-  // inline token replacements
   function inlineTokens(s){
     let t = escapeHtml(s)
-    // **cell** -> red
-    t = t.replace(/\*\*([^*]+)\*\*/g, function(_,g){ return '<span class="tok-cell">' + g + '</span>' })
-    // `var` -> blue
-    t = t.replace(/`([^`]+)`/g, function(_,g){ return '<span class="tok-var">' + g + '</span>' })
-    // [file] -> green
-    t = t.replace(/\[([^\]]+)\]/g, function(_,g){ return '<span class="tok-file">' + g + '</span>' })
-    // simple bold (if any) already handled; avoid double-processing
+    t = t.replace(/\*\*([^*]+)\*\*/g, (_,g)=>`<span class="tok-cell">${g}</span>`)
+    t = t.replace(/`([^`]+)`/g, (_,g)=>`<span class="tok-var">${g}</span>`)
+    t = t.replace(/\[([^\]]+)\]/g, (_,g)=>`<span class="tok-file">${g}</span>`)
     return t
   }
 
-  // events
   editor.addEventListener('input', ()=> render(editor.value))
   editor.addEventListener('keydown', (e)=>{
-    // tab -> insert 2 spaces
     if(e.key === 'Tab'){
       e.preventDefault()
       const el = e.target
@@ -158,8 +175,7 @@
     try{ await navigator.clipboard.writeText(preview.innerHTML); alert('Đã copy HTML của preview') }catch(e){ alert('Không copy được: '+e) }
   })
 
-  // initial demo content
-  const demo = "`user_name` lấy từ DB\n[file.csv] — input chính\n**cell_preprocess** chạy trước\n\n- loạt cấu hình\n- enable feature\n\n1. bước đầu\n2. bước tiếp theo\n\nMột dòng có `var` và [file.txt] cùng lúc và **cellX**."
+  const demo = "`user_name` lấy từ DB\n[file.csv] — input chính\n**cell_preprocess** chạy trước\n\n- loạt cấu hình\n-- bật chế độ debug\n-> chạy kế tiếp\n1. bước đầu\n2. bước tiếp theo\n\nMột dòng có `var` và [file.txt] cùng lúc và **cellX**."
   editor.value = demo
   render(demo)
 })()
