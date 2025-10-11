@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Prompt Editor — Two Pane</title>
+  <style>
+    :root{
+      --bg:#0f172a; --panel:#0b1220; --muted:#94a3b8;
+      --var-bg:#2563eb; --file-bg:#FFFF00; --cell-bg:#dc2626;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
+    body{background:linear-gradient(180deg,#071024 0%, #071b2b 100%);color:#e6eef8}
+    .wrap{height:100vh;display:grid;grid-template-rows:56px 1fr;gap:12px;padding:12px}
+    header{display:flex;align-items:center;gap:12px}
+    header h1{font-size:16px;margin:0}
+    .container{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:stretch;height:100%}
+    .panel{background:var(--panel);border-radius:10px;padding:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6);overflow:auto}
+    .left textarea{width:100%;height:100%;min-height:0;border:0;background:transparent;color:inherit;resize:none;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;font-size:13px;line-height:1.5}
+    .right{padding:16px}
+
+    /* highlight styles */
+    .tok-var{background:var(--var-bg);color:white;padding:2px 6px;border-radius:6px}
+    .tok-file{background:var(--file-bg);color:black;padding:2px 6px;border-radius:6px}
+    .tok-cell{background:var(--cell-bg);color:white;padding:2px 6px;border-radius:6px}
+
+    /* lists */
+    .right ul{padding-left:1.1rem;margin:6px 0}
+    .right ol{padding-left:1.3rem;margin:6px 0}
+    .right li{margin:4px 0}
+
+    /* small helper bar */
+    .toolbar{margin-left:auto;display:flex;gap:8px}
+    button{background:#0b1220;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer}
+    button:active{transform:translateY(1px)}
+    .hint{font-size:12px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:900px){.container{grid-template-columns:1fr} .toolbar{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Prompt Editor — 2 khung (Plain text → Rich preview)</h1>
+      <div class="toolbar">
+        <button id="btn-clear">Xóa</button>
+        <button id="btn-copy-markup">Copy plain</button>
+        <button id="btn-copy-html">Copy HTML</button>
+      </div>
+      <div style="width:8px"></div>
+      <div class="hint">Quy tắc: `backtick` → biến (xanh dương); [file] → file (xanh lá đậm); **tên** → cell (đỏ); dòng bắt đầu bằng "- " → bullet list; dòng bắt đầu bằng số + dấu cách hoặc số. → ordered list.</div>
+    </header>
+
+    <main class="container">
+      <section class="panel left">
+        <textarea id="editor" placeholder="Viết prompt ở đây...\nVí dụ:\n`user_name` lấy từ database\n[file.csv] là input\n**cell_1** chạy preprocessing\n- item A\n- item B\n1. step one\n2. step two"></textarea>
+      </section>
+
+      <section class="panel right">
+        <div id="preview" class="right" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+<script>
+(function(){
+  const editor = document.getElementById('editor')
+  const preview = document.getElementById('preview')
+  const btnClear = document.getElementById('btn-clear')
+  const btnCopyMarkup = document.getElementById('btn-copy-markup')
+  const btnCopyHtml = document.getElementById('btn-copy-html')
+
+  function escapeHtml(s){
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  }
+
+  function render(text){
+    if(!text) { preview.innerHTML = '<div class="hint">Preview trống — nhập prompt bên trái.</div>'; return }
+
+    const lines = text.replace(/\r\n/g,'\n').split('\n')
+    let out = ''
+    let i = 0
+    while(i < lines.length){
+      // handle bullet groups
+      if(/^\s*\-\s+/.test(lines[i])){
+        out += '<ul>'
+        while(i < lines.length && /^\s*\-\s+/.test(lines[i])){
+          const li = lines[i].replace(/^\s*\-\s+/, '')
+          out += '<li>' + inlineTokens(li) + '</li>'
+          i++
+        }
+        out += '</ul>'
+        continue
+      }
+
+      // handle ordered groups: lines starting with number + dot or number + space
+      if(/^\s*\d+[\.)]?\s+/.test(lines[i])){
+        out += '<ol>'
+        while(i < lines.length && /^\s*\d+[\.)]?\s+/.test(lines[i])){
+          const li = lines[i].replace(/^\s*\d+[\.)]?\s+/, '')
+          out += '<li>' + inlineTokens(li) + '</li>'
+          i++
+        }
+        out += '</ol>'
+        continue
+      }
+
+      // normal paragraph (preserve blank lines)
+      if(lines[i].trim() === ''){
+        out += '<div style="height:8px"></div>'
+      } else {
+        out += '<p style="margin:6px 0">' + inlineTokens(lines[i]) + '</p>'
+      }
+      i++
+    }
+
+    preview.innerHTML = out
+  }
+
+  // inline token replacements
+  function inlineTokens(s){
+    let t = escapeHtml(s)
+    // **cell** -> red
+    t = t.replace(/\*\*([^*]+)\*\*/g, function(_,g){ return '<span class="tok-cell">' + g + '</span>' })
+    // `var` -> blue
+    t = t.replace(/`([^`]+)`/g, function(_,g){ return '<span class="tok-var">' + g + '</span>' })
+    // [file] -> green
+    t = t.replace(/\[([^\]]+)\]/g, function(_,g){ return '<span class="tok-file">' + g + '</span>' })
+    // simple bold (if any) already handled; avoid double-processing
+    return t
+  }
+
+  // events
+  editor.addEventListener('input', ()=> render(editor.value))
+  editor.addEventListener('keydown', (e)=>{
+    // tab -> insert 2 spaces
+    if(e.key === 'Tab'){
+      e.preventDefault()
+      const el = e.target
+      const start = el.selectionStart
+      const end = el.selectionEnd
+      const val = el.value
+      el.value = val.slice(0,start) + '  ' + val.slice(end)
+      el.selectionStart = el.selectionEnd = start + 2
+      render(el.value)
+    }
+  })
+
+  btnClear.addEventListener('click', ()=>{ editor.value = ''; render('') })
+
+  btnCopyMarkup.addEventListener('click', async ()=>{
+    try{ await navigator.clipboard.writeText(editor.value); alert('Đã copy plain text') }catch(e){ alert('Không copy được: '+e) }
+  })
+
+  btnCopyHtml.addEventListener('click', async ()=>{
+    try{ await navigator.clipboard.writeText(preview.innerHTML); alert('Đã copy HTML của preview') }catch(e){ alert('Không copy được: '+e) }
+  })
+
+  // initial demo content
+  const demo = "`user_name` lấy từ DB\n[file.csv] — input chính\n**cell_preprocess** chạy trước\n\n- loạt cấu hình\n- enable feature\n\n1. bước đầu\n2. bước tiếp theo\n\nMột dòng có `var` và [file.txt] cùng lúc và **cellX**."
+  editor.value = demo
+  render(demo)
+})()
+</script>
+</body>
+</html>
