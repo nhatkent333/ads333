@@ -8,7 +8,7 @@
   <style>
     :root{
       --bg:#0f172a; --panel:#0b1220; --muted:#94a3b8;
-      --var-bg:#2563eb; --file-bg:#FFFF00; --cell-bg:#dc2626;
+      --var-bg:#2563eb; --file-bg:#0f5132; --cell-bg:#dc2626;
     }
     html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial}
     body{background:linear-gradient(180deg,#071024 0%, #071b2b 100%);color:#e6eef8}
@@ -22,7 +22,7 @@
 
     /* highlight styles */
     .tok-var{background:var(--var-bg);color:white;padding:2px 6px;border-radius:6px}
-    .tok-file{background:var(--file-bg);color:black;padding:2px 6px;border-radius:6px}
+    .tok-file{background:var(--file-bg);color:white;padding:2px 6px;border-radius:6px}
     .tok-cell{background:var(--cell-bg);color:white;padding:2px 6px;border-radius:6px}
 
     /* lists */
@@ -40,6 +40,7 @@
     button{background:#0b1220;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:6px 10px;border-radius:8px;cursor:pointer}
     button:active{transform:translateY(1px)}
     .hint{font-size:12px;color:var(--muted)}
+    .status{font-size:12px;color:var(--muted);margin-left:12px}
 
     /* responsive */
     @media (max-width:900px){.container{grid-template-columns:1fr} .toolbar{display:none}}
@@ -53,9 +54,11 @@
         <button id="btn-clear">Xóa</button>
         <button id="btn-copy-markup">Copy plain</button>
         <button id="btn-copy-html">Copy HTML</button>
+        <button id="btn-clear-store">Xóa store</button>
       </div>
       <div style="width:8px"></div>
       <div class="hint">Quy tắc: `backtick` → biến (xanh dương); [file] → file (xanh lá đậm); **tên** → cell (đỏ); dòng bắt đầu bằng "- " → bullet list; "-- " → bullet thụt vào; "->" → icon mũi tên; dòng bắt đầu bằng số → ordered list.</div>
+      <div class="status" id="save-status">Đang sử dụng chế độ lưu tự động — chưa lưu</div>
     </header>
 
     <main class="container">
@@ -71,11 +74,21 @@
 
 <script>
 (function(){
+  const STORAGE_KEY = 'prompt_editor_v1'
+  const DAYS = 3000
+  const EXPIRY_MS = DAYS * 24 * 60 * 60 * 1000 // 3000 days in ms
+
   const editor = document.getElementById('editor')
   const preview = document.getElementById('preview')
   const btnClear = document.getElementById('btn-clear')
   const btnCopyMarkup = document.getElementById('btn-copy-markup')
   const btnCopyHtml = document.getElementById('btn-copy-html')
+  const btnClearStore = document.getElementById('btn-clear-store')
+  const status = document.getElementById('save-status')
+
+  let saveTimer = null
+
+  function setStatus(text){ status.textContent = text }
 
   function escapeHtml(s){
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
@@ -88,7 +101,6 @@
     let out = ''
     let i = 0
     while(i < lines.length){
-      // handle nested bullets (--)
       if(/^\s*\-\-\s+/.test(lines[i])){
         out += '<ul style="padding-left:2rem">'
         while(i < lines.length && /^\s*\-\-\s+/.test(lines[i])){
@@ -100,14 +112,12 @@
         continue
       }
 
-      // handle arrow lines (->)
       if(/^\s*\-\>\s+/.test(lines[i])){
         out += '<p class="arrow-line"><i class="fa-solid fa-arrow-right"></i>' + inlineTokens(lines[i].replace(/^\s*\-\>\s+/, '')) + '</p>'
         i++
         continue
       }
 
-      // handle bullet groups (-)
       if(/^\s*\-\s+/.test(lines[i])){
         out += '<ul>'
         while(i < lines.length && /^\s*\-\s+/.test(lines[i])){
@@ -119,7 +129,6 @@
         continue
       }
 
-      // handle ordered groups: lines starting with number + dot or number + space
       if(/^\s*\d+[\.)]?\s+/.test(lines[i])){
         out += '<ol>'
         while(i < lines.length && /^\s*\d+[\.)]?\s+/.test(lines[i])){
@@ -131,7 +140,6 @@
         continue
       }
 
-      // normal paragraph (preserve blank lines)
       if(lines[i].trim() === ''){
         out += '<div style="height:8px"></div>'
       } else {
@@ -151,7 +159,49 @@
     return t
   }
 
-  editor.addEventListener('input', ()=> render(editor.value))
+  // Storage helpers (using localStorage so it works in any Chrome browser page)
+  function saveToStore(value){
+    try{
+      const obj = { value, ts: Date.now() }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(obj))
+      setStatus('Đã lưu tự động — ' + new Date(obj.ts).toLocaleString())
+    }catch(e){
+      setStatus('Lỗi khi lưu: ' + e.message)
+    }
+  }
+
+  function loadFromStore(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY)
+      if(!raw) return null
+      const obj = JSON.parse(raw)
+      if(!obj || !obj.ts) return null
+      if(Date.now() - obj.ts > EXPIRY_MS){
+        // expired
+        localStorage.removeItem(STORAGE_KEY)
+        return null
+      }
+      return obj.value
+    }catch(e){
+      console.error('loadFromStore', e)
+      return null
+    }
+  }
+
+  function clearStore(){
+    try{ localStorage.removeItem(STORAGE_KEY); setStatus('Đã xóa store') }catch(e){ setStatus('Không xóa được: '+e.message) }
+  }
+
+  // debounce save
+  function scheduleSave(){
+    if(saveTimer) clearTimeout(saveTimer)
+    saveTimer = setTimeout(()=>{
+      saveToStore(editor.value)
+    }, 600)
+  }
+
+  // events
+  editor.addEventListener('input', ()=>{ render(editor.value); scheduleSave() })
   editor.addEventListener('keydown', (e)=>{
     if(e.key === 'Tab'){
       e.preventDefault()
@@ -162,22 +212,38 @@
       el.value = val.slice(0,start) + '  ' + val.slice(end)
       el.selectionStart = el.selectionEnd = start + 2
       render(el.value)
+      scheduleSave()
     }
   })
 
-  btnClear.addEventListener('click', ()=>{ editor.value = ''; render('') })
-
+  btnClear.addEventListener('click', ()=>{ editor.value = ''; render(''); scheduleSave() })
   btnCopyMarkup.addEventListener('click', async ()=>{
     try{ await navigator.clipboard.writeText(editor.value); alert('Đã copy plain text') }catch(e){ alert('Không copy được: '+e) }
   })
-
   btnCopyHtml.addEventListener('click', async ()=>{
     try{ await navigator.clipboard.writeText(preview.innerHTML); alert('Đã copy HTML của preview') }catch(e){ alert('Không copy được: '+e) }
   })
+  btnClearStore.addEventListener('click', ()=>{ if(confirm('Xóa dữ liệu lưu trữ local của ứng dụng?')) clearStore() })
 
+  // save on unload
+  window.addEventListener('beforeunload', ()=>{
+    try{ saveToStore(editor.value) }catch(e){}
+  })
+
+  // init: try to load from store (if not expired)
+  const stored = loadFromStore()
   const demo = "`user_name` lấy từ DB\n[file.csv] — input chính\n**cell_preprocess** chạy trước\n\n- loạt cấu hình\n-- bật chế độ debug\n-> chạy kế tiếp\n1. bước đầu\n2. bước tiếp theo\n\nMột dòng có `var` và [file.txt] cùng lúc và **cellX**."
-  editor.value = demo
-  render(demo)
+  if(stored !== null && stored !== undefined){
+    editor.value = stored
+    setStatus('Đã khôi phục nội dung lưu — ' + new Date().toLocaleString())
+  } else {
+    editor.value = demo
+    setStatus('Sử dụng nội dung mẫu — chưa có dữ liệu lưu')
+  }
+
+  render(editor.value)
+  // also save initial content so expiry counts from first save
+  scheduleSave()
 })()
 </script>
 </body>
