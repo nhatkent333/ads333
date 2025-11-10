@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Word Speaker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      padding: 20px;
+      max-width: 500px;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #333; text-align: center; }
+    .word {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+  <h2>🔊 English Pronunciation</h2>
+
+  <div class="word">
+    <span>apple</span>
+    <button onclick="speak('apple')">▶️</button>
+  </div>
+  <div class="word">
+    <span>banana</span>
+    <button onclick="speak('banana')">▶️</button>
+  </div>
+  <div class="word">
+    <span>watermelon</span>
+    <button onclick="speak('watermelon')">▶️</button>
+  </div>
+  <div class="word">
+    <span>waste of time </span>
+    <button onclick="speak('waste of time')">▶️</button>
+  </div>
+
+  <script>
+    function speak(word) {
+      const audio = new Audio(
+        `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=${encodeURIComponent(word)}&tl=en`
+      );
+      audio.play();
+    }
+  </script>
+</body>
+</html>
