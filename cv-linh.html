@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Nguyễn Thị Phương Linh</title>
+    <!-- Tải Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tải thư viện jsPDF và html2canvas để xuất PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <style>
+        /* Sử dụng font Inter (giống font mặc định của Tailwind) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Màu nền xám nhạt */
+        }
+        
+        /* Định dạng kích thước A4 */
+        #cv-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            box-sizing: border-box; /* Đảm bảo padding không làm thay đổi kích thước */
+        }
+        
+        /* Tùy chỉnh cho chế độ in */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+            }
+            
+            /* Ẩn nút export khi in */
+            #export-pdf-button {
+                display: none;
+            }
+            
+            /* Đảm bảo CV chiếm toàn bộ trang in */
+            #cv-container {
+                margin: 0;
+                padding: 0;
+            }
+            
+            #cv-a4 {
+                width: 100%;
+                min-height: auto;
+                margin: 0;
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body class="py-12 px-4">
+
+    <!-- Nút Xuất PDF (Nổi) -->
+    <button id="export-pdf-button" class="fixed bottom-8 right-8 bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-blue-800 transition-all duration-300 z-50 flex items-center space-x-2">
+        <!-- Icon Tải xuống (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        <span>Tải CV (PDF)</span>
+    </button>
+
+    <!-- Vùng chứa CV để canh giữa -->
+    <div id="cv-container" class="mx-auto">
+        <!-- Trang CV A4 -->
+        <div id="cv-a4" class="bg-white shadow-2xl mx-auto rounded-lg overflow-hidden">
+            <div class="flex h-full">
+                
+                <!-- CỘT BÊN TRÁI (Thông tin cá nhân, Học vấn, Kỹ năng) -->
+                <div class="w-1/3 bg-gray-800 text-white p-10">
+                    <!-- Ảnh đại diện -->
+                    <div class="flex justify-center mb-8">
+                        <img src="https://placehold.co/150x150/FFFFFF/4A5568?text=Ảnh+CV" 
+                             alt="Ảnh đại diện" 
+                             class="rounded-full w-40 h-40 border-4 border-gray-400 object-cover">
+                    </div>
+                    
+                    <!-- Thông Tin Liên Hệ -->
+                    <section class="mb-10">
+                        <h3 class="text-xl font-bold uppercase border-b-2 border-blue-400 pb-2 mb-4 text-blue-300">Thông Tin Liên Hệ</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                  <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2.153a1 1 0 01-.986-.836l-.74-4.435a1 1 0 01.54-1.06l1.548-.773a11.037 11.037 0 00-6.105-6.105l-.774 1.548a1 1 0 01-1.06.54l-4.435-.74A1 1 0 012 3z" />
+                                </svg>
+                                <span>0908498448</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                </svg>
+                                <span>email@example.com</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-3 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="leading-relaxed">Kp. Phú An, TT.Phú Long, H.Hàm Thuận Bắc, Bình Thuận.</span>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Học Vấn -->
+                    <section class="mb-10">
+                        <h3 class="text-xl font-bold uppercase border-b-2 border-blue-400 pb-2 mb-4 text-blue-300">Học Vấn</h3>
+                        <div class="text-sm">
+                            <p class="font-bold">ĐẠI HỌC KINH TẾ TP.HCM</p>
+                            <p class="italic text-gray-300">2006 - 2010</p>
+                            <p>Chuyên ngành: Kế toán doanh nghiệp</p>
+                            <p>Trình độ: Đại học</p>
+                        </div>
+                    </section>
+                    
+                    <!-- Kỹ Năng -->
+                    <section>
+                        <h3 class="text-xl font-bold uppercase border-b-2 border-blue-400 pb-2 mb-4 text-blue-300">Kỹ Năng</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-sm">
+                            <li>Tin học văn phòng</li>
+                            <li>Tiếng Anh</li>
+                            <li>Kế toán kho, kế toán mua hàng</li>
+                            <li>Kế toán doanh thu, kế toán thanh toán</li>
+                            <li>Lập báo cáo, đối chiếu công nợ</li>
+                        </ul>
+                    </section>
+                </div>
+                
+                <!-- CỘT BÊN PHẢI (Tên, Mục tiêu, Kinh nghiệm) -->
+                <div class="w-2/3 p-10 text-gray-800">
+                    <!-- Tên và Chức danh -->
+                    <header class="mb-10">
+                        <h1 class="text-5xl font-bold text-gray-900">NGUYỄN THỊ PHƯƠNG LINH</h1>
+                        <h2 class="text-2xl font-semibold text-blue-700 mt-2">KẾ TOÁN TỔNG HỢP</h2>
+                    </header>
+                    
+                    <!-- Mục Tiêu Nghề Nghiệp -->
+                    <section class="mb-10">
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-700 pb-2 mb-4">Mục Tiêu Nghề Nghiệp</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700 leading-relaxed">
+                            <li>Mong muốn được làm việc, trau dồi thêm kiến thức kinh nghiệm để hoàn thiện bản thân.</li>
+                            <li>Làm việc trong môi trường thân thiện, hòa đồng, cùng giúp đỡ lẫn nhau để xây dựng tập thể vững mạnh.</li>
+                        </ul>
+                    </section>
+                    
+                    <!-- Kinh Nghiệm Làm Việc -->
+                    <section>
+                        <h3 class="text-2xl font-bold text-blue-800 border-b-2 border-blue-700 pb-2 mb-4">Kinh Nghiệm Làm Việc</h3>
+                        
+                        <div class="space-y-6">
+                            
+                            <!-- Kinh nghiệm 1 (Mới nhất) -->
+                            <div class="mb-6">
+                                <h4 class="text-xl font-bold text-gray-900">Kế toán thanh toán</h4>
+                                <p class="font-semibold text-gray-700">CHI NHÁNH PHAN THIẾT CÔNG TY CỔ PHẦN NOVA HOTELS VÀ RESORTS WORLD</p>
+                                <p class="text-sm text-gray-500 mb-3">(Thời gian chưa rõ)</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm leading-relaxed">
+                                    <li>Kiểm tra rà soát hồ sơ thanh toán đúng quy định.</li>
+                                    <li>Lập phiếu chi, ủy nhiệm chi.</li>
+                                    <li>Đối chiếu số dư tài khoản ngân hàng trên sổ sách và sổ phụ ngân hàng.</li>
+                                    <li>Báo cáo hóa đơn đầu vào so với trang hóa đơn điện tử.</li>
+                                    <li>Kiểm tra đối chiếu công nợ, chi tiết theo từng khách hàng trên TK 331.</li>
+                                    <li>Kiểm tra đối chiếu sổ chi tiết 335.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Kinh nghiệm 2 -->
+                            <div class="mb-6">
+                                <h4 class="text-xl font-bold text-gray-900">Kế toán doanh thu</h4>
+                                <p class="font-semibold text-gray-700">CTY TNHH DU LỊCH EDEN (Sea Lion Resort)</p>
+                                <p class="text-sm text-gray-500 mb-3">03/2025 – 05/2025</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm leading-relaxed">
+                                    <li>Kiểm tra đối chiếu giá bán phòng, giá bán tại quầy bar với giá quy định.</li>
+                                    <li>Kiểm tra đối chiếu giữa FO và HK.</li>
+                                    <li>Làm báo cáo doanh thu hàng ngày.</li>
+                                    <li>Kiểm tra, theo dõi dòng tiền vào tài khoản thu.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Kinh nghiệm 3 -->
+                            <div class="mb-6">
+                                <h4 class="text-xl font-bold text-gray-900">Nhân viên mua hàng</h4>
+                                <p class="font-semibold text-gray-700">CÔNG TY TNHH HẢI NAM</p>
+                                <p class="text-sm text-gray-500 mb-3">10/2012 – 09/2024</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm leading-relaxed">
+                                    <li>Nhận các đề nghị từ các xưởng, bộ phận, kiểm tra tính hợp lý của đề nghị.</li>
+                                    <li>Tiến hành tìm nhà cung cấp, duyệt giá.</li>
+                                    <li>Theo dõi tiến độ hàng hóa để kịp yêu cầu bộ phận có nhu cầu.</li>
+                                    <li>Kiểm tra tồn kho giữa các kho để điều chuyển hàng hóa hợp lý.</li>
+                                    <li>Yêu cầu hàng hóa sử dụng thường xuyên để dự phòng.</li>
+                                    <li>Kiểm tra hàng tồn kho, đưa ra hướng xử lý với những hàng tồn kho lâu.</li>
+                                    <li>Làm các hồ sơ đánh giá chứng nhận ISO – BRC.</li>
+                                    <li>Cuối tháng theo dõi đối chiếu công nợ với các nhà cung cấp.</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- Kinh nghiệm 4 -->
+                            <div class="mb-6">
+                                <h4 class="text-xl font-bold text-gray-900">Kế toán kho</h4>
+                                <p class="font-semibold text-gray-700">CÔNG TY TNHH HẢI NAM – Chi nhánh Gò Vấp</p>
+                                <p class="text-sm text-gray-500 mb-3">2010 – 2012</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm leading-relaxed">
+                                    <li>Quản lý nhập, xuất kho hàng hóa của công ty.</li>
+                                    <li>Theo dõi hàng tồn kho.</li>
+                                    <li>Kiểm tra hàng gần hết hạn, gửi báo cáo các bộ phận liên quan.</li>
+                                    <li>Yêu cầu hàng hóa và theo dõi tiến độ giao hàng.</li>
+                                    <li>Quản lý nhân sự, bố trí công việc của tiếp nhận kho.</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('export-pdf-button').addEventListener('click', function () {
+            // Lấy đối tượng jsPDF từ window
+            const { jsPDF } = window.jspdf;
+            
+            // Lấy phần tử CV
+            const cvElement = document.getElementById('cv-a4');
+            const button = document.getElementById('export-pdf-button');
+
+            // Cập nhật trạng thái nút
+            button.innerHTML = '<span>Đang xử lý...</span>';
+            button.disabled = true;
+
+            // Sử dụng html2canvas để chụp ảnh phần tử CV
+            html2canvas(cvElement, {
+                scale: 3, // Tăng tỷ lệ scale để có chất lượng cao hơn
+                useCORS: true, // Cho phép tải ảnh từ nguồn khác (nếu có)
+                width: cvElement.offsetWidth, // Sử dụng chiều rộng thực tế của phần tử
+                height: cvElement.offsetHeight, // Sử dụng chiều cao thực tế
+                windowWidth: cvElement.scrollWidth,
+                windowHeight: cvElement.scrollHeight
+            }).then(canvas => {
+                // Lấy dữ liệu ảnh dưới dạng base64
+                const imgData = canvas.toDataURL('image/png');
+                
+                // Khởi tạo jsPDF với định dạng A4 (portrait, millimeters)
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                
+                // Lấy kích thước trang PDF
+                const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
+                const pdfHeight = pdf.internal.pageSize.getHeight(); // 297mm
+                
+                // Lấy kích thước của canvas (ảnh)
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+                
+                // Tính toán tỷ lệ aspect ratio
+                const ratio = canvasWidth / canvasHeight;
+                
+                // Tính chiều cao của ảnh khi đưa vào PDF sao cho vừa chiều rộng
+                let imgHeight = pdfWidth / ratio;
+                
+                // Kiểm tra xem nội dung có bị tràn trang không
+                let heightLeft = imgHeight;
+                let position = 0; // Vị trí bắt đầu của ảnh
+                
+                // Thêm trang đầu tiên
+                pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+                heightLeft -= pdfHeight;
+                
+                // Vòng lặp để thêm các trang mới nếu nội dung dài hơn 1 trang A4
+                while (heightLeft > 0) {
+                    position = position - pdfHeight; // Dịch chuyển vị trí ảnh lên trên
+                    pdf.addPage(); // Thêm trang mới
+                    pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight); // Vẽ lại ảnh ở vị trí mới
+                    heightLeft -= pdfHeight;
+                }
+                
+                // Lưu tệp PDF
+                pdf.save('CV-NguyenThiPhuongLinh.pdf');
+                
+                // Khôi phục trạng thái nút
+                button.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span>Tải CV (PDF)</span>`;
+                button.disabled = false;
+                
+            }).catch(err => {
+                console.error("Lỗi khi tạo PDF: ", err);
+                // Xử lý lỗi (nếu có)
+                button.innerHTML = '<span>Lỗi! Thử lại</span>';
+                button.disabled = false;
+            });
+        });
+    </script>
+
+</body>
+</html>
