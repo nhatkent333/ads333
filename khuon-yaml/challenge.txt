@@ -1,0 +1,26 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    challenge-box:
+      task_1:
+        title: {{5}}
+        task_prompt:
+          text: {{6}}
+          voice_cue: {{7}}
+        task_hint:
+          text: {{8}}
+          voice_cue: {{9}}
+      task_2:
+        title: {{10}}
+        task_prompt:
+          text: {{11}}
+          voice_cue: {{12}}
+        task_hint:
+          text: {{13}}
+          voice_cue: {{14}}
+    quotes:
+      text: {{15}}
+      voice_cue: {{16}}
