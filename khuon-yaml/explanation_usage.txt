@@ -1,1 +1,21 @@
-
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}
+      voice_cue: {{4}}
+    content:
+      - rule_box:
+          icon: {{5}}
+          paragraph:
+            - use_case_name: {{6}}
+            - rule_context: {{7}}
+            - example: {{8}}
+          voice_cue: {{9}}
+      - rule_box:
+          icon: {{10}}
+          paragraph:
+            - use_case_name: {{11}}
+            - rule_context: {{12}}
+            - example: {{13}}
+          voice_cue: {{14}}
