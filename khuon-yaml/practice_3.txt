@@ -1,0 +1,19 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    prompt:
+      text: {{5}}
+      voice_cue: {{6}}
+    example_box:
+      text: {{7}}
+      voice_cue: {{8}}
+    correct_box:
+      text: {{9}}
+      voice_cue: {{10}}
+    explain:
+      icon: {{11}}
+      text: {{12}}
+      voice_cue: {{13}}
