@@ -1,0 +1,24 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    table:
+      thead:
+        tr:
+          - th: {{5}}
+          - th: {{6}}
+          - th: {{7}}
+        voice_cue: {{8}}
+      tbody:
+        - tr:
+            - td: {{9}}
+            - td: {{10}}
+            - td: {{11}}
+          voice_cue: {{12}}
+        - tr:
+            - td: {{13}}
+            - td: {{14}}
+            - td: {{15}}
+          voice_cue: {{16}}
