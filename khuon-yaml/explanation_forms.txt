@@ -22,3 +22,8 @@ slides:
             - td: {{14}}
             - td: {{15}}
           voice_cue: {{16}}
+    summary:
+      icon: {{17}}
+      paragraph:
+        - sentence: {{18}}
+      voice_cue: {{19}}
