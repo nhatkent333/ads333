@@ -1,0 +1,18 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    content:
+      - error_box:
+          icon: {{5}}
+          paragraph:
+            result: {{6}}
+            sentence: {{7}}
+        correct-box:
+          icon: {{8}}
+          paragraph:
+            result: {{9}}
+            sentence: {{10}}
+        voice_cue: {{11}}
