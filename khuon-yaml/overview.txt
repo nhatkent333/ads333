@@ -5,12 +5,21 @@ slides:
       text: {{3}}
       voice_cue: {{4}}
     content:
-{{REPEAT:rule_box}}
       - rule_box:
           icon: {{5}}
           paragraph:
             - sentence: {{6}}
             - sentence: {{7}}
           voice_cue: {{8}}
-{{END_REPEAT:rule_box}}
-
+      - rule_box:
+          icon: {{9}}
+          paragraph:
+            - sentence: {{10}}
+            - sentence: {{11}}
+          voice_cue: {{12}}
+      - rule_box:
+          icon: {{13}}
+          paragraph:
+            - sentence: {{14}}
+            - sentence: {{15}}
+          voice_cue: {{16}}
