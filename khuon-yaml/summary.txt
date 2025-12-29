@@ -1,30 +1,30 @@
-  - type: summary
-    icon: "fas fa-clipboard-check"
+  - type: {{1}}
+    icon: {{2}}
     title:
-      text: "Tổng Kết Bài Học"
-      voice_cue: "Chúng ta hãy cùng tổng kết lại toàn bộ bài học ngày hôm nay để ghi nhớ thật lâu những kiến thức này."
+      text: {{3}}
+      voice_cue: {{4}}
     key_takeaways:
       - rule_box:
-          icon: "fas fa-volume-up"
-          paragraph: "Lựa chọn A hay An dựa trên <highlight>âm thanh</highlight>, không dựa trên chữ cái."
-          voice_cue: "Đầu tiên, và quan trọng nhất, các em cần nhớ là luôn luôn lựa chọn mạo từ A hay An dựa trên âm thanh thực tế, chứ không bao giờ dựa trên mặt chữ cái đâu nhé."
+          icon: {{5}}
+          paragraph: {{6}}
+          voice_cue: {{7}}
       - rule_box:
-          icon: "fas fa-sync-alt"
-          paragraph: "Công thức: <highlight>AN + Nguyên âm</highlight> và <highlight>A + Phụ âm</highlight>."
-          voice_cue: "Thứ hai, hãy nắm vững công thức biến đổi cốt lõi: An đi với nguyên âm và A đi với phụ âm. Đây là quy tắc vàng không được quên."
+          icon: {{8}}
+          paragraph: {{9}}
+          voice_cue: {{10}}
       - rule_box:
-          icon: "fas fa-bullhorn"
-          paragraph: "Biết cách phát âm <highlight>THE</highlight> khác nhau: /ðə/ trước phụ âm và /ði:/ trước nguyên âm."
-          voice_cue: "Về mặt kỹ năng, sau bài học này các em đã có thể tự tin phát âm mạo từ The theo hai cách khác nhau tùy thuộc vào từ đứng sau nó là phụ âm hay nguyên âm."
+          icon: {{11}}
+          paragraph: {{12}}
+          voice_cue: {{13}}
       - rule_box:
-          icon: "fas fa-question"
-          paragraph: "Tự hỏi bản thân: <highlight>Âm đầu tiên</highlight> tôi nghe thấy là gì?"
-          voice_cue: "Và để ghi nhớ bài học sâu hơn, các em hãy tự suy ngẫm mỗi khi nói: Âm đầu tiên tôi nghe thấy ở danh từ này là gì? Hãy tập thói quen này hàng ngày nhé."
+          icon: {{14}}
+          paragraph: {{15}}
+          voice_cue: {{16}}
       - rule_box:
-          icon: "fas fa-exclamation-circle"
-          paragraph: "Tránh lỗi: <highlight>an university</highlight> (Sai) vs <highlight>a university</highlight> (Đúng)."
-          voice_cue: "Và hãy luôn ghi nhớ lỗi sai phổ biến nhất: Đừng bao giờ nói an university. Thay vào đó, hãy luôn nói a university."
+          icon: {{17}}
+          paragraph: {{18}}
+          voice_cue: {{19}}
       - important_quote:
-          icon: "fas fa-quote-left"
-          paragraph: "Âm thanh mới là <highlight>Chìa Khóa</highlight>!"
-          voice_cue: "Và cuối cùng, nếu chỉ được nhớ một điều, hãy nhớ câu thần chú này: Âm thanh mới thực sự là chìa khóa để làm chủ mạo từ!"
+          icon: {{20}}
+          paragraph: {{21}}
+          voice_cue: {{22}}
