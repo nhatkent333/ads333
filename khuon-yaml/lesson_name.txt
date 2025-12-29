@@ -1,0 +1,9 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    subtitle:
+      text: {{5}}
+      voice_cue: {{6}}
