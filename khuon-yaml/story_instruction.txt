@@ -1,0 +1,17 @@
+slides:
+  - type: {{1}}
+    title:
+      text: {{2}}
+      voice_cue: {{3}}
+    story_card:
+      paragraph:
+        - sentence: {{4}}
+        - sentence: {{5}}
+        - sentence: {{6}}
+        - sentence: {{7}}
+        - sentence: {{8}}
+      voice_cue: {{9}}
+    story_question:
+      icon: {{10}}
+      text: {{11}}
+      voice_cue: {{12}}
