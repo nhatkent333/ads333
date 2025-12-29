@@ -1,0 +1,19 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    quiz:
+      question: {{5}}
+      quiz_choice_a: {{6}}
+      quiz_choice_b: {{7}}
+      quiz_choice_c: {{8}}
+      quiz_choice_d: {{9}}
+      voice_cue: {{10}}
+    answer:
+      icon: {{11}}
+      paragraph:
+        text: {{12}}
+        explain: {{13}}
+      voice_cue: {{14}}
