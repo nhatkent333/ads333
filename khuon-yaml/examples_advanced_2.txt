@@ -1,0 +1,22 @@
+slides:
+  - type: {{1}}
+    icon: {{2}}
+    title:
+      text: {{3}}
+      voice_cue: {{4}}
+    subtitle:
+      text: {{5}}
+      voice_cue: {{6}}
+    example_box:
+      en_sentence: {{7}}
+      vi_sentence: {{8}}
+      voice_cue: {{9}}
+    analysis:
+      title: {{10}}
+      points:
+        - icon: {{11}}
+          text: {{12}}
+          voice_cue: {{13}}
+        - icon: {{14}}
+          text: {{15}}
+          voice_cue: {{16}}
