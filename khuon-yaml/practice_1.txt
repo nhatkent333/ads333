@@ -4,18 +4,24 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     prompt:
-      text: {{5}}
-      voice_cue: {{6}}
+      text: {{6}}
+      voice_cue: {{7}}
+      voice_cue_en_detect: {{8}}
     error_box:
       hiden_error:
-        text: {{7}}
-        voice_cue: {{8}}
+        text: {{9}}
+        voice_cue: {{10}}
+        voice_cue_en_detect: {{11}}
       reveal_error:
-        voice_cue: {{9}}
+        voice_cue: {{12}}
+        voice_cue_en_detect: {{13}}
     correct_box:
-      text: {{10}}
-      voice_cue: {{11}}
+      text: {{14}}
+      voice_cue: {{15}}
+      voice_cue_en_detect: {{16}}
     explain_text:
-      text: {{12}}
-      voice_cue: {{13}}
+      text: {{17}}
+      voice_cue: {{18}}
+      voice_cue_en_detect: {{19}}
