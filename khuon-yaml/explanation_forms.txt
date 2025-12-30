@@ -1,34 +1,33 @@
 slides:
   - type: {{1}}
-    icon: {{2}}
     title:
-      text: {{3}}
-      voice_cue: {{4}}
-      voice_cue_en_detect: {{5}}
+      text: {{2}}
+      voice_cue: {{3}}
+      voice_cue_en_detect: {{4}}
     table:
       thead:
         tr:
+          - th: {{5}}
           - th: {{6}}
           - th: {{7}}
-          - th: {{8}}
-        voice_cue: {{9}}
-        voice_cue_en_detect: {{10}}
+        voice_cue: {{8}}
+        voice_cue_en_detect: {{9}}
       tbody:
         - tr:
+            - td: {{10}}
             - td: {{11}}
             - td: {{12}}
-            - td: {{13}}
-          voice_cue: {{14}}
-          voice_cue_en_detect: {{15}}
+          voice_cue: {{13}}
+          voice_cue_en_detect: {{14}}
         - tr:
+            - td: {{15}}
             - td: {{16}}
             - td: {{17}}
-            - td: {{18}}
-          voice_cue: {{19}}
-          voice_cue_en_detect: {{20}}
+          voice_cue: {{18}}
+          voice_cue_en_detect: {{19}}
     summary:
-      icon: {{21}}
+      icon: {{20}}
       paragraph:
-        - sentence: {{22}}
-      voice_cue: {{23}}
-      voice_cue_en_detect: {{24}}
+        - sentence: {{21}}
+      voice_cue: {{22}}
+      voice_cue_en_detect: {{23}}
