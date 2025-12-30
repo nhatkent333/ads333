@@ -4,16 +4,19 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     quiz:
-      question: {{5}}
-      quiz_choice_a: {{6}}
-      quiz_choice_b: {{7}}
-      quiz_choice_c: {{8}}
-      quiz_choice_d: {{9}}
-      voice_cue: {{10}}
+      question: {{6}}
+      quiz_choice_a: {{7}}
+      quiz_choice_b: {{8}}
+      quiz_choice_c: {{9}}
+      quiz_choice_d: {{10}}
+      voice_cue: {{11}}
+      voice_cue_en_detect: {{12}}
     answer:
-      icon: {{11}}
+      icon: {{13}}
       paragraph:
-        text: {{12}}
-        explain: {{13}}
-      voice_cue: {{14}}
+        text: {{14}}
+        explain: {{15}}
+      voice_cue: {{16}}
+      voice_cue_en_detect: {{17}}
