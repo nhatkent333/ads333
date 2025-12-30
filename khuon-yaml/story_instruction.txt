@@ -3,15 +3,18 @@ slides:
     title:
       text: {{2}}
       voice_cue: {{3}}
+      voice_cue_en_detect: {{4}}
     story_card:
       paragraph:
-        - sentence: {{4}}
         - sentence: {{5}}
         - sentence: {{6}}
         - sentence: {{7}}
         - sentence: {{8}}
-      voice_cue: {{9}}
+        - sentence: {{9}}
+      voice_cue: {{10}}
+      voice_cue_en_detect: {{11}}
     story_question:
-      icon: {{10}}
-      text: {{11}}
-      voice_cue: {{12}}
+      icon: {{12}}
+      text: {{13}}
+      voice_cue: {{14}}
+      voice_cue_en_detect: {{15}}
