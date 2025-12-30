@@ -4,22 +4,26 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     content:
       - rule_box:
-          icon: {{5}}
+          icon: {{6}}
           paragraph:
-            - sentence: {{6}}
             - sentence: {{7}}
-          voice_cue: {{8}}
+            - sentence: {{8}}
+          voice_cue: {{9}}
+          voice_cue_en_detect: {{10}}
       - rule_box:
-          icon: {{9}}
+          icon: {{11}}
           paragraph:
-            - sentence: {{10}}
-            - sentence: {{11}}
-          voice_cue: {{12}}
+            - sentence: {{12}}
+            - sentence: {{13}}
+          voice_cue: {{14}}
+          voice_cue_en_detect: {{15}}
       - rule_box:
-          icon: {{13}}
+          icon: {{16}}
           paragraph:
-            - sentence: {{14}}
-            - sentence: {{15}}
-          voice_cue: {{16}}
+            - sentence: {{17}}
+            - sentence: {{18}}
+          voice_cue: {{19}}
+          voice_cue_en_detect: {{20}}
