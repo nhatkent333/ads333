@@ -12,7 +12,7 @@ slides:
         text: {{7}}
         voice_cue: {{8}}
       reveal_error:
-        voice_cue:{{9}}
+        voice_cue: {{9}}
     correct_box:
       text: {{10}}
       voice_cue: {{11}}
