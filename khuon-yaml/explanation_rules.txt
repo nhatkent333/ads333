@@ -4,13 +4,15 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     content:
 {{REPEAT:rule_box}}
       - rule_box:
-          icon: {{5}}
+          icon: {{6}}
           paragraph:
-            - sentence: {{6}}
             - sentence: {{7}}
             - sentence: {{8}}
-          voice_cue: {{9}}
+            - sentence: {{9}}
+          voice_cue: {{10}}
+          voice_cue_en_detect: {{11}}
 {{END_REPEAT:rule_box}}
