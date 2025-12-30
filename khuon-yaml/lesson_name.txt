@@ -4,6 +4,8 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     subtitle:
-      text: {{5}}
-      voice_cue: {{6}}
+      text: {{6}}
+      voice_cue: {{7}}
+      voice_cue_en_detect: {{8}}
