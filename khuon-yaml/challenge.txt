@@ -4,23 +4,29 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     challenge-box:
       task_1:
-        title: {{5}}
+        title: {{6}}
         task_prompt:
-          text: {{6}}
-          voice_cue: {{7}}
+          text: {{7}}
+          voice_cue: {{8}}
+          voice_cue_en_detect: {{9}}
         task_hint:
-          text: {{8}}
-          voice_cue: {{9}}
+          text: {{10}}
+          voice_cue: {{11}}
+          voice_cue_en_detect: {{12}}
       task_2:
-        title: {{10}}
+        title: {{13}}
         task_prompt:
-          text: {{11}}
-          voice_cue: {{12}}
+          text: {{14}}
+          voice_cue: {{15}}
+          voice_cue_en_detect: {{16}}
         task_hint:
-          text: {{13}}
-          voice_cue: {{14}}
+          text: {{17}}
+          voice_cue: {{18}}
+          voice_cue_en_detect: {{19}}
     quotes:
-      text: {{15}}
-      voice_cue: {{16}}
+      text: {{20}}
+      voice_cue: {{21}}
+      voice_cue_en_detect: {{22}}
