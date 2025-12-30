@@ -4,18 +4,21 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     content:
       - rule_box:
-          icon: {{5}}
+          icon: {{6}}
           paragraph:
-            - use_case_name: {{6}}
-            - rule_context: {{7}}
-            - example: {{8}}
-          voice_cue: {{9}}
+            - use_case_name: {{7}}
+            - rule_context: {{8}}
+            - example: {{9}}
+          voice_cue: {{10}}
+          voice_cue_en_detect: {{11}}
       - rule_box:
-          icon: {{10}}
+          icon: {{12}}
           paragraph:
-            - use_case_name: {{11}}
-            - rule_context: {{12}}
-            - example: {{13}}
-          voice_cue: {{14}}
+            - use_case_name: {{13}}
+            - rule_context: {{14}}
+            - example: {{15}}
+          voice_cue: {{16}}
+          voice_cue_en_detect: {{17}}
