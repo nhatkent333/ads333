@@ -4,14 +4,18 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     subtitle:
-      text: {{5}}
-      voice_cue: {{6}}
+      text: {{6}}
+      voice_cue: {{7}}
+      voice_cue_en_detect: {{8}}
     example_box:
-      en_sentence: {{7}}
-      vi_sentence: {{8}}
-      voice_cue: {{9}}
+      en_sentence: {{9}}
+      vi_sentence: {{10}}
+      voice_cue: {{11}}
+      voice_cue_en_detect: {{12}}
     explain:
-      icon: {{10}}
-      text: {{11}}
-      voice_cue: {{12}}
+      icon: {{13}}
+      text: {{14}}
+      voice_cue: {{15}}
+      voice_cue_en_detect: {{16}}
