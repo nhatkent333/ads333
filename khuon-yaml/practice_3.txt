@@ -4,16 +4,21 @@ slides:
     title:
       text: {{3}}
       voice_cue: {{4}}
+      voice_cue_en_detect: {{5}}
     prompt:
-      text: {{5}}
-      voice_cue: {{6}}
+      text: {{6}}
+      voice_cue: {{7}}
+      voice_cue_en_detect: {{8}}
     example_box:
-      text: {{7}}
-      voice_cue: {{8}}
-    correct_box:
       text: {{9}}
       voice_cue: {{10}}
-    explain:
-      icon: {{11}}
+      voice_cue_en_detect: {{11}}
+    correct_box:
       text: {{12}}
       voice_cue: {{13}}
+      voice_cue_en_detect: {{14}}
+    explain:
+      icon: {{15}}
+      text: {{16}}
+      voice_cue: {{17}}
+      voice_cue_en_detect: {{18}}
