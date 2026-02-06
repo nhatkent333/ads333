@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Tàng TTS Voice Prompts</title>
+    <!-- Tailwind CSS (Dùng CDN để không cần cài đặt) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Hiệu ứng sóng nhạc khi đang play */
+        .playing-indicator {
+            display: flex;
+            align-items: flex-end;
+            height: 15px;
+            gap: 2px;
+        }
+        .bar {
+            width: 3px;
+            background-color: #3b82f6;
+            animation: bounce 0.5s infinite ease-in-out;
+        }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 60%; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 80%; }
+        
+        @keyframes bounce {
+            0%, 100% { height: 20%; }
+            50% { height: 100%; }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Animation cho card */
+        .voice-card { transition: all 0.3s ease; }
+        .voice-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- HEADER & SEARCH -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-blue-600 text-white p-2 rounded-lg">
+                        <i class="fa-solid fa-microphone-lines text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold tracking-tight text-slate-900">TTS Prompt Gallery</h1>
+                        <p class="text-sm text-slate-500">Thư viện giọng đọc & câu lệnh mẫu</p>
+                    </div>
+                </div>
+
+                <!-- ACTIONS & SEARCH -->
+                 <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto flex-grow justify-end items-center">
+                    
+                    <!-- Button mở Modal tạo Item -->
+                    <button onclick="toggleGeneratorModal()" class="whitespace-nowrap px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle"></i> Tạo Item Mới
+                    </button>
+
+                    <!-- Ô TÌM KIẾM THÔNG MINH -->
+                    <div class="relative w-full md:w-96 group">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                            <i class="fa-solid fa-search"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            class="block w-full p-3 pl-10 text-sm text-slate-900 border border-slate-300 rounded-xl bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm" 
+                            placeholder="Tìm kiếm giọng, tag..."
+                        >
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                            <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded hidden md:block">Ctrl + K</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAG CLOUD (Tự động cập nhật từ dữ liệu) -->
+            <div class="mt-4 flex flex-wrap gap-2" id="tagList">
+                <!-- Tags sẽ được JS render vào đây -->
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN GALLERY CONTENT -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-8 w-full">
+        
+        <div id="noResults" class="hidden text-center py-20">
+            <div class="text-slate-300 text-6xl mb-4"><i class="fa-regular fa-face-frown-open"></i></div>
+            <h3 class="text-xl font-semibold text-slate-600">Không tìm thấy giọng nào phù hợp</h3>
+            <p class="text-slate-500 mt-2">Thử tìm bằng từ khóa khác xem sao nhé.</p>
+        </div>
+
+        <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- ================================================================================== -->
+            <!-- KHU VỰC DỮ LIỆU - BẠN CHỈ CẦN EDIT TỪ ĐÂY -->
+            <!-- Cách thêm mới: Copy nguyên thẻ div class="voice-card..." và sửa nội dung -->
+            <!-- ================================================================================== -->
+
+            <!-- ITEM 1 -->
+            <div class="voice-card bg-white rounded-2xl border border-slate-200 overflow-hidden group flex flex-col"
+                 data-keywords="vui vẻ, hào hứng, energetic, youtube, review"> <!-- Từ khóa ẩn cho Semantic Search -->
+                
+                <div class="p-5 flex-grow">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-green-100 text-green-700 text-xs font-medium px-2.5 py-0.5 rounded-full border border-green-200">
+                            Review / Sôi động
+                        </span>
+                        <!-- Nút Play -->
+                        <button class="play-btn w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors focus:outline-none" onclick="toggleAudio(this)">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 title-text">Review Phim Sôi Động</h3>
+                    
+                    <!-- Phần Audio ẩn -->
+                    <audio class="audio-source" preload="none">
+                        <!-- Thay link file mp3 của bạn vào đây (link github raw hoặc link direct) -->
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="relative bg-slate-50 rounded-lg p-3 border border-slate-100 group-hover:border-blue-100 transition-colors">
+                        <p class="text-sm text-slate-600 italic line-clamp-3 prompt-text" title="Click icon copy để lấy toàn bộ">
+                            "Chào các bạn! Hôm nay mình sẽ review bom tấn vừa ra mắt, đảm bảo nghe xong là muốn ra rạp ngay lập tức. Cảnh hành động mãn nhãn, âm thanh sống động..."
+                        </p>
+                        <button class="copy-btn absolute bottom-2 right-2 text-slate-400 hover:text-blue-600 transition-colors" onclick="copyPrompt(this)" title="Copy Prompt">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto tags-container text-xs">
+                    <!-- Các Tag dùng để filter -->
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600 whitespace-nowrap">#NăngLượng</span>
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600 whitespace-nowrap">#YouTube</span>
+                </div>
+            </div>
+
+            <!-- ITEM 2 (Ví dụ Giọng đọc truyện) -->
+            <div class="voice-card bg-white rounded-2xl border border-slate-200 overflow-hidden group flex flex-col"
+                 data-keywords="sợ hãi, ma quái, kinh dị, kể chuyện đêm khuya, horror">
+                
+                <div class="p-5 flex-grow">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-purple-100 text-purple-700 text-xs font-medium px-2.5 py-0.5 rounded-full border border-purple-200">
+                            Kể chuyện
+                        </span>
+                        <button class="play-btn w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors" onclick="toggleAudio(this)">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 title-text">Giọng Kể Chuyện Ma</h3>
+                    
+                    <audio class="audio-source" preload="none">
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="relative bg-slate-50 rounded-lg p-3 border border-slate-100">
+                        <p class="text-sm text-slate-600 italic line-clamp-3 prompt-text">
+                            "Đêm hôm ấy, gió rít qua khe cửa sổ tạo nên những âm thanh ghê rợn. Cô gái một mình trong căn phòng trống, bỗng nghe thấy tiếng bước chân..."
+                        </p>
+                        <button class="copy-btn absolute bottom-2 right-2 text-slate-400 hover:text-blue-600" onclick="copyPrompt(this)">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto tags-container text-xs">
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600">#KinhDị</span>
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600">#HồiHộp</span>
+                </div>
+            </div>
+
+            <!-- ITEM 3 (Ví dụ Bản tin) -->
+            <div class="voice-card bg-white rounded-2xl border border-slate-200 overflow-hidden group flex flex-col"
+                 data-keywords="nghiêm túc, chính sự, thời sự, tin tức, news, formal">
+                
+                <div class="p-5 flex-grow">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-0.5 rounded-full border border-blue-200">
+                            Tin tức
+                        </span>
+                        <button class="play-btn w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors" onclick="toggleAudio(this)">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 title-text">Bản Tin Chính Luận</h3>
+                    
+                    <audio class="audio-source" preload="none">
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+                    </audio>
+
+                    <div class="relative bg-slate-50 rounded-lg p-3 border border-slate-100">
+                        <p class="text-sm text-slate-600 italic line-clamp-3 prompt-text">
+                            "Kính chào quý vị khán giả. Mở đầu bản tin tối nay là thông tin về thị trường tài chính toàn cầu với những biến động mạnh mẽ trong phiên giao dịch cuối tuần..."
+                        </p>
+                        <button class="copy-btn absolute bottom-2 right-2 text-slate-400 hover:text-blue-600" onclick="copyPrompt(this)">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto tags-container text-xs">
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600">#NghiêmTúc</span>
+                    <span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600">#ChuyênNghiệp</span>
+                </div>
+            </div>
+
+            <!-- BẮT ĐẦU ITEM (Copy từ đây để thêm mới) -->
+            <!-- Kết thúc khu vực dữ liệu -->
+
+        </div>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center text-sm text-slate-500">
+            <p>Được xây dựng thủ công với ❤️ | Dữ liệu lưu trữ trên GitHub</p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-800 text-white px-4 py-2 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-[100] flex items-center gap-2">
+        <i class="fa-solid fa-check-circle text-green-400"></i>
+        <span id="toastMsg">Đã copy prompt!</span>
+    </div>
+
+    <!-- MODAL GENERATOR (Popup Tạo Code) -->
+    <div id="generatorModal" class="hidden fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-code text-blue-600"></i>
+                    Tạo Mã HTML Item Mới
+                </h3>
+                <button onclick="toggleGeneratorModal()" class="text-slate-400 hover:text-red-500 transition-colors">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 overflow-y-auto space-y-4 flex-grow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Tiêu đề (Voice Name)</label>
+                        <input type="text" id="genTitle" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="VD: Giọng Đọc Truyện Ma">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Danh mục (Category Badge)</label>
+                        <input type="text" id="genCategory" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="VD: Kể chuyện">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Link MP3 (GitHub Raw / Direct Link)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="genMp3" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none font-mono text-xs" placeholder="https://...">
+                        <button onclick="testAudio()" class="px-3 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 text-xs font-semibold whitespace-nowrap">Test Link</button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nội dung Prompt (Lời thoại)</label>
+                    <textarea id="genPrompt" rows="3" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Nhập nội dung câu nói mẫu..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Tags (Hiển thị) - Cách nhau dấu phẩy</label>
+                        <input type="text" id="genTags" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="VD: Kinh dị, Hồi hộp">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Từ khóa ẩn (Search) - Cách nhau dấu phẩy</label>
+                        <input type="text" id="genKeywords" class="w-full p-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="VD: scary, ghost, đêm khuya">
+                    </div>
+                </div>
+                
+                <!-- Output Area -->
+                <div class="mt-4 pt-4 border-t border-slate-100">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block text-sm font-bold text-slate-800">Mã HTML Kết quả:</label>
+                        <button onclick="generateItemCode()" class="text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 transition-colors">
+                            <i class="fa-solid fa-bolt"></i> Tạo Code
+                        </button>
+                    </div>
+                    <div class="relative group">
+                        <textarea id="genOutput" rows="6" readonly class="w-full p-3 bg-slate-800 text-green-400 font-mono text-xs rounded-lg border border-slate-700 focus:outline-none" placeholder="Bấm nút 'Tạo Code' phía trên để hiện kết quả..."></textarea>
+                        <button onclick="copyGeneratedCode()" class="absolute top-2 right-2 bg-white/10 hover:bg-white/20 text-white p-2 rounded backdrop-blur-sm transition-colors" title="Copy Code">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">
+                        <i class="fa-solid fa-circle-info"></i> Hướng dẫn: Copy đoạn mã trên và dán vào file <code>index.html</code> (tìm dòng <code>&lt;!-- BẮT ĐẦU ITEM --&gt;</code>).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. UTILITIES: Xử lý chuỗi tiếng Việt ---
+        function removeVietnameseTones(str) {
+            str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
+            str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g,"e"); 
+            str = str.replace(/ì|í|ị|ỉ|ĩ/g,"i"); 
+            str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g,"o"); 
+            str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g,"u"); 
+            str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g,"y"); 
+            str = str.replace(/đ/g,"d");
+            str = str.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, "A");
+            str = str.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, "E");
+            str = str.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, "I");
+            str = str.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, "O");
+            str = str.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, "U");
+            str = str.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, "Y");
+            str = str.replace(/Đ/g, "D");
+            str = str.replace(/\u0300|\u0301|\u0303|\u0309|\u0323/g, ""); 
+            str = str.replace(/\u02C6|\u0306|\u031B/g, ""); 
+            return str.toLowerCase().trim();
+        }
+
+        // --- 2. XÂY DỰNG INDEX DỮ LIỆU TỪ DOM ---
+        const cards = Array.from(document.querySelectorAll('.voice-card'));
+        const searchIndex = cards.map(card => {
+            const title = card.querySelector('.title-text').innerText;
+            const prompt = card.querySelector('.prompt-text').innerText;
+            const tags = Array.from(card.querySelectorAll('.tag')).map(t => t.innerText.replace('#', ''));
+            const keywords = card.dataset.keywords || "";
+            const fullTextSearch = removeVietnameseTones(`${title} ${prompt} ${tags.join(' ')} ${keywords}`);
+            return { element: card, title, tags, fullTextSearch };
+        });
+
+        // --- 3. TẠO TAG CLOUD ---
+        const allTags = new Set();
+        searchIndex.forEach(item => item.tags.forEach(tag => allTags.add(tag)));
+        
+        const tagContainer = document.getElementById('tagList');
+        const allBtn = document.createElement('button');
+        allBtn.className = "px-3 py-1 text-xs font-medium rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-colors cursor-pointer tag-filter active-tag";
+        allBtn.innerText = "Tất cả";
+        allBtn.onclick = () => filterByTag('all', allBtn);
+        tagContainer.appendChild(allBtn);
+
+        Array.from(allTags).sort().forEach(tag => {
+            const btn = document.createElement('button');
+            btn.className = "px-3 py-1 text-xs font-medium rounded-full bg-white border border-slate-300 text-slate-600 hover:border-blue-500 hover:text-blue-500 transition-colors cursor-pointer tag-filter";
+            btn.innerText = tag;
+            btn.onclick = () => filterByTag(tag, btn);
+            tagContainer.appendChild(btn);
+        });
+
+        // --- 4. LOGIC SEARCH ---
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        function performSearch(query) {
+            const normalizedQuery = removeVietnameseTones(query);
+            let hasResult = false;
+            searchIndex.forEach(item => {
+                const isMatch = item.fullTextSearch.includes(normalizedQuery);
+                if (query === '' || isMatch) {
+                    item.element.classList.remove('hidden');
+                    hasResult = true;
+                } else {
+                    item.element.classList.add('hidden');
+                }
+            });
+            if (!hasResult) noResults.classList.remove('hidden');
+            else noResults.classList.add('hidden');
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            document.querySelectorAll('.tag-filter').forEach(b => {
+                b.classList.remove('bg-slate-800', 'text-white', 'active-tag');
+                b.classList.add('bg-white', 'text-slate-600');
+            });
+            performSearch(e.target.value);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+
+        // --- 5. LOGIC FILTER TAG ---
+        function filterByTag(tagName, btnElement) {
+            document.querySelectorAll('.tag-filter').forEach(b => {
+                b.classList.remove('bg-slate-800', 'text-white', 'active-tag');
+                b.classList.add('bg-white', 'text-slate-600');
+            });
+            btnElement.classList.remove('bg-white', 'text-slate-600');
+            btnElement.classList.add('bg-slate-800', 'text-white', 'active-tag');
+
+            searchInput.value = '';
+            let hasResult = false;
+            searchIndex.forEach(item => {
+                if (tagName === 'all') {
+                    item.element.classList.remove('hidden');
+                    hasResult = true;
+                } else {
+                    if (item.tags.includes(tagName)) {
+                        item.element.classList.remove('hidden');
+                        hasResult = true;
+                    } else {
+                        item.element.classList.add('hidden');
+                    }
+                }
+            });
+            if (!hasResult) noResults.classList.remove('hidden');
+            else noResults.classList.add('hidden');
+        }
+
+        // --- 6. AUDIO PLAYER LOGIC ---
+        let currentAudio = null;
+        let currentBtn = null;
+
+        function toggleAudio(btn) {
+            const card = btn.closest('.voice-card');
+            const audio = card.querySelector('audio');
+            const icon = btn.querySelector('i');
+
+            if (currentAudio === audio && !audio.paused) {
+                audio.pause();
+                icon.className = "fa-solid fa-play ml-1";
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-blue-50', 'text-blue-600');
+                return;
+            }
+
+            if (currentAudio && currentAudio !== audio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                if (currentBtn) {
+                    const oldIcon = currentBtn.querySelector('i');
+                    oldIcon.className = "fa-solid fa-play ml-1";
+                    currentBtn.classList.remove('bg-blue-600', 'text-white');
+                    currentBtn.classList.add('bg-blue-50', 'text-blue-600');
+                }
+            }
+
+            audio.play();
+            currentAudio = audio;
+            currentBtn = btn;
+            
+            icon.className = "fa-solid fa-pause";
+            btn.classList.remove('bg-blue-50', 'text-blue-600');
+            btn.classList.add('bg-blue-600', 'text-white');
+
+            audio.onended = function() {
+                icon.className = "fa-solid fa-play ml-1";
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-blue-50', 'text-blue-600');
+                currentAudio = null;
+            };
+        }
+
+        // --- 7. COPY FUNCTION ---
+        function copyPrompt(btn) {
+            const card = btn.closest('.voice-card');
+            const text = card.querySelector('.prompt-text').innerText.replace(/"/g, '');
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("Đã copy prompt!");
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2000);
+        }
+
+        // --- 8. GENERATOR LOGIC (New) ---
+        function toggleGeneratorModal() {
+            const modal = document.getElementById('generatorModal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Đóng modal khi click ra ngoài
+        document.getElementById('generatorModal').addEventListener('click', function(e) {
+            if (e.target === this) toggleGeneratorModal();
+        });
+
+        function testAudio() {
+            const url = document.getElementById('genMp3').value;
+            if(!url) return alert('Vui lòng nhập link MP3');
+            const audio = new Audio(url);
+            audio.play()
+                .then(() => showToast("Đang phát thử..."))
+                .catch(err => alert("Lỗi: Không phát được file MP3 này. Kiểm tra lại link/CORS."));
+        }
+
+        function generateItemCode() {
+            const title = document.getElementById('genTitle').value.trim() || 'Tiêu đề mới';
+            const category = document.getElementById('genCategory').value.trim() || 'Khác';
+            const mp3 = document.getElementById('genMp3').value.trim() || '';
+            const prompt = document.getElementById('genPrompt').value.trim() || 'Nội dung...';
+            const tags = document.getElementById('genTags').value.split(',').map(t => t.trim()).filter(t => t);
+            const keywords = document.getElementById('genKeywords').value.trim();
+
+            // Xử lý Tags HTML
+            const tagsHtml = tags.map(t => `<span class="tag px-2 py-1 bg-white border border-slate-200 rounded text-slate-600 whitespace-nowrap">#${t.replace('#','')}</span>`).join('\n                    ');
+
+            // Template String (Chú ý indentation để paste vào đẹp)
+            const html = `
+            <!-- ITEM: ${title} -->
+            <div class="voice-card bg-white rounded-2xl border border-slate-200 overflow-hidden group flex flex-col"
+                 data-keywords="${keywords}">
+                
+                <div class="p-5 flex-grow">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-0.5 rounded-full border border-blue-200">
+                            ${category}
+                        </span>
+                        <button class="play-btn w-10 h-10 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors focus:outline-none" onclick="toggleAudio(this)">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </button>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-2 title-text">${title}</h3>
+                    
+                    <audio class="audio-source" preload="none">
+                        <source src="${mp3}" type="audio/mpeg">
+                    </audio>
+
+                    <div class="relative bg-slate-50 rounded-lg p-3 border border-slate-100 group-hover:border-blue-100 transition-colors">
+                        <p class="text-sm text-slate-600 italic line-clamp-3 prompt-text" title="Click icon copy để lấy toàn bộ">
+                            "${prompt}"
+                        </p>
+                        <button class="copy-btn absolute bottom-2 right-2 text-slate-400 hover:text-blue-600 transition-colors" onclick="copyPrompt(this)" title="Copy Prompt">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="px-5 py-3 bg-slate-50 border-t border-slate-100 flex gap-2 overflow-x-auto tags-container text-xs">
+                    ${tagsHtml}
+                </div>
+            </div>`;
+
+            document.getElementById('genOutput').value = html;
+        }
+
+        function copyGeneratedCode() {
+            const code = document.getElementById('genOutput');
+            if (!code.value) return;
+            code.select();
+            document.execCommand('copy'); // Fallback tốt hơn cho textarea
+            showToast("Đã copy HTML!");
+        }
+
+    </script>
+</body>
+</html>
