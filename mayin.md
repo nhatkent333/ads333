@@ -122,7 +122,7 @@ TimeoutSec=30
 WantedBy=multi-user.target
 ```
 
-### Bước 12: Lưu lại và kích hoạt 
+### Bước 13: Lưu lại và kích hoạt 
 
 ```bash
 sudo systemctl daemon-reload
