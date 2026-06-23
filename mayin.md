@@ -1,74 +1,131 @@
-### Bước 1: Trả lại file Service sạch sẽ
-
-Bạn mở lại file cấu hình dịch vụ:
+### Bước 1: Dừng các dịch vụ đang chạy
 
 ```bash
-sudo nano /etc/systemd/system/ccpd.service
+sudo systemctl stop ccpd
+sudo systemctl stop cups
 
 ```
 
-Xóa toàn bộ nội dung bên trong và dán lại đoạn mã chuẩn này (đã bỏ dòng dò cổng `/bin/sh`):
+### Bước 2: Xóa cấu hình máy in trong hệ thống
 
-```ini
+```bash
+sudo ccpdadmin -x LBP2900
+sudo lpadmin -x LBP2900
+sudo lpadmin -x LBP2900-2
+```
+
+### Bước 3: Gỡ cài đặt tận gốc gói phần mềm (Packages)
+
+```bash
+sudo apt-get purge cndrvcups-common cndrvcups-capt -y
+sudo apt-get autoremove -y
+```
+
+### Bước 4: Bước 4: Dọn rác thư mục và file cấu hình rác
+
+```bash
+sudo rm -rf /var/ccpd
+sudo rm -rf /var/captmon
+sudo rm -f /etc/ccpd.conf
+```
+
+### Bước 5: Khởi động lại dịch vụ quản lý in ấn cốt lõi
+
+```bash
+sudo systemctl start cups
+```
+
+### Bước 6: tao dummy
+
+```bash
+# Tạo cấu trúc package thủ công
+mkdir -p /tmp/fakepango/DEBIAN
+
+cat > /tmp/fakepango/DEBIAN/control << 'EOF'
+Package: libpango1.0-0
+Version: 1.52.1
+Architecture: i386
+Maintainer: Fake
+Description: Fake libpango1.0-0
+EOF
+
+# Build package
+dpkg-deb --build /tmp/fakepango /tmp/libpango1.0-0_1.52.1_i386.deb
+
+# Cài vào hệ thống
+sudo dpkg -i --force-architecture /tmp/libpango1.0-0_1.52.1_i386.deb
+```
+
+### Bước 7: cai dat bang github
+
+```bash
+wget https://github.com/nhatkent333/ubuntu_canon_printer_333/raw/master/canon_lbp_setup.sh
+chmod +x canon_lbp_setup.sh
+./canon_lbp_setup.sh
+```
+
+### Bước 8: Tạo file quy tắc Udev
+
+```bash
+echo 'KERNEL=="lp*", SUBSYSTEMS=="usb", ATTRS{idVendor}=="04a9", SYMLINK+="canonLBP2900"' | sudo tee /etc/udev/rules.d/99-canon-printer.rules
+sudo udevadm control --reload-rules
+```
+
+### Bước 9: Nạp lại quy tắc
+
+```bash
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+### Bước 10: Cập nhật lại cấu hình ccpdadmin
+
+```bash
+# Xóa cấu hình cũ
+sudo /usr/sbin/ccpdadmin -x LBP2900
+
+# Gán cấu hình mới bằng đường dẫn ảo không bao giờ thay đổi
+sudo /usr/sbin/ccpdadmin -p LBP2900 -o /dev/canonLBP2900
+```
+
+### Bước 11: Fix lỗi mất đường ống
+
+```bash
+sudo nano /etc/systemd/system/ccpd.service
+```
+
+### Bước 12: Dán đoạn mã "chống đạn" này vào
+
+Bạn xóa hết nội dung cũ (nếu có) và thay bằng toàn bộ đoạn mã này (Nhấn Ctrl+O, Enter để lưu, và Ctrl+X để thoát):
+
+```bash
 [Unit]
 Description=CCPD Printing Daemon
 Requires=cups.service
 After=cups.service
 
 [Service]
+
 Type=forking
+# Bỏ qua lỗi nếu không có tiến trình ccpd nào đang chạy
 ExecStartPre=-/usr/bin/pkill ccpd
+# Tự động tạo thư mục và đường ống ảo
 ExecStartPre=/bin/mkdir -p /var/ccpd
 ExecStartPre=/bin/rm -f /var/ccpd/fifo0
 ExecStartPre=/usr/bin/mkfifo /var/ccpd/fifo0
 ExecStartPre=/bin/chmod 777 /var/ccpd/fifo0
+# Khởi động driver
 ExecStart=/usr/sbin/ccpd
 TimeoutSec=30
 
 [Install]
 WantedBy=multi-user.target
-
 ```
 
-*(Nhấn **Ctrl+O**, **Enter** để lưu, và **Ctrl+X** để thoát).*
-
----
-
-### Bước 2: Khóa chặt cấu hình vào đường dẫn bất tử
-
-Bạn chạy lần lượt 2 lệnh sau để xóa liên kết lỗi và trỏ hẳn máy in vào file ảo do Udev quản lý:
-
-```bash
-sudo /usr/sbin/ccpdadmin -x LBP2900
-sudo /usr/sbin/ccpdadmin -p LBP2900 -o /dev/canonLBP2900
-
-```
-
----
-
-### Bước 3: Mở khóa hệ thống và dọn hàng đợi
-
-Trong ảnh, bạn đã gửi 2 lệnh in (request id 40 và 41) nhưng không in được. Lúc này CUPS rất có thể đã "đóng băng" máy in để tự vệ. Bạn cần dọn sạch và mở khóa nó:
-
-```bash
-# Xóa toàn bộ lệnh in đang bị kẹt
-sudo cancel -a -x
-
-# Đánh thức máy in
-sudo cupsenable LBP2900
-sudo cupsaccept LBP2900
-
-```
-
----
-
-### Bước 4: Khởi động lại toàn bộ chu trình
-
-Cuối cùng, nạp lại cấu hình dịch vụ vừa sửa và khởi động chuỗi luồng in:
+### Bước 12: Lưu lại và kích hoạt 
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl restart cups
+sudo systemctl enable ccpd.service
 sudo systemctl restart ccpd.service
-
 ```
