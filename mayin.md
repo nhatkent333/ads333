@@ -129,3 +129,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable ccpd.service
 sudo systemctl restart ccpd.service
 ```
+
+### Fix
+
+https://gemini.google.com/app/7e09747e62e125e1
