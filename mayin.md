@@ -139,3 +139,9 @@ sudo systemctl restart
 ### Fix khác
 
 https://gemini.google.com/app/7e09747e62e125e1
+---
+### Vô hiệu hóa Driver mặc định chạy ngầm (ipp-usb)
+```bash
+sudo systemctl stop ipp-usb
+sudo systemctl disable ipp-usb
+```
