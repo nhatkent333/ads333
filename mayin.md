@@ -139,9 +139,38 @@ sudo systemctl restart
 ### Fix khác
 
 https://gemini.google.com/app/7e09747e62e125e1
+
 ---
+
 ### Vô hiệu hóa Driver mặc định chạy ngầm (ipp-usb)
 ```bash
 sudo systemctl stop ipp-usb
 sudo systemctl disable ipp-usb
+```
+
+---
+
+### Bước 1: Khai báo lại chính xác cổng cho máy in
+
+```bash
+sudo /usr/sbin/ccpdadmin -x MayInCanon
+sudo /usr/sbin/ccpdadmin -p MayInCanon -m CNCUPSLBP2900CAPTK.ppd -o /dev/usb/lp1
+```
+### Bước 2: Khởi động lại dịch vụ điều khiển
+
+```bash
+sudo systemctl restart cups
+sudo service ccpd restart
+```
+
+### Bước 3: Xóa sạch toàn bộ lệnh in đang bị kẹt
+
+```bash
+sudo cancel -a
+```
+
+### Bước 4: Kiểm tra lại trạng thái trực quan
+
+```bash
+captstatusui -P MayInCanon
 ```
