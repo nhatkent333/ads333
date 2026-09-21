@@ -174,3 +174,23 @@ sudo cancel -a
 ```bash
 captstatusui -P MayInCanon
 ```
+=====
+
+xóa lệnh in kẹt và khởi động lại
+
+Trước hết đảm bảo queue sạch:
+
+lpstat -o
+
+sudo cancel -a LBP2900
+
+Sau đó:
+
+sudo systemctl restart ccpd
+sleep 2
+
+Kiểm tra:
+
+sudo systemctl status ccpd --no-pager
+
+in thử
