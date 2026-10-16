@@ -1,0 +1,774 @@
+{
+  "version": 1,
+  "brand": {
+    "name": "In Kỹ Thuật Số",
+    "tone": "chuyên nghiệp, tận tâm, tốc độ, giá rẻ",
+    "language": "vi",
+    "colors": {
+      "primary": "#C8102E",
+      "accent": "#FACC15"
+    },
+    "logo": {
+      "asset_id": "logo_main",
+      "url": "https://drive.google.com/file/d/12P8f1EMFFJ0-fNxFOA83JQYnkp32P_zT/view?usp=drivesdk"
+    },
+    "default_cta": "In Nhanh Giá Rẻ",
+    "slogan": [
+      "In Nhanh Giá Rẻ",
+      "In Ấn Mọi Chất Liệu",
+      "In Kỹ Thuật Số - Since 2006",
+      "In Trực Tiếp, Không Kê Giá, Không Nâng Giá",
+      "Xưởng In 500 m2 Trong Tòa Nhà 7 Tầng",
+      "Đáp Ứng Nhu Cầu In Ấn Mọi Số Lượng"
+    ],
+    "do": [
+      "ưu tiên hiển thị tên sản phẩm, giá bán và quy cách in ấn",
+      "chèn B-roll máy in Ricoh khi nói về in giấy, catalogue, brochure",
+      "chèn B-roll máy bế laser khi nói về tem nhãn decal, sticker",
+      "chèn B-roll standee khi nói về sự kiện, quảng cáo",
+      "chèn SFX marimba bloop khi xuất hiện tiêu đề và SFX sparkle khi chuyển cảnh / CTA",
+      "câu từ súc tích, nhịp đọc 3.5s - 5s to rõ"
+    ],
+    "dont": [
+      "hiệu ứng chuyển cảnh quá nhanh che mất nội dung",
+      "chữ overlay quá bé khó đọc trên điện thoại"
+    ]
+  },
+  "assets": [
+    {
+      "id": "cskh_tu_van_bao_gia_in_an",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1JP6cXKTxqC2T_x-tUYOCUTon-cc2l3fD/view?usp=drivesdk",
+      "description": "Bàn làm việc tư vấn khách hàng, giải đáp chi tiết về chất liệu giấy, decal, kích thước và thời gian giao hàng",
+      "tags": [
+        "tư vấn",
+        "báo giá",
+        "thời gian giao hàng",
+        "chất liệu",
+        "hỗ trợ khách"
+      ],
+      "duration": 3.03,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "cskh_tu_van_va_bao_gia",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1fu_t4HkyInXDo-U4VekGIoAFvirYA9sw/view?usp=drivesdk",
+      "description": "Đội ngũ chuyên viên tư vấn tiếp nhận đơn hàng, gửi bảng giá nhanh chóng và kiểm tra quy cách in",
+      "tags": [
+        "tư vấn",
+        "báo giá nhanh",
+        "cskh",
+        "đơn hàng",
+        "quy cách",
+        "chuyên nghiệp"
+      ],
+      "duration": 2.57,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "gia_cong_ep_plastic",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/13IwPpJXVXkNwdelWXyfrOgZWaEfCsCaV/view?usp=drivesdk",
+      "description": "Gia công cán màng nhiệt, ép plastic bảo vệ bề mặt giấy tờ, bằng khen, menu và catalogue chống thấm nước",
+      "tags": [
+        "ép plastic",
+        "cán màng",
+        "cán bóng",
+        "cán mờ",
+        "bảo vệ",
+        "menu",
+        "catalogue",
+        "chống nước"
+      ],
+      "duration": 2.17,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "bgm_inkythuatso_main",
+      "type": "bgm",
+      "path": "assets/audio/bgm/inkythuatso_main.mp3",
+      "url": "https://drive.google.com/file/d/1gnK3dg4ebiWR7UStj38GSmqTtdC9UFj2/view?usp=drivesdk",
+      "description": "Nhạc nền chính thức thương hiệu In Kỹ Thuật Số, giai điệu hiện đại, bắt tai, truyền cảm hứng và sôi động",
+      "tags": [
+        "in kỹ thuật số",
+        "bgm",
+        "nhạc nền",
+        "thương hiệu",
+        "chính thức",
+        "sôi động",
+        "hiện đại",
+        "năng động",
+        "viral",
+        "tiktok"
+      ],
+      "duration": 64.94,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "mood": "energetic",
+      "bpm": 120
+    },
+    {
+      "id": "lap_rap_ke_x_standee",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1oOm4iYKD6QY91UFPB4Di29r3Fhwb6eVk/view?usp=drivesdk",
+      "description": "Kỹ thuật viên thao tác lắp ráp kệ X standee, standee cuốn nhôm quảng cáo sự kiện và hội thảo",
+      "tags": [
+        "kệ x",
+        "standee",
+        "standee cuốn",
+        "chân standee",
+        "quảng cáo sự kiện",
+        "hội thảo",
+        "lắp ráp"
+      ],
+      "duration": 5.2,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "logo_main",
+      "type": "image",
+      "url": "https://drive.google.com/file/d/12P8f1EMFFJ0-fNxFOA83JQYnkp32P_zT/view?usp=drivesdk",
+      "description": "Logo thương hiệu In Kỹ Thuật Số Since 2006 trong suốt không nền",
+      "tags": [
+        "logo",
+        "thương hiệu",
+        "in kỹ thuật số",
+        "nhận diện"
+      ],
+      "duration": 15,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "mood": "professional"
+    },
+    {
+      "id": "mat-tien-cong-ty-2",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1E-c2DPiY9cGxgRueRYQHJt-EhMH4LRNC/view?usp=drive_link",
+      "description": "Mặt tiền tòa nhà công ty In Kỹ Thuật Số 365 Lê Quang Định, cơ sở in ấn quy mô 7 tầng hiện đại",
+      "tags": [
+        "mặt tiền",
+        "tòa nhà",
+        "công ty",
+        "in kỹ thuật số",
+        "trụ sở",
+        "365 lê quang định",
+        "quy mô",
+        "uy tín"
+      ],
+      "duration": 1.67,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "may_be_tem_decal",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1kqVrWOGz_UJONnZ2LJBppy_28l3plj4Z/view?usp=drivesdk",
+      "description": "Quy trình máy bế tem decal tự động nhả cuộn và cắt theo file vector định hình",
+      "tags": [
+        "bế decal",
+        "cắt bế decal",
+        "bế tự động",
+        "file vector",
+        "gia công tem"
+      ],
+      "duration": 2.5,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_be_tem_nhan",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1oT8RMfNqm0rTX2QJcV8bF-dgOzc5SOgY/view?usp=drivesdk",
+      "description": "Máy bế tem nhãn kỹ thuật số tự động định vị mắt laser, bế demi cực chuẩn theo mọi hình dáng bo góc tròn, elip",
+      "tags": [
+        "máy bế tem",
+        "bế demi",
+        "bế tem nhãn",
+        "định vị laser",
+        "bo góc",
+        "hình tròn",
+        "elip",
+        "cắt tem"
+      ],
+      "duration": 2.57,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_cat_be_decal_tem_nhan",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1pI13Uio1IK7VKvKxj28ivrcE7psOgVMV/view?usp=drivesdk",
+      "description": "Gia công cắt bế thành phẩm decal tem nhãn sau in, sẵn sàng bàn giao ngay cho khách",
+      "tags": [
+        "cắt bế",
+        "gia công thành phẩm",
+        "giao ngay",
+        "tem decal dán"
+      ],
+      "duration": 2.63,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_cat_be_tem_nhan",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1cAEamwzP2HcGCi71kOafoU8Ygsz63LSv/view?usp=drivesdk",
+      "description": "Dao bế kỹ thuật số cắt demi chính xác từng milimet, giúp tem bóc dán dễ dàng không đứt rách",
+      "tags": [
+        "máy cắt bế",
+        "cắt demi",
+        "dễ bóc dán",
+        "chính xác",
+        "dao bế kỹ thuật số"
+      ],
+      "duration": 2.83,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_decal_2",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1bNBnyLTwgVfkD_fpk6txddrJDp_EUBn7/view?usp=drivesdk",
+      "description": "Cuộn decal chạy qua hệ thống sấy khô mực tự động, màu sắc tươi sáng và bám dính chắc chắn",
+      "tags": [
+        "in decal cuộn",
+        "sấy mực",
+        "mực bền màu",
+        "decal dán"
+      ],
+      "duration": 2.8,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_decal_sticker",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1LurLc916N3bD7C-MNQU6YZmAlitIxXVS/view?usp=drivesdk",
+      "description": "Sản xuất sticker decal dán hình chibi, sticker quà tặng và nhãn dán sự kiện quảng cáo",
+      "tags": [
+        "sticker",
+        "in sticker",
+        "sticker dán",
+        "chibi",
+        "quà tặng",
+        "sự kiện"
+      ],
+      "duration": 6.07,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_decal_tem_nhan_5",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1_8c0r4Y8frbfGRbG2avCrUwaM7k2L8DO/view?usp=drivesdk",
+      "description": "Máy in decal độ nét cao phục vụ in tem mỹ phẩm, tem bảo hành, tem niêm phong và logo dán bao bì",
+      "tags": [
+        "tem mỹ phẩm",
+        "tem bảo hành",
+        "tem niêm phong",
+        "decal sắc nét",
+        "in decal tem"
+      ],
+      "duration": 3.6,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_decal_tem_nhan",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1Q8tEe6QK3UD1eUEIeccfS7eFe34iWBgC/view?usp=drivesdk",
+      "description": "Hệ thống máy in tem nhãn decal sắc nét, đáp ứng số lượng từ vài trăm đến hàng chục nghìn tem",
+      "tags": [
+        "in tem nhãn",
+        "tem decal",
+        "in số lượng lớn",
+        "tem dán chai lọ",
+        "tem thực phẩm"
+      ],
+      "duration": 4.07,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_decal",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1UjIne1M4xfHdjysT29iBeM32h9rJQ1Gp/view?usp=drivesdk",
+      "description": "Máy in decal kỹ thuật số công suất lớn đang chạy in decal nhựa sữa, decal trong suốt chống nước",
+      "tags": [
+        "máy in decal",
+        "decal nhựa",
+        "decal trong",
+        "chống nước",
+        "tem nhãn",
+        "in tem"
+      ],
+      "duration": 3.33,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_quang_cao",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1Oh9zieF-zcI4mvp9rv04DDlihoEJCEJS/view?usp=drivesdk",
+      "description": "Máy in bạt Hiflex và in PP quảng cáo khổ lớn sắc nét, chịu được nắng mưa ngoài trời",
+      "tags": [
+        "in quảng cáo",
+        "in bạt hiflex",
+        "in pp",
+        "khổ lớn",
+        "băng rôn",
+        "biển hiệu",
+        "ngoài trời"
+      ],
+      "duration": 2.5,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_ricoh_in_giay",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1euduJd9njv1hNJc9DJIqC2wnlAG9MJr_/view?usp=drivesdk",
+      "description": "Máy in kỹ thuật số công nghiệp Ricoh in nhanh trên chất liệu giấy Couche, Ford, Bristol với màu sắc chuẩn nét",
+      "tags": [
+        "máy in ricoh",
+        "in giấy",
+        "in nhanh",
+        "couche",
+        "in kỹ thuật số",
+        "catalogue",
+        "tờ rơi",
+        "namecard",
+        "danh thiếp"
+      ],
+      "duration": 1.43,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_ricoh_chuyen_in_giay_2",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1-QqN1dflnDPVWN62WSuW2Ha6lbNEYb3X/view?usp=drivesdk",
+      "description": "Quy trình in giấy tốc độ cao trên máy in Ricoh hiện đại, bản in sắc nét chuẩn màu thiết kế",
+      "tags": [
+        "in ricoh",
+        "tốc độ cao",
+        "chuẩn màu",
+        "in test màu",
+        "in nhanh kts"
+      ],
+      "duration": 2.93,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_ricoh_chuyen_in_giay",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/17fX6Myx9nAp7Hv1rk5YHzXmQQh2XGRSd/view?usp=drivesdk",
+      "description": "Cận cảnh đầu máy in nhanh Ricoh chuyên in ấn bao thư, tiêu đề, brochure, voucher lấy liền",
+      "tags": [
+        "máy in ricoh",
+        "in nhanh",
+        "in giấy",
+        "brochure",
+        "voucher",
+        "tiêu đề thư",
+        "offset số"
+      ],
+      "duration": 2.6,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "may_in_tranh_canvas_5",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1W130xqI2-quSGB0cYJS50ST1upMZVcSC/view?usp=drivesdk",
+      "description": "Cận cảnh bề mặt tranh Canvas sau khi in, vân vải tinh tế, độ bền màu lên đến hàng chục năm",
+      "tags": [
+        "tranh canvas",
+        "vân vải",
+        "bền màu",
+        "in uv canvas",
+        "nội thất"
+      ],
+      "duration": 3.3,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "may_in_tranh_canvas",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1pmUlsaykiiLXX-UXSzwiID_WzH1O1gGZ/view?usp=drivesdk",
+      "description": "Máy in tranh Canvas mỹ thuật cao cấp, vải canvas phủ mực UV dày dặn tái tạo chi tiết tranh vẽ nghệ thuật",
+      "tags": [
+        "in canvas",
+        "tranh canvas",
+        "vải canvas",
+        "tranh treo tường",
+        "mỹ thuật",
+        "nghệ thuật",
+        "trang trí"
+      ],
+      "duration": 2.73,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_file_in_theo_yeu_cau_6",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1IFJg_ILv33Du-IDtVGNKl4shpXyTqn9M/view?usp=drivesdk",
+      "description": "Kỹ thuật viên đồ họa kiểm tra độ phân giải, hệ màu CMYK và đường bế file in chuẩn kỹ thuật",
+      "tags": [
+        "thiết kế",
+        "kiểm tra file",
+        "hệ màu cmyk",
+        "chuẩn kỹ thuật",
+        "đường bế",
+        "bình trang"
+      ],
+      "duration": 2.63,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_file_in_theo_yeu_cau_7",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1_W9JDCirWwkzwriHEV1w_ywF5SpI1cOh/view?usp=drivesdk",
+      "description": "Thiết kế file in theo yêu cầu khách hàng, hỗ trợ tạo mẫu demo trực quan trước khi đưa vào sản xuất",
+      "tags": [
+        "thiết kế file",
+        "demo mẫu",
+        "tạo mẫu",
+        "sản xuất",
+        "đồ họa in ấn"
+      ],
+      "duration": 2.33,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_file_in_theo_yeu_cau",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1uHyRoTjJ6l_quyUDi-9EBTtb1g5YxyHd/view?usp=drivesdk",
+      "description": "Kỹ thuật viên thiết kế đồ họa chỉnh sửa và xuất file in chất lượng cao trên màn hình máy tính",
+      "tags": [
+        "thiết kế",
+        "chỉnh sửa file",
+        "file in",
+        "đồ họa",
+        "illustrator",
+        "photoshop",
+        "bình file"
+      ],
+      "duration": 1.97,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_in_an_theo_yeu_cau_2",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1jwcx15BJ4QGhS0kmjVYjA3b3NfWhjP7a/view?usp=drivesdk",
+      "description": "Thao tác dàn trang và tạo mã QR, mã vạch barcode trên file nhãn dán bao bì sản phẩm",
+      "tags": [
+        "dàn trang",
+        "mã qr",
+        "mã vạch",
+        "barcode",
+        "nhãn dán",
+        "bao bì"
+      ],
+      "duration": 2.6,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_in_an_theo_yeu_cau_3",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/198lYXaDghtyODnRve0u_dnP7AvlqUwVK/view?usp=drivesdk",
+      "description": "Kỹ thuật thiết kế phối màu và kiểm tra chính tả nội dung trước khi xuất lệnh in",
+      "tags": [
+        "kiểm tra nội dung",
+        "phối màu",
+        "xuất lệnh in",
+        "chính xác"
+      ],
+      "duration": 3,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_in_an_theo_yeu_cau_5",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1DUUn4qwaunbn61oDOv_T_wPlyGCS4o-h/view?usp=drivesdk",
+      "description": "Đội ngũ thiết kế trẻ trung, nhiệt huyết đồng hành xử lý file in gấp lấy ngay trong ngày",
+      "tags": [
+        "in gấp",
+        "lấy liền trong ngày",
+        "thiết kế nhanh",
+        "hỗ trợ in gấp"
+      ],
+      "duration": 2.8,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "energetic"
+    },
+    {
+      "id": "thiet_ke_in_an_theo_yeu_cau_8",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1VcwnztscVb6bUjxMdeY5I3yaKV-aTCsO/view?usp=drivesdk",
+      "description": "Quy trình thiết kế tem nhãn, logo và bộ nhận diện thương hiệu chuyên nghiệp",
+      "tags": [
+        "thiết kế tem nhãn",
+        "nhận diện thương hiệu",
+        "logo",
+        "chuyên nghiệp"
+      ],
+      "duration": 6.13,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_in_an_theo_yeu_cau",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1qTO57MhdVSO15fjvo-rmPzD9VcHGoBS7/view?usp=drivesdk",
+      "description": "Không gian phòng thiết kế in ấn sáng tạo, nơi biến mọi ý tưởng của khách hàng thành file in hoàn chỉnh",
+      "tags": [
+        "phòng thiết kế",
+        "sáng tạo",
+        "ý tưởng",
+        "thiết kế in ấn",
+        "kỹ thuật viên"
+      ],
+      "duration": 2.13,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "creative"
+    },
+    {
+      "id": "thiet_ke_tu_van_bao_gia_in_an",
+      "type": "video",
+      "url": "https://drive.google.com/file/d/1DigAaOJsiigwE9LF205IMmGn2N40Buv-/view?usp=drivesdk",
+      "description": "Nhân viên chăm sóc khách hàng tư vấn giải pháp in ấn, chất liệu và báo giá tận tâm cho khách hàng",
+      "tags": [
+        "tư vấn",
+        "báo giá",
+        "cskh",
+        "chăm sóc khách hàng",
+        "hỗ trợ",
+        "tận tâm",
+        "giá rẻ"
+      ],
+      "duration": 3.1,
+      "license": "owned",
+      "attribution": "Công ty TNHH In Kỹ Thuật Số",
+      "orientation": "vertical",
+      "mood": "professional"
+    },
+    {
+      "id": "sfx_power_up_sparkle",
+      "type": "sfx",
+      "role": "sparkle",
+      "path": "assets/audio/sfx/sparkle.mp3",
+      "url": "https://drive.google.com/file/d/1mKHzaeEVI0p8Tsr6tU14wngpsxVtoQDV/view?usp=drivesdk",
+      "description": "Hiệu ứng âm thanh lấp lánh power-up sparkle chuyển cảnh ánh sáng",
+      "tags": [
+        "sparkle",
+        "chuyển cảnh",
+        "cta",
+        "lấp lánh"
+      ],
+      "duration": 1.2,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_sparkle",
+      "type": "sfx",
+      "role": "sparkle",
+      "path": "assets/audio/sfx/sparkle.mp3",
+      "url": "https://drive.google.com/file/d/1mKHzaeEVI0p8Tsr6tU14wngpsxVtoQDV/view?usp=drivesdk",
+      "description": "Hiệu ứng sparkle lấp lánh khi xuất hiện CTA hoặc chuyển cảnh sáng",
+      "tags": [
+        "sparkle",
+        "chuyển cảnh",
+        "cta"
+      ],
+      "duration": 1.2,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_marimba_bloop_1",
+      "type": "sfx",
+      "role": "whoosh",
+      "path": "assets/audio/sfx/whoosh.mp3",
+      "url": "https://drive.google.com/file/d/1QomEWwnOsQZ_uLKcLW_l-KRqdLJzk3nP/view?usp=drivesdk",
+      "description": "Hiệu ứng âm thanh marimba vuốt chuyển cảnh dứt khoát mượt mà",
+      "tags": [
+        "whoosh",
+        "chuyển cảnh",
+        "lướt",
+        "b-roll"
+      ],
+      "duration": 0.8,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_whoosh",
+      "type": "sfx",
+      "role": "whoosh",
+      "path": "assets/audio/sfx/whoosh.mp3",
+      "url": "https://drive.google.com/file/d/1QomEWwnOsQZ_uLKcLW_l-KRqdLJzk3nP/view?usp=drivesdk",
+      "description": "Hiệu ứng whoosh chuyển cảnh lướt nhanh",
+      "tags": [
+        "whoosh",
+        "chuyển cảnh",
+        "b-roll"
+      ],
+      "duration": 0.8,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_marimba_bloop",
+      "type": "sfx",
+      "role": "pop",
+      "path": "assets/audio/sfx/pop.mp3",
+      "url": "https://drive.google.com/file/d/1NfhCQZ7tH1XZTHJ8KsY0CBjXZ0OjmOt0/view?usp=drivesdk",
+      "description": "Hiệu ứng âm thanh marimba bloop vui tai bật nảy khi tiêu đề xuất hiện",
+      "tags": [
+        "pop",
+        "tiêu đề",
+        "bloop",
+        "overlay"
+      ],
+      "duration": 0.5,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_pop",
+      "type": "sfx",
+      "role": "pop",
+      "path": "assets/audio/sfx/pop.mp3",
+      "url": "https://drive.google.com/file/d/1NfhCQZ7tH1XZTHJ8KsY0CBjXZ0OjmOt0/view?usp=drivesdk",
+      "description": "Hiệu ứng pop bật nảy khi xuất hiện tiêu đề",
+      "tags": [
+        "pop",
+        "tiêu đề",
+        "overlay"
+      ],
+      "duration": 0.5,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_marimba_bloop_3",
+      "type": "sfx",
+      "role": "impact",
+      "path": "assets/audio/sfx/impact-bass-1.mp3",
+      "url": "https://drive.google.com/file/d/1ak_NffhgBmPADvxttHu-nH94ssvvKcCv/view?usp=drivesdk",
+      "description": "Hiệu ứng âm thanh marimba bloop âm vực cao tạo điểm nhấn",
+      "tags": [
+        "impact",
+        "nhấn mạnh",
+        "giá bán",
+        "quy cách"
+      ],
+      "duration": 1,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_impact",
+      "type": "sfx",
+      "role": "impact",
+      "path": "assets/audio/sfx/impact-bass-1.mp3",
+      "url": "https://drive.google.com/file/d/1ak_NffhgBmPADvxttHu-nH94ssvvKcCv/view?usp=drivesdk",
+      "description": "Hiệu ứng impact dội bass khi chuyển phân cảnh chính",
+      "tags": [
+        "impact",
+        "bass",
+        "chuyển cảnh"
+      ],
+      "duration": 1,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    },
+    {
+      "id": "sfx_chime",
+      "type": "sfx",
+      "role": "ding",
+      "path": "assets/audio/sfx/chime.mp3",
+      "url": "https://dummy.local/chime.mp3",
+      "description": "Hiệu ứng chuông chime báo hiệu ưu đãi hotline",
+      "tags": [
+        "ding",
+        "chime",
+        "hotline"
+      ],
+      "duration": 0.8,
+      "license": "owned",
+      "attribution": "In Kỹ Thuật Số"
+    }
+  ]
+}
