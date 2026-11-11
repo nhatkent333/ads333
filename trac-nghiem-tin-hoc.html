@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luyện Thi Trắc Nghiệm Tin Học 7 - Đề Cương Giữa Kỳ I</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(100, 116, 139, 0.3);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 116, 139, 0.5);
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .question-card {
+        break-inside: avoid;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        margin-bottom: 1.5rem !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 min-h-full flex flex-col transition-colors duration-200">
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">Tin Học 7 - Ôn Tập Giữa Kỳ I</h1>
+            <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300">THCS Nguyễn Du</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">42 câu trắc nghiệm chuẩn hoá (4 lựa chọn, Đúng-Sai, Điền từ)</p>
+        </div>
+      </div>
+
+      <!-- Action items in header -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <!-- Timer Display (in Exam mode) -->
+        <div id="timer-box" class="hidden items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 text-amber-800 dark:text-amber-300 text-sm font-semibold">
+          <svg class="w-4 h-4 animate-pulse text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span id="timer-text">45:00</span>
+        </div>
+
+        <!-- Mute/Sound Toggle -->
+        <button id="btn-sound" title="Bật/Tắt âm thanh" class="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <svg id="icon-sound-on" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M11 5L6 9H2v6h4l5 4V5z"/>
+          </svg>
+          <svg id="icon-sound-off" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z m11.414-4l4 4m0-4l-4 4"/>
+          </svg>
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button id="btn-theme" title="Chuyển chế độ sáng/tối" class="p-2 rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/60 transition">
+          <svg id="icon-sun" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="icon-moon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+
+        <!-- Print View -->
+        <button id="btn-print" title="In đề thi / Xuất PDF" class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-semibold transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+          </svg>
+          <span>In đề</span>
+        </button>
+
+        <!-- Essay Practice Tab Toggle -->
+        <button id="btn-essay-tab" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 text-xs font-semibold hover:bg-indigo-100 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+          </svg>
+          <span>Tự luận</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full">
+    
+    <!-- Controls & Toolbar -->
+    <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 mb-5 shadow-sm no-print">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3.5 mb-4">
+        <!-- Filter Lesson -->
+        <div>
+          <label for="filter-lesson" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Bài học</label>
+          <select id="filter-lesson" class="w-full text-sm rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-slate-800 dark:text-slate-100 p-2.5 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            <option value="all">Tất cả bài học (Bài 1 - 7)</option>
+            <option value="1">Bài 1: Thiết bị vào - ra (Câu 1-6)</option>
+            <option value="2">Bài 2: Phần mềm máy tính (Câu 7-12)</option>
+            <option value="3">Bài 3: Quản lí dữ liệu máy tính (Câu 13-18)</option>
+            <option value="4">Bài 4: Mạng xã hội & trao đổi thông tin (Câu 19-24)</option>
+            <option value="5">Bài 5: Ứng xử trên mạng (Câu 25-30)</option>
+            <option value="6">Bài 6: Phần mềm bảng tính (Câu 31-36)</option>
+            <option value="7">Bài 7: Tính toán tự động bảng tính (Câu 37-42)</option>
+          </select>
+        </div>
+
+        <!-- Filter Question Type -->
+        <div>
+          <label for="filter-type" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Dạng câu hỏi</label>
+          <select id="filter-type" class="w-full text-sm rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-slate-800 dark:text-slate-100 p-2.5 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            <option value="all">Tất cả dạng câu (42 câu)</option>
+            <option value="choice">Trắc nghiệm 4 lựa chọn (28 câu)</option>
+            <option value="true_false">Trắc nghiệm Đúng - Sai (7 câu)</option>
+            <option value="short_answer">Trắc nghiệm trả lời ngắn (7 câu)</option>
+          </select>
+        </div>
+
+        <!-- Mode Selection -->
+        <div>
+          <label for="select-mode" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Chế độ</label>
+          <select id="select-mode" class="w-full text-sm rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-slate-800 dark:text-slate-100 p-2.5 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            <option value="practice">Luyện tập (Xem đáp án & giải thích ngay)</option>
+            <option value="exam">Thi thử (Tính giờ, nộp bài tính điểm)</option>
+          </select>
+        </div>
+
+        <!-- Question View Mode -->
+        <div>
+          <label for="select-view" class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">Giao diện xem</label>
+          <select id="select-view" class="w-full text-sm rounded-xl border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-slate-800 dark:text-slate-100 p-2.5 focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            <option value="list">Xem tất cả các câu (Dạng danh sách)</option>
+            <option value="step">Làm từng câu một (Dạng thẻ kế tiếp)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Feature Buttons: Shuffle Questions, Shuffle Options, Reset -->
+      <div class="flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-slate-100 dark:border-slate-700/60">
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Shuffle Questions Button -->
+          <button id="btn-shuffle-questions" class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-sky-50 dark:bg-sky-950/50 hover:bg-sky-100 dark:hover:bg-sky-900/60 text-sky-700 dark:text-sky-300 font-semibold text-xs sm:text-sm border border-sky-200 dark:border-sky-800 transition active:scale-95">
+            <svg class="w-4 h-4 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Trộn câu hỏi</span>
+          </button>
+
+          <!-- Shuffle Options Button -->
+          <button id="btn-shuffle-options" class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-semibold text-xs sm:text-sm border border-indigo-200 dark:border-indigo-800 transition active:scale-95">
+            <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+            </svg>
+            <span>Trộn lựa chọn (A, B, C, D)</span>
+          </button>
+
+          <!-- Reset Button -->
+          <button id="btn-reset" class="inline-flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-700/60 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm border border-slate-200 dark:border-slate-600 transition active:scale-95">
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            <span>Làm lại từ đầu</span>
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <!-- Submit Button -->
+          <button id="btn-submit" class="inline-flex items-center space-x-2 px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/20 transition active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Nộp bài & Chấm điểm</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress Indicator Bar -->
+    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-3.5 mb-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 no-print">
+      <div class="flex items-center space-x-3 w-full sm:w-auto">
+        <span class="text-xs font-bold text-slate-500 dark:text-slate-400">Tiến độ làm bài:</span>
+        <div class="flex-1 sm:w-48 bg-slate-100 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
+          <div id="progress-bar-fill" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+        </div>
+        <span id="progress-text" class="text-xs font-semibold text-slate-700 dark:text-slate-300">0 / 42 câu (0%)</span>
+      </div>
+
+      <div class="flex items-center space-x-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
+        <div class="flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
+          <span>Đúng: <strong id="stat-correct" class="text-emerald-600 dark:text-emerald-400">0</strong></span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span>
+          <span>Sai: <strong id="stat-incorrect" class="text-rose-600 dark:text-rose-400">0</strong></span>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+          <span>Đánh dấu: <strong id="stat-flagged" class="text-amber-600 dark:text-amber-400">0</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Workspace: Content Area + Sidebar Navigator -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+
+      <!-- Questions Container (Col 1-3) -->
+      <div class="lg:col-span-3 space-y-5" id="questions-wrapper">
+        <!-- Rendered question cards will be injected here -->
+      </div>
+
+      <!-- Navigation Palette / Sidebar (Col 4) -->
+      <aside class="lg:col-span-1 sticky top-20 space-y-4 no-print">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-700">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Bảng câu hỏi</h3>
+            <span id="nav-count-badge" class="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 font-semibold">42 câu</span>
+          </div>
+
+          <!-- Color Legends -->
+          <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-500 dark:text-slate-400 mb-3.5">
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3 h-3 rounded bg-slate-100 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 inline-block"></span>
+              <span>Chưa làm</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3 h-3 rounded bg-sky-500 inline-block"></span>
+              <span>Đã làm</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3 h-3 rounded bg-amber-400 inline-block"></span>
+              <span>Đánh dấu (?)</span>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <span class="w-3 h-3 rounded bg-emerald-500 inline-block"></span>
+              <span>Đã chấm đúng</span>
+            </div>
+          </div>
+
+          <!-- Question Grid Numbers -->
+          <div id="palette-grid" class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-6 gap-1.5 max-h-[380px] overflow-y-auto pr-1">
+            <!-- Buttons generated dynamically -->
+          </div>
+
+          <!-- Stepper navigation controls (if in step view) -->
+          <div id="stepper-controls" class="hidden mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+            <button id="btn-prev-question" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-xs font-semibold transition">
+              &larr; Câu trước
+            </button>
+            <span id="stepper-indicator" class="text-xs font-bold text-slate-600 dark:text-slate-300">1 / 42</span>
+            <button id="btn-next-question" class="px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold transition">
+              Câu sau &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Summary Box -->
+        <div class="bg-gradient-to-br from-sky-50 to-indigo-50 dark:from-slate-800/80 dark:to-slate-800 border border-sky-100 dark:border-slate-700 rounded-2xl p-4 text-xs space-y-2">
+          <div class="font-bold text-sky-900 dark:text-sky-300 flex items-center space-x-1.5">
+            <svg class="w-4 h-4 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Mẹo học tập hiệu quả</span>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+            Nhấn <strong>"Trộn lựa chọn"</strong> và <strong>"Trộn câu hỏi"</strong> để rèn luyện phản xạ nhớ kiến thức sâu, tránh việc học vẹt vị trí A, B, C, D!
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- Modal: Scorecard / Results -->
+  <div id="modal-result" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 animate-in fade-in zoom-in duration-200">
+      <div class="text-center pb-4 border-b border-slate-100 dark:border-slate-700">
+        <div id="result-badge-icon" class="w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-2xl shadow-lg"></div>
+        <h3 id="result-title" class="text-2xl font-black text-slate-900 dark:text-white">Kết Quả Bài Thi</h3>
+        <p id="result-subtitle" class="text-xs text-slate-500 dark:text-slate-400 mt-1">Đề cương ôn tập Giữa kỳ I - Tin học 7</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-3 gap-3 my-5 text-center">
+        <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-100 dark:border-slate-600">
+          <div class="text-xs text-slate-500 dark:text-slate-400 mb-0.5">Điểm số</div>
+          <div id="res-score" class="text-2xl font-black text-sky-600 dark:text-sky-400">0.0</div>
+          <div class="text-[10px] text-slate-400">Thang điểm 10</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-800/60">
+          <div class="text-xs text-emerald-600 dark:text-emerald-400 mb-0.5">Đúng</div>
+          <div id="res-correct" class="text-2xl font-black text-emerald-600 dark:text-emerald-400">0</div>
+          <div id="res-correct-sub" class="text-[10px] text-emerald-500/80">0%</div>
+        </div>
+        <div class="p-3 rounded-2xl bg-rose-50 dark:bg-rose-950/40 border border-rose-100 dark:border-rose-800/60">
+          <div class="text-xs text-rose-600 dark:text-rose-400 mb-0.5">Sai / Bỏ qua</div>
+          <div id="res-wrong" class="text-2xl font-black text-rose-600 dark:text-rose-400">0</div>
+          <div id="res-time-taken" class="text-[10px] text-rose-500/80">Thời gian</div>
+        </div>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div id="result-message" class="p-3.5 rounded-xl text-xs leading-relaxed font-medium mb-5"></div>
+
+      <!-- Modal Actions -->
+      <div class="flex items-center justify-end space-x-2.5">
+        <button id="btn-close-modal" class="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+          Xem lại đáp án chi tiết
+        </button>
+        <button id="btn-retry-mistakes" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-md shadow-sky-600/20 transition">
+          Luyện lại các câu sai
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Essay Guidance (Phần II Tự luận) -->
+  <div id="modal-essay" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-700">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Phần II: Tự Luận Tham Khảo</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Văn hóa ứng xử trên không gian mạng & giải quyết tình huống giả định</p>
+        </div>
+        <button id="btn-close-essay" class="p-2 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto py-4 space-y-4 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+        <div class="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+          <h4 class="font-bold text-amber-900 dark:text-amber-300 text-sm mb-1">Đề bài yêu cầu:</h4>
+          <p>Giải quyết các tình huống giả định về văn hóa ứng xử trên không gian mạng (Ví dụ: cách xử lý khi bị bắt nạt trên mạng, nhận biết tin giả, bảo vệ bản quyền tác giả).</p>
+        </div>
+
+        <!-- Topics -->
+        <div class="space-y-4" id="essay-topics-container">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-700 flex justify-end">
+        <button id="btn-close-essay-footer" class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold hover:bg-slate-200 transition">
+          Đóng cửa sổ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Confirmation Dialog (Replaces window.confirm) -->
+  <div id="modal-confirm" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-200 dark:border-slate-700 text-center">
+      <div class="w-12 h-12 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 mx-auto mb-3 flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+      </div>
+      <h4 id="confirm-title" class="text-base font-bold text-slate-900 dark:text-white mb-1">Xác nhận</h4>
+      <p id="confirm-message" class="text-xs text-slate-500 dark:text-slate-400 mb-5 leading-relaxed"></p>
+      <div class="flex items-center justify-center space-x-2">
+        <button id="confirm-cancel" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition">Hủy bỏ</button>
+        <button id="confirm-ok" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-auto py-5 border-t border-slate-200 dark:border-slate-800 text-center text-xs text-slate-400 dark:text-slate-500 no-print">
+    <p>Hệ thống ôn luyện trắc nghiệm trực quan &bull; Đề cương Tin học 7 Giữa Học kỳ I</p>
+  </footer>
+
+  <!-- Script containing data and application logic -->
+  <script>
+    // --- APP DATA ---
+    const rawQuestions = [{"id": 1, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "choice", "question": "Thiết bị nào sau đây là thiết bị vào trong máy tính?", "options": [{"id": "A", "text": "Loa", "isCorrect": false}, {"id": "B", "text": "Bàn phím", "isCorrect": true}, {"id": "C", "text": "Màn hình", "isCorrect": false}, {"id": "D", "text": "Máy in", "isCorrect": false}], "explanation": "Bàn phím là thiết bị thu nhận thông tin (thiết bị vào). Loa, màn hình và máy in là các thiết bị xuất/hiển thị thông tin (thiết bị ra)."}, {"id": 2, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "choice", "question": "Màn hình cảm ứng (touch screen) đảm nhận chức năng nào sau đây?", "options": [{"id": "A", "text": "Chỉ có chức năng thiết bị ra", "isCorrect": false}, {"id": "B", "text": "Chỉ có chức năng thiết bị vào", "isCorrect": false}, {"id": "C", "text": "Vừa là thiết bị vào vừa là thiết bị ra", "isCorrect": true}, {"id": "D", "text": "Không thuộc các thành phần xử lý thông tin", "isCorrect": false}], "explanation": "Màn hình cảm ứng vừa hiển thị hình ảnh/thông tin (chức năng ra), vừa tiếp nhận thao tác chạm ngón tay hoặc bút cảm ứng của người dùng (chức năng vào)."}, {"id": 3, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "choice", "question": "Thao tác nào sau đây có nguy cơ gây lỗi phần cứng hoặc hỏng dữ liệu hệ thống?", "options": [{"id": "A", "text": "Sử dụng nút lệnh Shut down để tắt máy tính", "isCorrect": false}, {"id": "B", "text": "Tắt máy tính bằng cách rút đột ngột phích cắm nguồn điện", "isCorrect": true}, {"id": "C", "text": "Sử dụng khăn khô mềm để vệ sinh màn hình", "isCorrect": false}, {"id": "D", "text": "Đóng tất cả tệp dữ liệu trước khi tắt máy", "isCorrect": false}], "explanation": "Rút nguồn đột ngột có thể khiến ổ cứng bị sốc điện, đầu đọc đĩa bị kẹt hoặc làm hỏng các tệp hệ điều hành đang mở mà chưa kịp lưu."}, {"id": 4, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "choice", "question": "Bạn An muốn ghi âm lời phát biểu của mình vào máy tính rồi phát lại cho cả lớp cùng nghe. An cần sử dụng các thiết bị vào - ra nào?", "options": [{"id": "A", "text": "Micro (thiết bị vào) và Loa (thiết bị ra)", "isCorrect": true}, {"id": "B", "text": "Máy quét (thiết bị vào) và Màn hình (thiết bị ra)", "isCorrect": false}, {"id": "C", "text": "Bàn phím (thiết bị vào) và Máy in (thiết bị ra)", "isCorrect": false}, {"id": "D", "text": "Camera (thiết bị vào) và Tai nghe (thiết bị vào)", "isCorrect": false}], "explanation": "Micro là thiết bị vào để thu âm thanh giọng nói; Loa là thiết bị ra để phát âm thanh cho cả lớp nghe."}, {"id": 5, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "true_false", "question": "Cho các phát biểu sau đây về thiết bị vào - ra của máy tính:", "items": [{"id": "a", "text": "Máy chiếu là thiết bị ra dùng để hiển thị nội dung màn hình máy tính lên màn chiếu.", "isCorrect": true, "note": "Đúng: Máy chiếu xuất hình ảnh lên diện tích lớn."}, {"id": "b", "text": "Loa thông minh vừa có thể nhận lệnh giọng nói (vào), vừa trả lời bằng âm thanh (ra).", "isCorrect": true, "note": "Đúng: Loa thông minh tích hợp micro để thu âm và màng loa để phát âm."}, {"id": "c", "text": "Cắm đầu nối dây tai nghe vào cổng USB sẽ luôn hoạt động tốt.", "isCorrect": false, "note": "Sai: Jack tai nghe 3.5mm cắm vào cổng USB sẽ không vừa hoặc gây chập, hỏng cổng kết nối nếu ép cắm sai."}, {"id": "d", "text": "Việc cấp nguồn điện cho máy tính nên thực hiện sau khi đã kết nối xong các thiết bị ngoại vi.", "isCorrect": true, "note": "Đúng: Cắm thiết bị ngoại vi trước rồi mới cắm nguồn điện để đảm bảo an toàn điện và độ bền thiết bị."}], "explanation": "Phát biểu a, b, d là ĐÚNG; phát biểu c là SAI vì tai nghe thông thường dùng chân cắm tròn 3.5mm, không thể cắm tùy tiện vào cổng USB nếu không có cáp chuyển đổi thích hợp."}, {"id": 6, "lesson": 1, "lessonName": "Bài 1: Thiết bị vào - ra", "type": "short_answer", "question": "Tên thiết bị dùng để thu nhận âm thanh trực tiếp từ con người/môi trường và chuyển thành dữ liệu số trong máy tính là gì?", "correctKeywords": ["micro", "microphone", "mic"], "displayAnswer": "Micro (hoặc Microphone)", "explanation": "Micro (Microphone) là thiết bị vào dùng để thu nhận âm thanh trực tiếp từ con người/môi trường và số hóa đưa vào máy tính."}, {"id": 7, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "choice", "question": "Phần mềm nào sau đây là một hệ điều hành dành cho máy tính cá nhân?", "options": [{"id": "A", "text": "Microsoft Word", "isCorrect": false}, {"id": "B", "text": "Windows 10", "isCorrect": true}, {"id": "C", "text": "Scratch 3.0", "isCorrect": false}, {"id": "D", "text": "Google Chrome", "isCorrect": false}], "explanation": "Windows 10 là hệ điều hành phổ biến của hãng Microsoft. Word, Scratch và Chrome là các phần mềm ứng dụng."}, {"id": 8, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "choice", "question": "Tệp dữ liệu có phần mở rộng '.pptx' thường được tạo ra và mở bằng phần mềm ứng dụng nào?", "options": [{"id": "A", "text": "Microsoft Word", "isCorrect": false}, {"id": "B", "text": "Microsoft Excel", "isCorrect": false}, {"id": "C", "text": "Microsoft PowerPoint", "isCorrect": true}, {"id": "D", "text": "Unikey", "isCorrect": false}], "explanation": "Đuôi tệp `.pptx` là định dạng bài trình chiếu của Microsoft PowerPoint. Word là `.docx`, Excel là `.xlsx`."}, {"id": 9, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "choice", "question": "Phát biểu nào sau đây diễn tả ĐÚNG mối quan hệ giữa hệ điều hành và phần mềm ứng dụng?", "options": [{"id": "A", "text": "Phần mềm ứng dụng có thể hoạt động được mà không cần hệ điều hành", "isCorrect": false}, {"id": "B", "text": "Hệ điều hành tạo môi trường cho phép cài đặt và chạy các phần mềm ứng dụng", "isCorrect": true}, {"id": "C", "text": "Hệ điều hành là một loại phần mềm ứng dụng đặc biệt", "isCorrect": false}, {"id": "D", "text": "Máy tính chỉ cần cài phần mềm ứng dụng là có thể khởi động", "isCorrect": false}], "explanation": "Hệ điều hành là nền tảng quản lý tài nguyên phần cứng và cung cấp môi trường để các phần mềm ứng dụng cài đặt và vận hành."}, {"id": 10, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "choice", "question": "Tệp 'BaiThucHanh.sb3' thuộc loại tệp nào dưới đây?", "options": [{"id": "A", "text": "Tệp văn bản Word", "isCorrect": false}, {"id": "B", "text": "Tệp bài trình chiếu", "isCorrect": false}, {"id": "C", "text": "Tệp dự án chương trình Scratch", "isCorrect": true}, {"id": "D", "text": "Tệp hình ảnh đồ họa", "isCorrect": false}], "explanation": "`.sb3` là phần mở rộng đặc trưng cho tệp dự án tạo bằng ngôn ngữ lập trình trực quan Scratch 3.0."}, {"id": 11, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "true_false", "question": "Cho các phát biểu sau về hệ điều hành và phần mềm ứng dụng:", "items": [{"id": "a", "text": "Windows, MacOS, Android và iOS đều là các hệ điều hành.", "isCorrect": true, "note": "Đúng: Windows/MacOS trên máy tính, Android/iOS trên thiết bị di động."}, {"id": "b", "text": "Người sử dụng xử lý các công việc cụ thể (soạn thảo, tính toán, vẽ tranh) thông qua phần mềm ứng dụng.", "isCorrect": true, "note": "Đúng: Phần mềm ứng dụng đáp ứng nhu cầu tác vụ cụ thể của con người."}, {"id": "c", "text": "Tệp chương trình máy tính không phải là dữ liệu nên không lưu trữ được trên đĩa cứng.", "isCorrect": false, "note": "Sai: Tất cả phần mềm/chương trình đều được lưu trữ dưới dạng tệp dữ liệu số trên bộ nhớ ngoài/ổ cứng."}, {"id": "d", "text": "Phần mở rộng của tên tệp giúp hệ điều hành nhận biết loại tệp và chọn phần mềm ứng dụng phù hợp để mở.", "isCorrect": true, "note": "Đúng: Hệ điều hành dựa vào phần mở rộng để liên kết mở bằng phần mềm thích hợp."}], "explanation": "Phát biểu a, b, d là ĐÚNG; phát biểu c là SAI vì chương trình máy tính được lưu trữ dưới dạng các tệp mã lệnh trên đĩa cứng như mọi dữ liệu khác."}, {"id": 12, "lesson": 2, "lessonName": "Bài 2: Phần mềm máy tính", "type": "short_answer", "question": "Cụm kí tự đứng sau dấu chấm cuối cùng trong tên tệp dùng để nhận biết loại tệp được gọi là gì?", "correctKeywords": ["phần mở rộng", "phan mo rong", "đuôi tệp", "duoi tep", "phần mở rộng của tên tệp", "extension", "file extension"], "displayAnswer": "Phần mở rộng (hoặc Đuôi tệp)", "explanation": "Phần mở rộng của tên tệp (File Extension) là cụm ký tự đứng sau dấu chấm cuối cùng trong tên tệp, giúp nhận diện định dạng tệp."}, {"id": 13, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "choice", "question": "Cách đặt tên thư mục nào sau đây là hợp lý nhất để lưu trữ tài liệu học tập môn Tin học lớp 7?", "options": [{"id": "A", "text": "LinhTinh", "isCorrect": false}, {"id": "B", "text": "Thumuc123", "isCorrect": false}, {"id": "C", "text": "TaiLieu_TinHoc_Lop7", "isCorrect": true}, {"id": "D", "text": "AAAAAA", "isCorrect": false}], "explanation": "Tên thư mục cần ngắn gọn, rõ nghĩa, phản ánh chính xác nội dung dữ liệu bên trong để tiện quản lý và tìm kiếm."}, {"id": 14, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "choice", "question": "Tệp chương trình máy tính trong hệ điều hành Windows thường có phần mở rộng nào?", "options": [{"id": "A", "text": ".docx", "isCorrect": false}, {"id": "B", "text": ".exe", "isCorrect": true}, {"id": "C", "text": ".mp3", "isCorrect": false}, {"id": "D", "text": ".jpg", "isCorrect": false}], "explanation": "`.exe` (viết tắt của executable) là phần mở rộng phổ biến nhất của các tệp thực thi chương trình trong Windows."}, {"id": 15, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "choice", "question": "Mật khẩu nào sau đây được đánh giá là mật khẩu mạnh?", "options": [{"id": "A", "text": "12345678", "isCorrect": false}, {"id": "B", "text": "nguyenvanan", "isCorrect": false}, {"id": "C", "text": "T1nh0c7@2023", "isCorrect": true}, {"id": "D", "text": "11112222", "isCorrect": false}], "explanation": "Mật khẩu mạnh cần tối thiểu 8 ký tự, kết hợp cả chữ hoa (T), chữ thường (nh, c), chữ số (1, 0, 7, 2023) và ký tự đặc biệt (@)."}, {"id": 16, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "choice", "question": "Ưu điểm nổi bật nhất của dịch vụ lưu trữ dữ liệu bằng công nghệ đám mây là gì?", "options": [{"id": "A", "text": "Không cần kết nối Internet vẫn sử dụng được", "isCorrect": false}, {"id": "B", "text": "Dữ liệu có thể truy cập từ bất kỳ máy tính nào có kết nối Internet", "isCorrect": true}, {"id": "C", "text": "Không bao giờ bị tấn công mạng", "isCorrect": false}, {"id": "D", "text": "Chi phí đắt nhất trong các loại lưu trữ", "isCorrect": false}], "explanation": "Lưu trữ đám mây (Google Drive, OneDrive...) cho phép truy xuất và đồng bộ dữ liệu mọi lúc, mọi nơi từ bất kỳ thiết bị nào có Internet."}, {"id": 17, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "true_false", "question": "Cho các phát biểu về bảo vệ và quản lý dữ liệu trong máy tính:", "items": [{"id": "a", "text": "Sao lưu dữ liệu là tạo bản sao các tệp/thư mục quan trọng ra thiết bị lưu trữ khác.", "isCorrect": true, "note": "Đúng: Giúp phục hồi dữ liệu khi bản gốc bị hỏng hoặc mất."}, {"id": "b", "text": "Đặt mật khẩu đơn giản giúp người dùng dễ nhớ và bảo mật an toàn tuyệt đối.", "isCorrect": false, "note": "Sai: Mật khẩu đơn giản rất dễ bị kẻ xấu hoặc phần mềm bẻ khóa tấn công."}, {"id": "c", "text": "Windows Defender là phần mềm diệt virus được tích hợp sẵn trong hệ điều hành Windows.", "isCorrect": true, "note": "Đúng: Windows Defender (Windows Security) được cài sẵn miễn phí bảo vệ máy tính."}, {"id": "d", "text": "Thẻ nhớ và USB có ưu điểm nhỏ gọn, tiện lợi nhưng dễ bị thất lạc và lây nhiễm virus.", "isCorrect": true, "note": "Đúng: Do kích thước nhỏ và thường xuyên cắm vào nhiều máy tính khác nhau."}], "explanation": "Phát biểu a, c, d là ĐÚNG; phát biểu b là SAI vì mật khẩu đơn giản có độ bảo mật rất kém."}, {"id": 18, "lesson": 3, "lessonName": "Bài 3: Quản lí dữ liệu trong máy tính", "type": "short_answer", "question": "Kể tên 4 thao tác cơ bản với tệp và thư mục trong ứng dụng quản lý tệp File Explorer.", "correctKeywords": ["sao chép, di chuyển, đổi tên, xóa", "sao chep, di chuyen, doi ten, xoa", "copy, cut, rename, delete", "copy, move, rename, delete", "sao chép, di chuyển, đổi tên, xoá", "sao chép, cắt, đổi tên, xóa"], "displayAnswer": "Sao chép (Copy), Di chuyển (Cut/Move), Đổi tên (Rename), Xóa (Delete)", "explanation": "4 thao tác cơ bản nhất khi quản lý tệp và thư mục là: Sao chép (Copy), Di chuyển (Cut/Move), Đổi tên (Rename), Xóa (Delete)."}, {"id": 19, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "choice", "question": "Website nào sau đây là mạng xã hội phổ biến chuyên về chia sẻ và xem video?", "options": [{"id": "A", "text": "Facebook", "isCorrect": false}, {"id": "B", "text": "YouTube", "isCorrect": true}, {"id": "C", "text": "Instagram", "isCorrect": false}, {"id": "D", "text": "Zalo", "isCorrect": false}], "explanation": "YouTube là mạng xã hội chia sẻ video trực tuyến lớn nhất thế giới."}, {"id": 20, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "choice", "question": "Chức năng nào sau đây KHÔNG phải là chức năng cơ bản của mạng xã hội?", "options": [{"id": "A", "text": "Kết nối và giao lưu bạn bè", "isCorrect": false}, {"id": "B", "text": "Chia sẻ suy nghĩ, hình ảnh, video", "isCorrect": false}, {"id": "C", "text": "Tự động sửa chữa phần cứng máy tính bị hỏng", "isCorrect": true}, {"id": "D", "text": "Thảo luận nhóm trực tuyến", "isCorrect": false}], "explanation": "Mạng xã hội là phần mềm dịch vụ trực tuyến kết nối con người, không thể sửa chữa linh kiện phần cứng vật lý của máy tính."}, {"id": 21, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "choice", "question": "Hành vi nào sau đây là vi phạm pháp luật và quy định khi sử dụng mạng xã hội?", "options": [{"id": "A", "text": "Chia sẻ các bài viết hướng dẫn học tập tốt", "isCorrect": false}, {"id": "B", "text": "Đưa thông tin bịa đặt, sai sự thật làm ảnh hưởng uy tín người khác", "isCorrect": true}, {"id": "C", "text": "Kết bạn với các bạn cùng lớp", "isCorrect": false}, {"id": "D", "text": "Đăng ảnh kỉ niệm chuyến đi dã ngoại của gia đình", "isCorrect": false}], "explanation": "Đăng tin giả, tin bịa đặt vu khống là hành vi vi phạm Luật An ninh mạng và các quy định pháp luật hiện hành."}, {"id": 22, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "choice", "question": "Bạn An muốn tạo một không gian trực tuyến để các thành viên nhóm 1 lớp 7A cùng trao đổi bài tập. An nên chọn tính năng nào trên mạng xã hội?", "options": [{"id": "A", "text": "Đổi mật khẩu cá nhân", "isCorrect": false}, {"id": "B", "text": "Tạo nhóm (Group) thảo luận riêng", "isCorrect": true}, {"id": "C", "text": "Tìm kiếm từ khóa công khai", "isCorrect": false}, {"id": "D", "text": "Đăng ảnh đại diện", "isCorrect": false}], "explanation": "Tính năng tạo nhóm (Group) trên mạng xã hội giúp tập hợp các thành viên cụ thể để cùng trao đổi, thảo luận và chia sẻ tài liệu học tập."}, {"id": 23, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "true_false", "question": "Cho các phát biểu sau về mạng xã hội:", "items": [{"id": "a", "text": "Mạng xã hội là một cộng đồng trực tuyến giúp mọi người tương tác với nhau.", "isCorrect": true, "note": "Đúng: Đây là khái niệm cốt lõi của mạng xã hội."}, {"id": "b", "text": "Bất kỳ ai ở mọi lứa tuổi đều có thể đăng ký tham gia mạng xã hội mà không cần tuân theo quy định tuổi.", "isCorrect": false, "note": "Sai: Các nền tảng đều có điều khoản quy định độ tuổi tối thiểu (thường từ 13 tuổi trở lên)."}, {"id": "c", "text": "Thông tin trên mạng xã hội rất đa dạng nhưng có thể chứa tin giả, thông tin chưa kiểm chứng.", "isCorrect": true, "note": "Đúng: Do bất kỳ ai cũng có thể tự do đăng bài nên cần có tư duy phản biện."}, {"id": "d", "text": "Đưa thông tin sai sự thật lên mạng xã hội có thể bị xử phạt hành chính hoặc truy cứu trách nhiệm hình sự.", "isCorrect": true, "note": "Đúng: Tùy mức độ hậu quả sẽ bị phạt tiền hoặc truy cứu trách nhiệm hình sự."}], "explanation": "Phát biểu a, c, d là ĐÚNG; phát biểu b là SAI vì mạng xã hội luôn có quy định ràng buộc độ tuổi tham gia nhằm bảo vệ trẻ em."}, {"id": 24, "lesson": 4, "lessonName": "Bài 4: Mạng xã hội và trao đổi thông tin", "type": "short_answer", "question": "Kể tên 3 trang mạng xã hội thông dụng tại Việt Nam hiện nay.", "correctKeywords": ["facebook", "zalo", "youtube", "tiktok", "instagram"], "displayAnswer": "Facebook, Zalo, YouTube (hoặc TikTok, Instagram)", "explanation": "Các mạng xã hội thông dụng hàng đầu tại Việt Nam gồm: Facebook, Zalo, YouTube, TikTok, Instagram."}, {"id": 25, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "choice", "question": "Biểu hiện nào sau đây cảnh báo một học sinh có nguy cơ bị bệnh nghiện Internet?", "options": [{"id": "A", "text": "Vào mạng tìm tài liệu học tập theo hướng dẫn của giáo viên", "isCorrect": false}, {"id": "B", "text": "Thức quá khuya chơi game, bỏ bê học hành và hay cáu kỉnh khi không được dùng máy tính", "isCorrect": true}, {"id": "C", "text": "Gửi email nộp bài tập đúng hạn", "isCorrect": false}, {"id": "D", "text": "Tra từ điển trực tuyến khi làm bài tập tiếng Anh", "isCorrect": false}], "explanation": "Thức khuya kéo dài, suy giảm kết quả học tập và có cảm xúc tiêu cực, cáu gắt khi không được online là biểu hiện rõ nét của nghiện Internet."}, {"id": 26, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "choice", "question": "Khi vô tình truy cập vào trang web có nội dung bạo lực hoặc không phù hợp lứa tuổi, em nên làm gì?", "options": [{"id": "A", "text": "Đóng ngay trang web đó và báo cho người lớn nếu cần", "isCorrect": true}, {"id": "B", "text": "Gửi liên kết trang web đó cho bạn bè cùng xem", "isCorrect": false}, {"id": "C", "text": "Lưu lại địa chỉ trang web vào Bookmark", "isCorrect": false}, {"id": "D", "text": "Tiếp tục xem hết nội dung", "isCorrect": false}], "explanation": "Cần thoát/đóng tab ngay lập tức để tránh tiếp nhận nội dung độc hại và thông báo cho người lớn tin cậy để hỗ trợ chặn trang web đó."}, {"id": 27, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "choice", "question": "Khi bị ai đó nhắn tin đe dọa hoặc bắt nạt trên mạng, cách xử lý hợp lý và an toàn nhất là gì?", "options": [{"id": "A", "text": "Nhắn tin chửi lại và đe dọa lại người đó", "isCorrect": false}, {"id": "B", "text": "Cố gắng chịu đựng và giấu giếm không cho ai biết", "isCorrect": false}, {"id": "C", "text": "Chia sẻ ngay với bố mẹ, thầy cô giáo để nhận sự trợ giúp", "isCorrect": true}, {"id": "D", "text": "Tự một mình hẹn gặp trực tiếp người đó", "isCorrect": false}], "explanation": "Chia sẻ với phụ huynh hoặc thầy cô giáo là giải pháp an toàn và hiệu quả nhất để kịp thời bảo vệ bản thân và xử lý kẻ bắt nạt theo quy định."}, {"id": 28, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "choice", "question": "Hành động nào sau đây thể hiện người ứng xử có văn hóa khi giao tiếp qua mạng?", "options": [{"id": "A", "text": "Luôn sử dụng ngôn ngữ lịch sự, tôn trọng người đang giao tiếp", "isCorrect": true}, {"id": "B", "text": "Tự ý đăng ảnh riêng tư của người khác lên mạng khi chưa xin phép", "isCorrect": false}, {"id": "C", "text": "Sử dụng từ ngữ thô tục trong bình luận", "isCorrect": false}, {"id": "D", "text": "Lan truyền những tin đồn giật gân chưa kiểm chứng", "isCorrect": false}], "explanation": "Ứng xử có văn hóa trên mạng đòi hỏi tôn trọng người khác, dùng từ ngữ văn minh, lịch sự và giữ gìn hình ảnh bản thân."}, {"id": 29, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "true_false", "question": "Cho các phát biểu về văn hóa ứng xử và an toàn trên mạng:", "items": [{"id": "a", "text": "Giao tiếp qua mạng cần tuân thủ sự văn minh, lịch sự tương tự như giao tiếp trực tiếp trong đời thực.", "isCorrect": true, "note": "Đúng: Môi trường ảo nhưng con người và cảm xúc là thật."}, {"id": "b", "text": "Tự ý đọc tin nhắn hoặc thư điện tử cá nhân của người khác là hành vi vi phạm sự riêng tư.", "isCorrect": true, "note": "Đúng: Vi phạm quyền bí mật đời tư được pháp luật bảo vệ."}, {"id": "c", "text": "Chơi game trực tuyến liên tục nhiều giờ mỗi ngày không gây ảnh hưởng xấu đến sức khỏe.", "isCorrect": false, "note": "Sai: Ngồi liên tục gây hại mắt, cột sống, béo phì và tổn hại tinh thần."}, {"id": "d", "text": "Khi gặp tình huống bị bắt nạt hoặc lừa đảo trên mạng, hãy tìm sự tư vấn từ người lớn tin cậy.", "isCorrect": true, "note": "Đúng: Luôn cần sự hướng dẫn từ cha mẹ, thầy cô."}], "explanation": "Phát biểu a, b, d là ĐÚNG; phát biểu c là SAI vì ngồi chơi game kéo dài gây ảnh hưởng nghiêm trọng đến thể chất và tinh thần."}, {"id": 30, "lesson": 5, "lessonName": "Bài 5: Ứng xử trên mạng", "type": "short_answer", "question": "Nêu 1 quy tắc quan trọng khi nhận được tin nhắn từ người lạ yêu cầu cung cấp thông tin cá nhân hoặc mật khẩu.", "correctKeywords": ["tuyệt đối không cung cấp", "không cung cấp", "tuyệt đối không gửi", "không gửi", "không chia sẻ", "từ chối", "khong cung cap", "không cho"], "displayAnswer": "Tuyệt đối không cung cấp thông tin cá nhân hoặc mật khẩu cho người lạ", "explanation": "Nguyên tắc vàng: Tuyệt đối không cung cấp mật khẩu, mã OTP, số CCCD hoặc thông tin riêng tư cho bất kỳ ai qua tin nhắn."}, {"id": 31, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "choice", "question": "Giao giữa một hàng và một cột trên trang tính được gọi là gì?", "options": [{"id": "A", "text": "Vùng dữ liệu", "isCorrect": false}, {"id": "B", "text": "Ô tính", "isCorrect": true}, {"id": "C", "text": "Hộp địa chỉ", "isCorrect": false}, {"id": "D", "text": "Trang tính", "isCorrect": false}], "explanation": "Giao giữa một cột và một hàng trên bảng tính tạo thành một Ô tính (Cell)."}, {"id": 32, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "choice", "question": "Trên trang tính, địa chỉ của ô nằm trên cột C và hàng 5 được viết chính xác là gì?", "options": [{"id": "A", "text": "5C", "isCorrect": false}, {"id": "B", "text": "C-5", "isCorrect": false}, {"id": "C", "text": "C5", "isCorrect": true}, {"id": "D", "text": "C:5", "isCorrect": false}], "explanation": "Địa chỉ ô được tạo thành từ tên cột đứng trước và tên hàng đứng sau, ví dụ C5."}, {"id": 33, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "choice", "question": "Khi nhập dữ liệu vào ô tính, mặc định phần mềm bảng tính sẽ tự động căn lề như thế nào?", "options": [{"id": "A", "text": "Dữ liệu văn bản căn phải, dữ liệu số căn trái", "isCorrect": false}, {"id": "B", "text": "Dữ liệu văn bản căn trái, dữ liệu số và ngày tháng căn phải", "isCorrect": true}, {"id": "C", "text": "Tất cả dữ liệu đều căn giữa", "isCorrect": false}, {"id": "D", "text": "Tất cả dữ liệu đều căn trái", "isCorrect": false}], "explanation": "Mặc định: Dữ liệu văn bản (chữ) tự động căn lề trái; dữ liệu kiểu số và ngày tháng tự động căn lề phải."}, {"id": 34, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "choice", "question": "Giả sử em muốn chọn vùng dữ liệu từ ô B2 đến ô D6. Địa chỉ vùng dữ liệu này được ghi như thế nào?", "options": [{"id": "A", "text": "B2-D6", "isCorrect": false}, {"id": "B", "text": "B2..D6", "isCorrect": false}, {"id": "C", "text": "B2:D6", "isCorrect": true}, {"id": "D", "text": "B2;D6", "isCorrect": false}], "explanation": "Địa chỉ vùng dữ liệu gồm địa chỉ ô góc trên bên trái và ô góc dưới bên phải ngăn cách nhau bởi dấu hai chấm (:), ví dụ B2:D6."}, {"id": 35, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "true_false", "question": "Cho các phát biểu về giao diện và thao tác trên phần mềm bảng tính:", "items": [{"id": "a", "text": "Các cột được đặt tên bằng chữ cái (A, B, C...), các hàng được đặt tên bằng chữ số (1, 2, 3...).", "isCorrect": true, "note": "Đúng: Quy chuẩn đặt tên cột/hàng trong bảng tính."}, {"id": "b", "text": "Để thay đổi độ rộng cột, ta đưa con trỏ chuột vào vạch ranh giới giữa hai tên cột và kéo thả chuột.", "isCorrect": true, "note": "Đúng: Thao tác kéo thả tại vạch ranh giới tên cột."}, {"id": "c", "text": "Địa chỉ của một vùng dữ liệu gồm địa chỉ hai ô góc phân tách nhau bởi dấu chấm phẩy (;).", "isCorrect": false, "note": "Sai: Phân tách bằng dấu hai chấm (:), không phải chấm phẩy (;)."}, {"id": "d", "text": "Dữ liệu ngày tháng khi nhập đúng khuôn dạng sẽ tự động căn phải trong ô tính.", "isCorrect": true, "note": "Đúng: Dữ liệu ngày tháng được bảng tính xử lý như giá trị số nên căn phải."}], "explanation": "Phát biểu a, b, d là ĐÚNG; phát biểu c là SAI vì địa chỉ vùng sử dụng dấu hai chấm (:)."}, {"id": 36, "lesson": 6, "lessonName": "Bài 6: Làm quen với phần mềm bảng tính", "type": "short_answer", "question": "Vùng nằm ngay phía trên các cột, dùng để hiển thị hoặc nhập nội dung/công thức của ô hiện thời được gọi là gì?", "correctKeywords": ["thanh công thức", "thanh cong thuc", "formula bar", "vùng nhập dữ liệu", "vung nhap du lieu"], "displayAnswer": "Thanh công thức (Formula Bar) hoặc Vùng nhập dữ liệu", "explanation": "Thanh công thức (Formula Bar) nằm phía trên tiêu đề cột, hiển thị và cho phép soạn thảo nội dung/công thức của ô đang chọn."}, {"id": 37, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "choice", "question": "Công thức nhập vào ô tính trong phần mềm bảng tính BẮT BUỘC phải bắt đầu bằng ký hiệu nào?", "options": [{"id": "A", "text": "Dấu ngoặc đơn '('", "isCorrect": false}, {"id": "B", "text": "Dấu cộng '+'", "isCorrect": false}, {"id": "C", "text": "Dấu bằng '='", "isCorrect": true}, {"id": "D", "text": "Dấu hai chấm ':'", "isCorrect": false}], "explanation": "Ký tự bắt đầu của mọi công thức trong bảng tính luôn là dấu bằng '=' để phân biệt với dữ liệu văn bản."}, {"id": 38, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "choice", "question": "Giả sử ô A1 có giá trị 10, ô B1 có giá trị 5. Công thức '=A1+B1' tại ô C1 sẽ cho kết quả là bao nhiêu?", "options": [{"id": "A", "text": "15", "isCorrect": true}, {"id": "B", "text": "105", "isCorrect": false}, {"id": "C", "text": "A1B1", "isCorrect": false}, {"id": "D", "text": "#VALUE!", "isCorrect": false}], "explanation": "Công thức tính tổng giá trị ô A1 (10) và ô B1 (5): 10 + 5 = 15."}, {"id": 39, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "choice", "question": "Ưu điểm lớn nhất của việc sử dụng địa chỉ ô trong công thức (ví dụ '=C4*D4') so với nhập số trực tiếp (ví dụ '=25*10') là gì?", "options": [{"id": "A", "text": "Giúp bảng tính tính toán nhanh hơn", "isCorrect": false}, {"id": "B", "text": "Kết quả tính toán sẽ tự động cập nhật khi dữ liệu ở các ô C4, D4 thay đổi", "isCorrect": true}, {"id": "C", "text": "Tránh được việc phải gõ dấu '='", "isCorrect": false}, {"id": "D", "text": "Công thức không bị mất khi lưu tệp", "isCorrect": false}], "explanation": "Khi thay đổi số liệu trong các ô nguồn (C4, D4), kết quả công thức tại ô chứa `=C4*D4` sẽ tự động cập nhật ngay lập tức mà không cần gõ lại."}, {"id": 40, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "choice", "question": "Ô E4 có công thức '=C4*D4'. Khi sao chép công thức từ ô E4 xuống ô E5, công thức tại ô E5 sẽ tự động điều chỉnh thành gì?", "options": [{"id": "A", "text": "=C4*D4", "isCorrect": false}, {"id": "B", "text": "=C5*D5", "isCorrect": true}, {"id": "C", "text": "=C5*D4", "isCorrect": false}, {"id": "D", "text": "=E4*E5", "isCorrect": false}], "explanation": "Khi sao chép công thức xuống dưới 1 hàng, các chỉ số hàng trong địa chỉ tương đối sẽ tự động tăng thêm 1 đơn vị: C4 thành C5, D4 thành D5."}, {"id": 41, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "true_false", "question": "Cho các phát biểu về công thức và tính toán trên bảng tính:", "items": [{"id": "a", "text": "Nếu nhập '=2*(3+5)' vào ô tính thì ô đó sẽ hiển thị kết quả là 16.", "isCorrect": true, "note": "Đúng: Bảng tính tính trong ngoặc trước (3+5=8) rồi nhân 2 = 16."}, {"id": "b", "text": "Khi sao chép công thức chứa địa chỉ, vị trí tương đối giữa ô chứa công thức và ô tham chiếu không thay đổi.", "isCorrect": true, "note": "Đúng: Đây là nguyên lý hoạt động của địa chỉ ô tương đối."}, {"id": "c", "text": "Nhập công thức '=A1+B1' hay 'A1+B1' (không có dấu '=') đều cho kết quả tính toán như nhau.", "isCorrect": false, "note": "Sai: Thiếu dấu '=' bảng tính chỉ coi đó là một chuỗi văn bản thuần túy."}, {"id": "d", "text": "Nếu ô A1 đổi giá trị từ 5 thành 10, công thức '=A1+2' ở ô A2 sẽ tự động cập nhật kết quả từ 7 thành 12.", "isCorrect": true, "note": "Đúng: 10 + 2 = 12, tính toán cập nhật tự động."}], "explanation": "Phát biểu a, b, d là ĐÚNG; phát biểu c là SAI vì bắt buộc phải có dấu bằng '=' bảng tính mới thực hiện tính toán."}, {"id": 42, "lesson": 7, "lessonName": "Bài 7: Tính toán tự động trên bảng tính", "type": "short_answer", "question": "Tại ô C3 có công thức '=A3+B3'. Nếu sao chép công thức này từ ô C3 sang ô C6 thì công thức tại ô C6 sẽ là gì?", "correctKeywords": ["=a6+b6", "= a6 + b6", "=a6 + b6", "= a6+b6", "a6+b6"], "displayAnswer": "=A6+B6", "explanation": "Từ ô C3 đến ô C6 là di chuyển xuống dưới 3 hàng (3 + 3 = 6). Các địa chỉ tương đối A3, B3 sẽ tự động điều chỉnh thành A6 và B6: `=A6+B6`."}];
+    const essayTopics = [{"topic": "1. Cách xử lý khi bị bắt nạt, đe dọa trên mạng", "guidelines": ["Không đối đầu, không nhắn tin chửi bới hay đe dọa lại kẻ bắt nạt.", "Chụp màn hình, lưu lại đầy đủ bằng chứng (tin nhắn, bình luận, hình ảnh, tài khoản vi phạm).", "Sử dụng các tính năng: Chặn (Block), Báo cáo vi phạm (Report) đối với tài khoản bắt nạt.", "Chia sẻ ngay với bố mẹ, thầy cô giáo hoặc người lớn tin cậy để nhận sự can thiệp và bảo vệ kịp thời."]}, {"topic": "2. Cách nhận biết và phòng tránh tin giả, thông tin sai sự thật", "guidelines": ["Kiểm tra nguồn gốc thông tin: Chỉ tin tưởng thông tin từ báo chí chính thống, cơ quan nhà nước, tổ chức uy tín.", "Kiểm tra tác giả, thời gian xuất bản và đối chiếu với nhiều nguồn tin độc lập khác.", "Cảnh giác với tiêu đề giật gân, câu like, hình ảnh cắt ghép hoặc lời kêu gọi chia sẻ gấp.", "Tuyệt đối không like, bình luận hay chia sẻ thông tin khi chưa được xác minh rõ ràng."]}, {"topic": "3. Tôn trọng và bảo vệ bản quyền tác giả trong môi trường số", "guidelines": ["Ghi rõ nguồn, tên tác giả khi trích dẫn văn bản, số liệu, hình ảnh hoặc video phục vụ học tập.", "Không tự ý sao chép toàn bộ bài viết, video, tranh ảnh của người khác rồi nhận là của mình.", "Ưu tiên sử dụng tài nguyên miễn phí, tài nguyên có giấy phép Creative Commons (CC).", "Sử dụng phần mềm có bản quyền, không phát tán hoặc dùng phần mềm bẻ khóa (crack)."]}];
+
+    // --- APP STATE ---
+    let currentQuestions = JSON.parse(JSON.stringify(rawQuestions));
+    let userAnswers = {}; // { questionId: answerVal }
+    let flaggedQuestions = new Set();
+    let currentStepIndex = 0;
+    let currentMode = 'practice'; // 'practice' | 'exam'
+    let currentView = 'list'; // 'list' | 'step'
+    let examSubmitted = false;
+    let soundEnabled = true;
+    let timerInterval = null;
+    let timeRemaining = 45 * 60; // 45 minutes in seconds
+    let examStartTime = null;
+
+    // --- AUDIO SYNTHESIS (Web Audio API) ---
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSound(type) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'correct') {
+          // Happy high chord
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'incorrect') {
+          // Low gentle buzz
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now); // A3
+          osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.15); // E3
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'shuffle') {
+          // Quick swoosh
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(400, now);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+          osc.start(now);
+          osc.stop(now + 0.15);
+        }
+      } catch (e) {
+        // Ignore audio errors
+      }
+    }
+
+    // --- TOAST NOTIFICATIONS ---
+    function showToast(msg, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `px-4 py-2.5 rounded-xl shadow-lg text-xs font-semibold text-white transition-all transform duration-300 flex items-center space-x-2 pointer-events-auto ${
+        type === 'success' ? 'bg-emerald-600' :
+        type === 'error' ? 'bg-rose-600' :
+        type === 'warning' ? 'bg-amber-600' : 'bg-sky-600'
+      }`;
+      toast.innerHTML = `<span>${msg}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // --- MODAL CONFIRM HELPER ---
+    function showConfirm(title, message, onOk) {
+      const modal = document.getElementById('modal-confirm');
+      document.getElementById('confirm-title').textContent = title;
+      document.getElementById('confirm-message').textContent = message;
+      modal.classList.remove('hidden');
+
+      const btnOk = document.getElementById('confirm-ok');
+      const btnCancel = document.getElementById('confirm-cancel');
+
+      function cleanup() {
+        modal.classList.add('hidden');
+        btnOk.removeEventListener('click', handleOk);
+        btnCancel.removeEventListener('click', handleCancel);
+      }
+
+      function handleOk() {
+        cleanup();
+        onOk();
+      }
+
+      function handleCancel() {
+        cleanup();
+      }
+
+      btnOk.addEventListener('click', handleOk);
+      btnCancel.addEventListener('click', handleCancel);
+    }
+
+    // --- SHUFFLE ALGORITHMS (Fisher-Yates) ---
+    function shuffleArray(arr) {
+      const array = [...arr];
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    function shuffleQuestions() {
+      currentQuestions = shuffleArray(currentQuestions);
+      currentStepIndex = 0;
+      renderAll();
+      playSound('shuffle');
+      showToast('Đã xáo trộn ngẫu nhiên tất cả câu hỏi!', 'success');
+    }
+
+    function shuffleOptions() {
+      currentQuestions.forEach(q => {
+        if (q.type === 'choice' && q.options) {
+          q.options = shuffleArray(q.options);
+        }
+      });
+      renderAll();
+      playSound('shuffle');
+      showToast('Đã xáo trộn thứ tự các lựa chọn A, B, C, D!', 'success');
+    }
+
+    // --- FILTERING ---
+    function getFilteredQuestions() {
+      const lessonVal = document.getElementById('filter-lesson').value;
+      const typeVal = document.getElementById('filter-type').value;
+
+      return currentQuestions.filter(q => {
+        const matchLesson = (lessonVal === 'all') || (q.lesson.toString() === lessonVal);
+        const matchType = (typeVal === 'all') || (q.type === typeVal);
+        return matchLesson && matchType;
+      });
+    }
+
+    // --- TIMER LOGIC ---
+    function startTimer() {
+      clearInterval(timerInterval);
+      timeRemaining = 45 * 60;
+      examStartTime = Date.now();
+      updateTimerDisplay();
+      document.getElementById('timer-box').classList.remove('hidden');
+      document.getElementById('timer-box').classList.add('flex');
+
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          timeRemaining = 0;
+          updateTimerDisplay();
+          showToast('Hết thời gian làm bài!', 'warning');
+          submitExam();
+        } else {
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      document.getElementById('timer-box').classList.add('hidden');
+      document.getElementById('timer-box').classList.remove('flex');
+    }
+
+    function updateTimerDisplay() {
+      const m = Math.floor(timeRemaining / 60);
+      const s = timeRemaining % 60;
+      document.getElementById('timer-text').textContent = 
+        `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    // --- CHECKING QUESTION COMPLETION & SCORING ---
+    function isQuestionAnswered(q) {
+      const ans = userAnswers[q.id];
+      if (ans === undefined || ans === null) return false;
+      if (q.type === 'choice') {
+        return ans !== '';
+      } else if (q.type === 'true_false') {
+        return q.items.every(it => ans[it.id] !== undefined);
+      } else if (q.type === 'short_answer') {
+        return typeof ans === 'string' && ans.trim().length > 0;
+      }
+      return false;
+    }
+
+    function evaluateQuestion(q) {
+      const ans = userAnswers[q.id];
+      if (!ans) return { isCorrect: false, score: 0, maxScore: 1 };
+
+      if (q.type === 'choice') {
+        const correctOpt = q.options.find(o => o.isCorrect);
+        const isOk = correctOpt && ans === correctOpt.id;
+        return { isCorrect: isOk, score: isOk ? 1 : 0, maxScore: 1 };
+      } else if (q.type === 'true_false') {
+        let correctCount = 0;
+        q.items.forEach(it => {
+          if (ans[it.id] === it.isCorrect) correctCount++;
+        });
+        // 4 items: each worth 0.25 pt
+        const score = correctCount * 0.25;
+        return { isCorrect: correctCount === q.items.length, score, maxScore: 1, correctCount };
+      } else if (q.type === 'short_answer') {
+        const cleanUser = (ans || '').trim().toLowerCase();
+        const isOk = q.correctKeywords.some(kw => cleanUser.includes(kw.toLowerCase()));
+        return { isCorrect: isOk, score: isOk ? 1 : 0, maxScore: 1 };
+      }
+      return { isCorrect: false, score: 0, maxScore: 1 };
+    }
+
+    // --- RENDER FUNCTIONS ---
+    function renderAll() {
+      const filtered = getFilteredQuestions();
+      renderQuestions(filtered);
+      renderPalette(filtered);
+      updateProgress();
+    }
+
+    function renderQuestions(list) {
+      const wrapper = document.getElementById('questions-wrapper');
+      wrapper.innerHTML = '';
+
+      if (list.length === 0) {
+        wrapper.innerHTML = `
+          <div class="p-8 text-center bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+            <p class="text-slate-500 dark:text-slate-400 font-medium text-sm">Không tìm thấy câu hỏi phù hợp với bộ lọc hiện tại.</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (currentView === 'step') {
+        if (currentStepIndex >= list.length) currentStepIndex = list.length - 1;
+        if (currentStepIndex < 0) currentStepIndex = 0;
+        const q = list[currentStepIndex];
+        wrapper.appendChild(createQuestionCard(q, currentStepIndex + 1, list.length));
+        document.getElementById('stepper-controls').classList.remove('hidden');
+        document.getElementById('stepper-indicator').textContent = `${currentStepIndex + 1} / ${list.length}`;
+      } else {
+        document.getElementById('stepper-controls').classList.add('hidden');
+        list.forEach((q, idx) => {
+          wrapper.appendChild(createQuestionCard(q, idx + 1, list.length));
+        });
+      }
+    }
+
+    function createQuestionCard(q, displayNum, totalCount) {
+      const card = document.createElement('div');
+      card.id = `q-card-${q.id}`;
+      card.className = `question-card bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-5 sm:p-6 shadow-sm transition hover:border-slate-300 dark:hover:border-slate-600 relative`;
+
+      const isFlagged = flaggedQuestions.has(q.id);
+      const isAnswered = isQuestionAnswered(q);
+      const evalResult = examSubmitted || currentMode === 'practice' ? evaluateQuestion(q) : null;
+      const showFeedback = (currentMode === 'practice' && isAnswered) || examSubmitted;
+
+      // Card Header
+      const headerHtml = `
+        <div class="flex items-start justify-between gap-3 mb-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300">
+              Câu ${displayNum} (Bài ${q.lesson})
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-slate-100 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300">
+              ${q.type === 'choice' ? 'Trắc nghiệm 4 lựa chọn' : q.type === 'true_false' ? 'Trắc nghiệm Đúng - Sai' : 'Trả lời ngắn'}
+            </span>
+          </div>
+
+          <button onclick="toggleFlag(${q.id})" title="Đánh dấu câu hỏi cần xem lại" class="p-1.5 rounded-lg border transition ${
+            isFlagged ? 'bg-amber-500 border-amber-600 text-white' : 'border-slate-200 dark:border-slate-700 text-slate-400 hover:text-amber-500'
+          }">
+            <svg class="w-4 h-4" fill="${isFlagged ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 mb-4 leading-relaxed">
+          ${q.question}
+        </div>
+      `;
+
+      card.innerHTML = headerHtml;
+
+      // Card Body depending on question type
+      const bodyContainer = document.createElement('div');
+      bodyContainer.className = 'space-y-3';
+
+      if (q.type === 'choice') {
+        const letters = ['A', 'B', 'C', 'D'];
+        q.options.forEach((opt, oIdx) => {
+          const letter = letters[oIdx] || opt.id;
+          const isSelected = userAnswers[q.id] === opt.id;
+          
+          let btnClasses = "w-full text-left p-3 sm:p-3.5 rounded-xl border text-xs sm:text-sm font-medium transition flex items-center justify-between ";
+          if (showFeedback) {
+            if (opt.isCorrect) {
+              btnClasses += "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-900 dark:text-emerald-200 font-semibold ring-1 ring-emerald-500 ";
+            } else if (isSelected && !opt.isCorrect) {
+              btnClasses += "bg-rose-50 dark:bg-rose-950/40 border-rose-500 text-rose-900 dark:text-rose-200 font-semibold ";
+            } else {
+              btnClasses += "border-slate-200 dark:border-slate-700 opacity-60 ";
+            }
+          } else {
+            if (isSelected) {
+              btnClasses += "bg-sky-50 dark:bg-sky-950/50 border-sky-500 text-sky-900 dark:text-sky-200 font-semibold ring-2 ring-sky-500/20 ";
+            } else {
+              btnClasses += "border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-300 ";
+            }
+          }
+
+          const optBtn = document.createElement('button');
+          optBtn.className = btnClasses;
+          optBtn.disabled = examSubmitted;
+          optBtn.onclick = () => selectChoice(q.id, opt.id, opt.isCorrect);
+
+          optBtn.innerHTML = `
+            <div class="flex items-center space-x-3">
+              <span class="w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs ${
+                isSelected ? 'bg-sky-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+              }">${letter}</span>
+              <span>${opt.text}</span>
+            </div>
+            ${showFeedback ? (
+              opt.isCorrect ? '<svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>' :
+              (isSelected ? '<svg class="w-5 h-5 text-rose-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>' : '')
+            ) : ''}
+          `;
+
+          bodyContainer.appendChild(optBtn);
+        });
+
+      } else if (q.type === 'true_false') {
+        const tfAnswers = userAnswers[q.id] || {};
+
+        q.items.forEach(it => {
+          const itemVal = tfAnswers[it.id];
+          const hasAnswer = itemVal !== undefined;
+          const isItemCorrect = itemVal === it.isCorrect;
+
+          const row = document.createElement('div');
+          row.className = 'p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-750 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3';
+
+          row.innerHTML = `
+            <div class="flex-1 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
+              <strong class="text-sky-600 dark:text-sky-400 mr-1">${it.id})</strong> ${it.text}
+              ${showFeedback && it.note ? `<div class="text-[11px] text-slate-500 mt-1 italic">${it.note}</div>` : ''}
+            </div>
+
+            <div class="flex items-center space-x-2 self-end sm:self-center">
+              <button onclick="selectTrueFalse(${q.id}, '${it.id}', true)" ${examSubmitted ? 'disabled' : ''} class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 ${
+                itemVal === true 
+                  ? (showFeedback ? (it.isCorrect ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white') : 'bg-sky-600 text-white shadow-sm')
+                  : 'bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+              }">
+                <span>Đúng</span>
+              </button>
+              <button onclick="selectTrueFalse(${q.id}, '${it.id}', false)" ${examSubmitted ? 'disabled' : ''} class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center space-x-1 ${
+                itemVal === false 
+                  ? (showFeedback ? (!it.isCorrect ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white') : 'bg-sky-600 text-white shadow-sm')
+                  : 'bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
+              }">
+                <span>Sai</span>
+              </button>
+            </div>
+          `;
+
+          bodyContainer.appendChild(row);
+        });
+
+      } else if (q.type === 'short_answer') {
+        const val = userAnswers[q.id] || '';
+        const isCorrect = evalResult ? evalResult.isCorrect : false;
+
+        const container = document.createElement('div');
+        container.className = 'space-y-3';
+
+        container.innerHTML = `
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="input-q-${q.id}" value="${val}" ${examSubmitted ? 'disabled' : ''}
+              placeholder="Nhập câu trả lời của em tại đây..." 
+              oninput="handleShortInput(${q.id}, this.value)"
+              class="flex-1 text-sm rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 px-3.5 py-2.5 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            />
+            ${!examSubmitted && currentMode === 'practice' ? `
+              <button onclick="checkShortAnswer(${q.id})" class="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition">
+                Kiểm tra
+              </button>
+            ` : ''}
+          </div>
+        `;
+
+        bodyContainer.appendChild(container);
+      }
+
+      card.appendChild(bodyContainer);
+
+      // Card Feedback & Explanation
+      if (showFeedback) {
+        const isFullCorrect = evalResult ? evalResult.isCorrect : false;
+        const feedbackBox = document.createElement('div');
+        feedbackBox.className = `mt-4 p-3.5 rounded-xl text-xs sm:text-sm border ${
+          isFullCorrect ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-200 dark:border-emerald-800/80 text-emerald-900 dark:text-emerald-200' :
+          'bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-800/80 text-rose-900 dark:text-rose-200'
+        }`;
+
+        feedbackBox.innerHTML = `
+          <div class="flex items-center space-x-1.5 font-bold mb-1">
+            ${isFullCorrect 
+              ? '<svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Chính xác!</span>' 
+              : '<svg class="w-4 h-4 text-rose-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg><span>Chưa chính xác!</span>'
+            }
+          </div>
+          ${q.displayAnswer ? `<div class="mb-1"><strong>Đáp án đúng:</strong> <span class="text-emerald-700 dark:text-emerald-300 font-semibold">${q.displayAnswer}</span></div>` : ''}
+          <div class="text-slate-600 dark:text-slate-300 mt-1"><strong>Giải thích:</strong> ${q.explanation}</div>
+        `;
+
+        card.appendChild(feedbackBox);
+      }
+
+      return card;
+    }
+
+    function renderPalette(list) {
+      const grid = document.getElementById('palette-grid');
+      grid.innerHTML = '';
+      document.getElementById('nav-count-badge').textContent = `${list.length} câu`;
+
+      list.forEach((q, idx) => {
+        const isAnswered = isQuestionAnswered(q);
+        const isFlagged = flaggedQuestions.has(q.id);
+        const evalResult = (examSubmitted || currentMode === 'practice') ? evaluateQuestion(q) : null;
+
+        let btnClass = "w-8 h-8 rounded-lg font-bold text-xs flex items-center justify-center transition border ";
+
+        if (examSubmitted) {
+          if (evalResult && evalResult.isCorrect) {
+            btnClass += "bg-emerald-500 border-emerald-600 text-white ";
+          } else {
+            btnClass += "bg-rose-500 border-rose-600 text-white ";
+          }
+        } else {
+          if (isFlagged) {
+            btnClass += "bg-amber-400 border-amber-500 text-slate-900 ";
+          } else if (isAnswered) {
+            btnClass += "bg-sky-500 border-sky-600 text-white ";
+          } else {
+            btnClass += "bg-slate-100 dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:border-sky-400 ";
+          }
+        }
+
+        if (currentView === 'step' && idx === currentStepIndex) {
+          btnClass += "ring-2 ring-sky-500 ring-offset-2 dark:ring-offset-slate-800 scale-105 ";
+        }
+
+        const btn = document.createElement('button');
+        btn.className = btnClass;
+        btn.textContent = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx, q.id);
+
+        grid.appendChild(btn);
+      });
+    }
+
+    function jumpToQuestion(index, qId) {
+      if (currentView === 'step') {
+        currentStepIndex = index;
+        renderAll();
+      } else {
+        const el = document.getElementById(`q-card-${qId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('ring-2', 'ring-sky-500');
+          setTimeout(() => el.classList.remove('ring-2', 'ring-sky-500'), 1500);
+        }
+      }
+    }
+
+    // --- USER INTERACTIONS ---
+    function selectChoice(qId, optId, isCorrect) {
+      if (examSubmitted) return;
+      userAnswers[qId] = optId;
+      if (currentMode === 'practice') {
+        playSound(isCorrect ? 'correct' : 'incorrect');
+      }
+      renderAll();
+    }
+
+    function selectTrueFalse(qId, subId, val) {
+      if (examSubmitted) return;
+      if (!userAnswers[qId]) userAnswers[qId] = {};
+      userAnswers[qId][subId] = val;
+
+      const q = currentQuestions.find(item => item.id === qId);
+      if (currentMode === 'practice' && q && isQuestionAnswered(q)) {
+        const res = evaluateQuestion(q);
+        playSound(res.isCorrect ? 'correct' : 'incorrect');
+      }
+      renderAll();
+    }
+
+    function handleShortInput(qId, val) {
+      if (examSubmitted) return;
+      userAnswers[qId] = val;
+      updateProgress();
+    }
+
+    function checkShortAnswer(qId) {
+      const q = currentQuestions.find(item => item.id === qId);
+      if (!q) return;
+      const res = evaluateQuestion(q);
+      playSound(res.isCorrect ? 'correct' : 'incorrect');
+      renderAll();
+    }
+
+    function toggleFlag(qId) {
+      if (flaggedQuestions.has(qId)) {
+        flaggedQuestions.delete(qId);
+      } else {
+        flaggedQuestions.add(qId);
+      }
+      renderAll();
+    }
+
+    function updateProgress() {
+      const filtered = getFilteredQuestions();
+      let answeredCount = 0;
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      filtered.forEach(q => {
+        if (isQuestionAnswered(q)) {
+          answeredCount++;
+          if (currentMode === 'practice' || examSubmitted) {
+            const ev = evaluateQuestion(q);
+            if (ev.isCorrect) correctCount++;
+            else incorrectCount++;
+          }
+        }
+      });
+
+      const total = filtered.length;
+      const pct = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
+
+      document.getElementById('progress-bar-fill').style.width = `${pct}%`;
+      document.getElementById('progress-text').textContent = `${answeredCount} / ${total} câu (${pct}%)`;
+
+      document.getElementById('stat-correct').textContent = correctCount;
+      document.getElementById('stat-incorrect').textContent = incorrectCount;
+      document.getElementById('stat-flagged').textContent = flaggedQuestions.size;
+    }
+
+    // --- SUBMISSION & RESULTS ---
+    function submitExam() {
+      const filtered = getFilteredQuestions();
+      const unanswered = filtered.filter(q => !isQuestionAnswered(q));
+
+      function doSubmit() {
+        examSubmitted = true;
+        clearInterval(timerInterval);
+
+        let totalScore = 0;
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        filtered.forEach(q => {
+          const ev = evaluateQuestion(q);
+          totalScore += ev.score;
+          if (ev.isCorrect) correctCount++;
+          else wrongCount++;
+        });
+
+        const scaledScore = ((totalScore / filtered.length) * 10).toFixed(1);
+        const pct = Math.round((correctCount / filtered.length) * 100);
+
+        // Show Result Modal
+        document.getElementById('res-score').textContent = scaledScore;
+        document.getElementById('res-correct').textContent = correctCount;
+        document.getElementById('res-correct-sub').textContent = `${pct}% số câu`;
+        document.getElementById('res-wrong').textContent = wrongCount;
+
+        const timeTakenSec = Math.round((Date.now() - (examStartTime || Date.now())) / 1000);
+        const mins = Math.floor(timeTakenSec / 60);
+        const secs = timeTakenSec % 60;
+        document.getElementById('res-time-taken').textContent = `Làm trong ${mins}p ${secs}s`;
+
+        const badge = document.getElementById('result-badge-icon');
+        const msg = document.getElementById('result-message');
+
+        if (scaledScore >= 8.5) {
+          badge.className = 'w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-3xl shadow-lg bg-emerald-500 shadow-emerald-500/30';
+          badge.innerHTML = '🎉';
+          msg.className = 'p-3.5 rounded-xl text-xs leading-relaxed font-medium mb-5 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800';
+          msg.innerHTML = '<strong>Xuất sắc!</strong> Em đã nắm rất vững kiến thức đề cương Tin học 7 Giữa kỳ I. Tiếp tục phát huy nhé!';
+          playSound('correct');
+        } else if (scaledScore >= 6.5) {
+          badge.className = 'w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-3xl shadow-lg bg-sky-500 shadow-sky-500/30';
+          badge.innerHTML = '👍';
+          msg.className = 'p-3.5 rounded-xl text-xs leading-relaxed font-medium mb-5 bg-sky-50 dark:bg-sky-950/40 text-sky-800 dark:text-sky-300 border border-sky-200 dark:border-sky-800';
+          msg.innerHTML = '<strong>Khá tốt!</strong> Em đã nắm được phần lớn kiến thức cơ bản. Hãy xem lại các câu sai để chuẩn bị tốt nhất cho bài thi!';
+          playSound('correct');
+        } else {
+          badge.className = 'w-16 h-16 rounded-full mx-auto mb-3 flex items-center justify-center text-white text-3xl shadow-lg bg-amber-500 shadow-amber-500/30';
+          badge.innerHTML = '💪';
+          msg.className = 'p-3.5 rounded-xl text-xs leading-relaxed font-medium mb-5 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800';
+          msg.innerHTML = '<strong>Cần ôn tập thêm!</strong> Em hãy chọn "Xem lại đáp án chi tiết" hoặc bấm "Luyện lại các câu sai" để củng cố lại bài học nhé.';
+          playSound('incorrect');
+        }
+
+        document.getElementById('modal-result').classList.remove('hidden');
+        renderAll();
+      }
+
+      if (unanswered.length > 0 && !examSubmitted) {
+        showConfirm(
+          'Còn câu chưa làm',
+          `Em còn ${unanswered.length} câu chưa hoàn thành. Em có chắc chắn muốn nộp bài ngay bây giờ không?`,
+          doSubmit
+        );
+      } else {
+        doSubmit();
+      }
+    }
+
+    // --- EVENT LISTENERS & INITIALIZATION ---
+    document.addEventListener('DOMContentLoaded', () => {
+      // Shuffling controls
+      document.getElementById('btn-shuffle-questions').addEventListener('click', shuffleQuestions);
+      document.getElementById('btn-shuffle-options').addEventListener('click', shuffleOptions);
+
+      // Reset
+      document.getElementById('btn-reset').addEventListener('click', () => {
+        showConfirm(
+          'Làm lại từ đầu',
+          'Tất cả câu trả lời và kết quả sẽ được xóa để làm lại. Em có muốn tiếp tục?',
+          () => {
+            userAnswers = {};
+            flaggedQuestions.clear();
+            examSubmitted = false;
+            currentStepIndex = 0;
+            if (currentMode === 'exam') startTimer();
+            renderAll();
+            showToast('Đã đặt lại bài làm!', 'info');
+          }
+        );
+      });
+
+      // Submit
+      document.getElementById('btn-submit').addEventListener('click', submitExam);
+
+      // Filters
+      document.getElementById('filter-lesson').addEventListener('change', () => {
+        currentStepIndex = 0;
+        renderAll();
+      });
+      document.getElementById('filter-type').addEventListener('change', () => {
+        currentStepIndex = 0;
+        renderAll();
+      });
+
+      // Mode switch
+      document.getElementById('select-mode').addEventListener('change', (e) => {
+        currentMode = e.target.value;
+        userAnswers = {};
+        examSubmitted = false;
+        if (currentMode === 'exam') {
+          startTimer();
+          showToast('Bắt đầu chế độ Thi thử - Thời gian 45 phút!', 'info');
+        } else {
+          stopTimer();
+          showToast('Chuyển sang chế độ Luyện tập - Xem giải thích tức thì!', 'info');
+        }
+        renderAll();
+      });
+
+      // View switch
+      document.getElementById('select-view').addEventListener('change', (e) => {
+        currentView = e.target.value;
+        renderAll();
+      });
+
+      // Stepper buttons
+      document.getElementById('btn-prev-question').addEventListener('click', () => {
+        if (currentStepIndex > 0) {
+          currentStepIndex--;
+          renderAll();
+        }
+      });
+      document.getElementById('btn-next-question').addEventListener('click', () => {
+        const filtered = getFilteredQuestions();
+        if (currentStepIndex < filtered.length - 1) {
+          currentStepIndex++;
+          renderAll();
+        }
+      });
+
+      // Theme toggle
+      document.getElementById('btn-theme').addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        const isDark = document.documentElement.classList.contains('dark');
+        try {
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
+      });
+
+      // Sound toggle
+      document.getElementById('btn-sound').addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        document.getElementById('icon-sound-on').classList.toggle('hidden', !soundEnabled);
+        document.getElementById('icon-sound-off').classList.toggle('hidden', soundEnabled);
+        showToast(soundEnabled ? 'Đã bật âm thanh' : 'Đã tắt âm thanh', 'info');
+      });
+
+      // Print button
+      document.getElementById('btn-print').addEventListener('click', () => {
+        window.print();
+      });
+
+      // Essay modal
+      const essayModal = document.getElementById('modal-essay');
+      document.getElementById('btn-essay-tab').addEventListener('click', () => {
+        essayModal.classList.remove('hidden');
+      });
+      document.getElementById('btn-close-essay').addEventListener('click', () => {
+        essayModal.classList.add('hidden');
+      });
+      document.getElementById('btn-close-essay-footer').addEventListener('click', () => {
+        essayModal.classList.add('hidden');
+      });
+
+      // Populate essay topics
+      const essayContainer = document.getElementById('essay-topics-container');
+      essayTopics.forEach(top => {
+        const tDiv = document.createElement('div');
+        tDiv.className = 'p-4 rounded-2xl bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600';
+        tDiv.innerHTML = `
+          <h5 class="font-bold text-slate-900 dark:text-white mb-2 text-sm">${top.topic}</h5>
+          <ul class="list-disc list-inside space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+            ${top.guidelines.map(g => `<li>${g}</li>`).join('')}
+          </ul>
+        `;
+        essayContainer.appendChild(tDiv);
+      });
+
+      // Result modal buttons
+      document.getElementById('btn-close-modal').addEventListener('click', () => {
+        document.getElementById('modal-result').classList.add('hidden');
+      });
+      document.getElementById('btn-retry-mistakes').addEventListener('click', () => {
+        document.getElementById('modal-result').classList.add('hidden');
+        // Clear correct answers, keep only incorrect ones
+        const filtered = getFilteredQuestions();
+        const wrongIds = new Set();
+        filtered.forEach(q => {
+          const ev = evaluateQuestion(q);
+          if (!ev.isCorrect) wrongIds.add(q.id);
+        });
+
+        userAnswers = {};
+        examSubmitted = false;
+        // Filter down to only wrong questions in list
+        currentQuestions = currentQuestions.filter(q => wrongIds.has(q.id));
+        currentStepIndex = 0;
+        renderAll();
+        showToast(`Đang luyện lại ${wrongIds.size} câu chưa đúng!`, 'info');
+      });
+
+      // Check saved theme
+      try {
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+
+      // Initial render
+      renderAll();
+    });
+  </script>
+</body>
+</html>
